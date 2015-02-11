@@ -11,9 +11,21 @@ namespace derhasi\upmkTournament;
 
 class RaceFactory {
 
-    public static function createPossibleRaces($contestants, $groupSize) {
+    public static function create($contestants, $groupSize) {
+        $races = array();
+        $combinations = CombinationFactory::create(array_keys($contestants), $groupSize);
 
+        foreach ($combinations as $key => $combination) {
 
+            $race_contestants = array();
+            foreach($combination->getParts() as $contKey) {
+                $race_contestants[] = $contestants[$contKey];
+            }
+
+            $race = new Race($race_contestants);
+            $races[$race->getID()] = $race;
+        }
+        return $races;
     }
 
 }
