@@ -1,0 +1,15 @@
+{
+    "name": "derhasi/upmk-tournament",
+    "authors": [
+        {
+            "name": "Johannes Haseitl",
+            "email": "johannes@undpaul.de"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "derhasi\\upmkTournament\\": "src/"
+        }
+    },
+    "require": {}
+}
