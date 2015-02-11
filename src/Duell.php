@@ -15,10 +15,7 @@ class Duell {
      */
     protected $id;
 
-    /**
-     * @var int
-     */
-    protected $count = 0;
+    protected $clashes = array();
 
     public function __construct(array $contestants) {
         $this->contestants = $contestants;
@@ -39,11 +36,11 @@ class Duell {
     }
 
     public function getCount() {
-        return $this->count;
+        return count($this->clashes);
     }
 
-    public function add() {
-        $this->count++;
+    public function clash($name) {
+        $this->clashes[] = $name;
     }
 
 }

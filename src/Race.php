@@ -32,6 +32,11 @@ class Race
      */
     protected $valid = true;
 
+    /**
+     * @var string
+     */
+    protected $name;
+
     public function __construct(array $contestants) {
         $this->contestants = $contestants;
     }
@@ -45,6 +50,8 @@ class Race
     }
 
     public function schedule($name, $heat) {
+        $this->name = $name;
+        $this->heat = $heat;
         $this->scheduled = true;
         return $this;
     }
@@ -68,5 +75,15 @@ class Race
         return $this->id;
     }
 
+    /**
+     * @return Contestant[]
+     */
+    public function getContestants() {
+        return $this->contestants;
+    }
+
+    public function getName() {
+        return $this->name;
+    }
 
 }

@@ -23,7 +23,7 @@ class Tournament
     /**
      * @var int
      */
-    protected $maxCompetingPerContestant = 2;
+    protected $maxDuellCount = 2;
 
     /**
      * @var array
@@ -31,12 +31,12 @@ class Tournament
     protected $heats = array();
 
     /**
-     * @var \derhasi\upmkTournament\Combination[]
+     * @var \derhasi\upmkTournament\Race[]
      */
-    protected $combinations;
+    protected $races;
 
     /**
-     * @var
+     * @var Duell[]
      */
     protected $duells;
 
@@ -52,7 +52,7 @@ class Tournament
 
     public function addContestant($name)
     {
-        $id = ($this->contestants) + 1;
+        $id = count($this->contestants) + 1;
         $this->contestants[$id] = new Contestant($name, $id);
     }
 
@@ -60,96 +60,124 @@ class Tournament
     public function buildHeats()
     {
         $this->heats = array();
-
-        var_dump($this->contestants);
-        $this->combinations = CombinationFactory::createMultiple(array_keys($this->contestants), 4);
-        print 'Combinations: ';
-        var_dump($this->combinations);
-
-        for ($heat = 1; $heat <= 3; $heat++) {
+        $this->duells = DuellFactory::createSingletons($this->contestants);
+        $this->races = RaceFactory::create($this->contestants, 4);
+        for ($heat = 1; $heat <= $this->heatCount; $heat++) {
             $this->buildHeat($heat);
         }
 
-        print 'Heats: ';
-        var_dump($this->heats);
-
+        static::debug($this->heats, 'Heats');
     }
 
-    protected function buildHeat($nr)
+    protected function buildHeat($heatNo)
     {
 
-        $valuatedCombinations = array();
+        $valuatedRaces = array();
 
-        foreach ($this->combinations as $key => $combination) {
-            // Skip this combination if it was already marked.
-            if ($combination->isMarked()) {
+        // First we check, what races can be
+        foreach ($this->races as $key => $race) {
+            // Skip this race if it is already scheduled.
+            if ($race->isScheduled() || !$race->isValid()) {
                 continue;
             }
 
-            $value = $this->evaluateCombination($combination);
-            if ($value >= 0) {
-                $valuatedCombinations[$key] = $value;
+            // Evaluate the sum. If the race is still a vali option after that
+            // we add it to the possible races.
+            $sum = $this->evaluateRaceSum($race);
+            if ($race->isValid()) {
+                $valuatedRaces[$key] = $sum;
             }
         }
 
-        asort($valuatedCombinations);
+        // Sort ids by smallest sum.
+        asort($valuatedRaces);
 
-        print "Val Comb: $nr";
-        var_dump($valuatedCombinations);
-
+        static::debug($valuatedRaces, 'Val Race: %s', $heatNo);
 
         $participants = array();
         $races = array();
-        foreach ($valuatedCombinations as $combKey => $value) {
-            $combination = $this->combinations[$combKey];
-            $parts = $combination->getParts();
+        $raceCounter = 1;
+        foreach ($valuatedRaces as $key => $value) {
+            $race = $this->races[$key];
+            $ids = $this->getContestandIdsFromRace($race);
             // In the case no part already participates in the heat, we can use
             // this race for this heat.
-            $int = array_intersect($parts, $participants);
+            $int = array_intersect($ids, $participants);
             if  (count($int) == 0) {
 
-                $participants += $parts;
-                $races[] = $combination;
-                $combination->mark();
+                $participants = array_merge($participants, $ids);
+                $race->schedule(sprintf('Race %s.%s', $heatNo, $raceCounter), $heatNo);
+                $this->setDuellClashesForRace($race);
+                $races[] = $race;
+                $raceCounter++;
             }
         }
 
-        $this->heats[$nr] = $races;
+        $this->heats[$heatNo] = $races;
     }
 
     /**
-     * @param Combination $combination
+     * @param Race $race
      *
      * @return int
      *   Negative means invalid.
      */
-    protected function evaluateCombination(Combination $combination) {
+    protected function evaluateRaceSum(Race $race) {
 
-        $parts = $combination->getParts();
+        $duells = $this->getDuellsFromRace($race);
 
         $sum = 0;
-        foreach (CombinationFactory::createMultiple($parts, 2) as $key => $duell) {
-            if (isset($this->duells[$key])) {
-
-                // In the case the duell exceeds the valid number,
-                // the combination is invalid-
-                if ($this->duells[$key] > $this->maxCompetingPerContestant) {
-                    $sum = -1;
-                    break;
-                }
-                else {
-                    $sum += $this->duells[$key];
-                }
+        foreach ($duells as $duell) {
+            $sum += $duell->getCount();
+            if ($duell->getCount() > $this->maxDuellCount) {
+                $race->invalidate();
             }
         }
 
         return $sum;
     }
 
-    protected function buildRace()
-    {
-
+    /**
+     * @param Race $race
+     *
+     * @return Duell[]
+     */
+    protected function getDuellsFromRace(Race $race) {
+        $con = $race->getContestants();
+        return DuellFactory::createSingletons($con);
     }
 
+    /**
+     * @param Race $race
+     */
+    protected function setDuellClashesForRace(Race $race) {
+        $duells = $this->getDuellsFromRace($race);
+        foreach ($duells as $duell) {
+            $duell->clash($race->getName());
+        }
+    }
 
+    /**
+     * @param Race $race
+     *
+     * @return string[]
+     */
+    protected function getContestandIdsFromRace(Race $race) {
+        $cons = $race->getContestants();
+        $return = array();
+        foreach ($cons as $c) {
+            $return[] = $c->getId();
+        }
+        return $return;
+    }
+
+    protected static function debug($val) {
+        $args = func_get_args();
+        array_shift($args);
+
+        print '================= ';
+        print call_user_func_array('sprintf', $args);
+        print ' =================';
+        var_dump($val);
+    }
 }

@@ -1,29 +1,18 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: derhasi
- * Date: 11.02.15
- * Time: 22:07
- */
 
 namespace derhasi\upmkTournament;
 
-
 class CombinationFactory {
 
-    public static function createMultiple($contestantIDs, $groupSize) {
-        return static::buildCombinations($contestantIDs, $groupSize);
-    }
-
     /**
-     * @param array $contestantIDs
+     * @param array $parts
      * @param int   $groupSize
      *
      * @return \derhasi\upmkTournament\Combination[string]
      */
-    protected static function buildCombinations($contestantIDs, $groupSize) {
+    public static function create($parts, $groupSize) {
         $math = new \Math_Combinatorics();
-        $combinations = $math->combinations($contestantIDs, $groupSize);
+        $combinations = $math->combinations($parts, $groupSize);
         $return = array();
         foreach ($combinations as $combination) {
             $combination = new Combination($combination);
