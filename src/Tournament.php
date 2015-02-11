@@ -52,7 +52,8 @@ class Tournament
 
     public function addContestant($name)
     {
-        $this->contestants[] = new Contestant($name);
+        $id = ($this->contestants) + 1;
+        $this->contestants[$id] = new Contestant($name, $id);
     }
 
 
