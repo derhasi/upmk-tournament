@@ -11,5 +11,13 @@
             "derhasi\\upmkTournament\\": "src/"
         }
     },
-    "require": {}
+    "require": {
+        "pear/math_combinatorics": "dev-trunk"
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/pear/Math_Combinatorics.git"
+        }
+    ]
 }
