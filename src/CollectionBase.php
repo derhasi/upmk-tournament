@@ -50,5 +50,16 @@ abstract class CollectionBase extends \ArrayObject {
     return $this->offsetExists($item->getID());
   }
 
+  /**
+   * Retrieve the original singleton instance for the given item.
+   *
+   * @param \derhasi\upmkTournament\ItemInterface $item Original or copy of the initial item.
+   *
+   * @return \derhasi\upmkTournament\ItemInterface
+   */
+  public function getItem(ItemInterface $item) {
+    return $this->offsetGet($item->getID());
+  }
+
 
 }

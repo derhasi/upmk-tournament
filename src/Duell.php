@@ -46,4 +46,11 @@ class Duell implements ItemInterface {
         $this->clashes[] = $name;
     }
 
+    /**
+     * @return \derhasi\upmkTournament\ContestantCollection
+     */
+    public function getContestants() {
+        return $this->contestants;
+    }
+
 }

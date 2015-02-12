@@ -36,7 +36,7 @@ class Tournament
     protected $races;
 
     /**
-     * @var Duell[]
+     * @var DuellCollection
      */
     protected $duells;
 
@@ -57,7 +57,7 @@ class Tournament
     protected function buildHeats()
     {
         $this->heats = array();
-        $this->duells = DuellFactory::createSingletons($this->contestants);
+        $this->duells = new DuellCollection($this->contestants);
         $this->races = RaceFactory::create($this->contestants, 4);
         for ($heat = 1; $heat <= $this->heatCount; $heat++) {
             $this->buildHeat($heat);
@@ -137,7 +137,7 @@ class Tournament
      */
     protected function getDuellsFromRace(Race $race) {
         $con = $race->getContestants();
-        return DuellFactory::createSingletons($con);
+        return $this->duells->getDuellsForContestants($con);
     }
 
     /**
