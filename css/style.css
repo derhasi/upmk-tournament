@@ -52,3 +52,8 @@ h3 {
 .bold {
   font-weight: 400;
 }
+
+sup {
+  font-size: 0.75rem;
+  color: gray;
+}

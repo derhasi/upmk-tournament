@@ -6,13 +6,15 @@
             <th>Name</th>
             <th>Races</th>
             <th>&sum;</th>
+            <th></th>
         </tr></thead>
         {% for result in tournament.results %}
             <tr>
                 <td>{{ result.pos }}</td>
                 <td>{{ result.name }}</td>
-                <td>{{ result.races}}</td>
+                <td>{{ result.races}}/{{ result.scheduled }}</td>
                 <td>{{ result.points }}</td>
+                <td><sup>({{ result.absPoints }})</sup></td>
             </tr>
         {% endfor %}
     </table>
