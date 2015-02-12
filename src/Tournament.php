@@ -26,7 +26,7 @@ class Tournament
     protected $maxDuellCount = 3;
 
     /**
-     * @var Heat[]
+     * @var HeatsCollection
      */
     protected $heats;
 
@@ -64,7 +64,7 @@ class Tournament
 
     public function buildHeats()
     {
-        $this->heats = array();
+        $this->heats = new HeatsCollection();
         $this->duells = new DuellCollection($this->contestants);
         $this->races = new RaceCollection($this->contestants, 4);
 
