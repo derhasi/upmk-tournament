@@ -16,7 +16,7 @@ class Duell implements ItemInterface {
     protected $id;
 
     /**
-     * @todo: RaceCollection
+     * @var Race[]
      */
     protected $clashes = array();
 
@@ -42,8 +42,8 @@ class Duell implements ItemInterface {
         return count($this->clashes);
     }
 
-    public function clash($name) {
-        $this->clashes[] = $name;
+    public function clash(Race $race) {
+        $this->clashes[] = $race;
     }
 
     /**

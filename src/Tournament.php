@@ -139,7 +139,7 @@ class Tournament
     protected function setDuellClashesForRace(Race $race) {
         $duells = $this->getDuellsFromRace($race);
         foreach ($duells as $duell) {
-            $duell->clash($race->getName());
+            $duell->clash($race);
         }
     }
 
