@@ -14,13 +14,10 @@ class RaceCollection extends CollectionBase {
      */
     protected $raceSize;
 
-    public function __construct(ContestantCollection $contestants, $raceSize) {
-        $this->contestants = $contestants;
-        $this->raceSize = $raceSize;
-        $this->build();
+    public function __construct() {
     }
 
-    protected function build() {
+    protected function buildRaces() {
         $combinations = CombinationFactory::create($this->contestants->getIDs(), $this->raceSize);
 
         foreach ($combinations as $key => $combination) {
@@ -33,4 +30,19 @@ class RaceCollection extends CollectionBase {
         }
     }
 
+
+    /**
+     * @param \derhasi\upmkTournament\ContestantCollection  $contestants
+     * @param int                                           $raceSize
+     *
+     * @return \derhasi\upmkTournament\RaceCollection
+     */
+    public static function generateRaces(ContestantCollection $contestants, $raceSize) {
+        $return = new static();
+
+        $return->contestants = $contestants;
+        $return->raceSize = $raceSize;
+        $return->buildRaces();
+        return $return;
+    }
 }

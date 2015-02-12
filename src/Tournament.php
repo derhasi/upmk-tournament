@@ -73,7 +73,7 @@ class Tournament
     {
         $this->heats = new HeatsCollection();
         $this->duells = new DuellCollection($this->contestants);
-        $this->races = new RaceCollection($this->contestants, 4);
+        $this->races = RaceCollection::generateRaces($this->contestants, 4);
 
         $heatNo = 0;
         do {
