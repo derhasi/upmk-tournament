@@ -28,6 +28,11 @@ class Race implements ItemInterface
     protected $scheduled = false;
 
     /**
+     * @var Heat
+     */
+    protected $heat;
+
+    /**
      * @var bool
      */
     protected $valid = true;
@@ -49,7 +54,7 @@ class Race implements ItemInterface
         return $this->scheduled;
     }
 
-    public function schedule($name, $heat) {
+    public function schedule($name, Heat $heat) {
         $this->name = $name;
         $this->heat = $heat;
         $this->scheduled = true;

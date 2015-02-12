@@ -26,7 +26,7 @@ class Tournament
     protected $maxDuellCount = 2;
 
     /**
-     * @var array
+     * @var Heat[]
      */
     protected $heats = array();
 
@@ -66,7 +66,8 @@ class Tournament
 
     protected function buildHeat($heatNo)
     {
-
+        // Before we can add races to the heat, we first have to check what
+        // races would be valid.
         $valuatedRaces = array();
 
         // First we check, what races can be
@@ -87,26 +88,18 @@ class Tournament
         // Sort ids by smallest sum.
         asort($valuatedRaces);
 
-        $participants = array();
-        $races = array();
-        $raceCounter = 1;
+        // Finally build the heat.
+        $heat = new Heat($heatNo);
         foreach ($valuatedRaces as $key => $value) {
             $race = $this->races[$key];
-            $ids = $this->getContestandIdsFromRace($race);
-            // In the case no part already participates in the heat, we can use
-            // this race for this heat.
-            $int = array_intersect($ids, $participants);
-            if  (count($int) == 0) {
 
-                $participants = array_merge($participants, $ids);
-                $race->schedule(sprintf('Race %s.%s', $heatNo, $raceCounter), $heatNo);
+            if ($heat->validRace($race)) {
+                $heat->addRace($race);
                 $this->setDuellClashesForRace($race);
-                $races[] = $race;
-                $raceCounter++;
             }
         }
 
-        $this->heats[$heatNo] = $races;
+        $this->heats[$heatNo] = $heat;
     }
 
     /**

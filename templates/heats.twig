@@ -2,11 +2,11 @@
 
 <div id="heats">
   {% for heat in heats %}
-    <h2>Heat {{ loop.index }}</h2>
+    <h2>Heat {{ loop.getID() }}</h2>
 
-    <p>{{ heat|length }} races</p>
+    <p>{{ heat.races|length }} races</p>
 
-    {% for race in heat %}
+    {% for race in heat.races %}
       {% include "race.twig" %}
     {% endfor %}
 
