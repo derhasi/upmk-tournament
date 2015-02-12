@@ -23,11 +23,6 @@ class Tournament
     /**
      * @var int
      */
-    protected $koRounds = 2;
-
-    /**
-     * @var int
-     */
     protected $maxDuellCount = 3;
 
     /**
@@ -227,9 +222,20 @@ class Tournament
         $this->data->writeHeatRaces($return);
     }
 
+    protected function initConfig() {
+        $data = $this->data->loadConfig();
+        $this->contestants = new ContestantCollection($data['contestants']);
+
+        if (isset($data['maxHeatRacesPerContestant'])) {
+            $this->maxHeatRacesPerContestant = $data['maxHeatRacesPerContestant'];
+        }
+        if (isset($data['maxDuellCount'])) {
+            $this->maxDuellCount = $data['maxDuellCount'];
+        }
+    }
+
     public function init() {
-        $names = $this->data->loadContestants();
-        $this->contestants = new ContestantCollection($names);
+        $this->initConfig();
         $this->duells = new DuellCollection($this->contestants);
         $this->heats = new HeatsCollection();
         $this->races = new RaceCollection();

@@ -34,9 +34,9 @@ class Data {
     file_put_contents($filepath, $yamlString);
   }
 
-  public function loadContestants() {
-    $data = $this->loadFromFile('contestants');
-    return $data['contestants'];
+  public function loadConfig() {
+    $data = $this->loadFromFile('config');
+    return $data;
   }
 
   public function writeHeatRaces($heats) {

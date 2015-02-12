@@ -18,5 +18,5 @@ nbproject
 .sass-cache
 
 /vendor/
-data/contestants.yml
+data/config.yml
 data/heat-races.yml

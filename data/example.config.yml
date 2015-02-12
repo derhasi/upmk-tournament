@@ -1,0 +1,7 @@
+contestants:
+  - A
+  - B
+  - C
+  - D
+maxHeatRacesPerContestant: 4
+maxDuellCount: 3
