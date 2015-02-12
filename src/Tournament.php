@@ -231,7 +231,9 @@ class Tournament
 
     protected function initConfig() {
         $data = $this->data->loadConfig();
-        $this->contestants = new ContestantCollection($data['contestants']);
+        $names = $data['contestants'];
+        shuffle($names);
+        $this->contestants = new ContestantCollection($names);
 
         if (isset($data['maxHeatRacesPerContestant'])) {
             $this->maxHeatRacesPerContestant = $data['maxHeatRacesPerContestant'];
