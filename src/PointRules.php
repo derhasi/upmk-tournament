@@ -45,6 +45,11 @@ class PointRules {
   }
 
   public function getRelativePosition($position, array $allPositions) {
+
+    if (!$position) {
+      return 0;
+    }
+
     $relativePos = 1;
     foreach ($allPositions as $otherPos) {
       $relativePos += ($otherPos && $otherPos < $position);
