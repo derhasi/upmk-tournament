@@ -1,9 +1,18 @@
 <div class="race">
   <h3>{{ race.getName() }}</h3>
 
-  <ul>
+  <table>
+    <thead><tr>
+      <th>Name</th>
+      <th>P1</th>
+      <th>P2</th>
+    </tr></thead>
   {% for contestant in race.getContestants() %}
-    <li>{{ contestant.getName() }}</li>
+    <tr>
+      <td>{{ contestant.getName() }}</td>
+      <td> 0 </td>
+      <td> 0 </td>
+    </tr>
   {% endfor %}
-  </ul>
+  </table>
 </div>

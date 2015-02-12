@@ -1,8 +1,7 @@
-<h1>This is a template</h1>
-
-<div id="heats">
+<div class="heats">
   {% for heat in heats %}
-    <h2>Heat {{ loop.getID() }}</h2>
+  <div id="heat">
+    <h2>Heat {{ heat.getID() }}</h2>
 
     <p>{{ heat.races|length }} races</p>
 
@@ -11,4 +10,5 @@
     {% endfor %}
 
   {% endfor %}
+  </div>
 </div>
