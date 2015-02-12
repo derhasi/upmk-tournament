@@ -48,10 +48,20 @@ class Tournament
         $this->contestants = new ContestantCollection($names);
     }
 
+    /**
+     * @return \derhasi\upmkTournament\Heat[]
+     */
     public function getHeats() {
         // @todo: cache
         $this->buildHeats();
         return $this->heats;
+    }
+
+    /**
+     * @return \derhasi\upmkTournament\ContestantCollection
+     */
+    public function getContestants() {
+        return $this->contestants;
     }
 
     protected function buildHeats()
@@ -96,6 +106,7 @@ class Tournament
             if ($heat->validRace($race)) {
                 $heat->addRace($race);
                 $this->setDuellClashesForRace($race);
+                $this->setParticipationForRace($race);
             }
         }
 
@@ -145,15 +156,10 @@ class Tournament
 
     /**
      * @param Race $race
-     *
-     * @return string[]
      */
-    protected function getContestandIdsFromRace(Race $race) {
-        $cons = $race->getContestants();
-        $return = array();
-        foreach ($cons as $c) {
-            $return[] = $c->getId();
+    protected function setParticipationForRace(Race $race) {
+        foreach ($race->getContestants() as $contestant) {
+            $contestant->addHeatRace($race);
         }
-        return $return;
     }
 }

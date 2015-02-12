@@ -32,4 +32,4 @@ $twig = new Twig_Environment($loader, array(
   //'cache' => __DIR__ . '/twig_cache',
 ));
 
-echo $twig->render('index.twig', array('heats' => $heats));
+echo $twig->render('index.twig', array('tournament' => $tournament));

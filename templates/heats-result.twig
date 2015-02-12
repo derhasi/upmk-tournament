@@ -1,0 +1,19 @@
+<div class="heats-result">
+    <h2>Heats: Result</h2>
+    <table>
+        <thead><tr>
+            <th>Pos</th>
+            <th>Name</th>
+            <th>Races</th>
+            <th>Points</th>
+        </tr></thead>
+        {% for contestant in tournament.getContestants() %}
+            <tr>
+                <td>?</td>
+                <td>{{ contestant.getName() }}</td>
+                <td>{{ contestant.heatRaces|length }}</td>
+                <td>?</td>
+            </tr>
+        {% endfor %}
+    </table>
+</div>

@@ -11,6 +11,11 @@ class Contestant implements ItemInterface
     protected $name;
 
     /**
+     * @var Race[]
+     */
+    public $heatRaces = array();
+
+    /**
      * @param string $name
      */
     public function __construct($name)
@@ -30,6 +35,18 @@ class Contestant implements ItemInterface
      */
     public function getId() {
         return $this->name;
+    }
+
+    /**
+     * @param \derhasi\upmkTournament\Race $race
+     * @throws \Exception
+     */
+    public function addHeatRace(Race $race) {
+        if (!$race->isScheduled()) {
+            throw new \Exception('Race is not scheduled yet');
+        }
+
+        $this->heatRaces[$race->getID()] = $race;
     }
 
 }
