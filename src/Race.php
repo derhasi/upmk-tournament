@@ -9,11 +9,11 @@
 namespace derhasi\upmkTournament;
 
 
-class Race
+class Race implements ItemInterface
 {
 
     /**
-     * @var Contestant[]
+     * @var ContestantCollection
      */
     protected $contestants;
 
@@ -37,7 +37,7 @@ class Race
      */
     protected $name;
 
-    public function __construct(array $contestants) {
+    public function __construct(ContestantCollection $contestants) {
         $this->contestants = $contestants;
     }
 
@@ -76,7 +76,7 @@ class Race
     }
 
     /**
-     * @return Contestant[]
+     * @return ContestantCollection
      */
     public function getContestants() {
         return $this->contestants;

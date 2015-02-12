@@ -2,7 +2,7 @@
 
 namespace derhasi\upmkTournament;
 
-class Contestant
+class Contestant implements ItemInterface
 {
 
     /**
@@ -11,17 +11,11 @@ class Contestant
     protected $name;
 
     /**
-     * @var string
-     */
-    protected $id;
-
-    /**
      * @param string $name
      */
-    public function __construct($name, $id)
+    public function __construct($name)
     {
         $this->name = $name;
-        $this->id = $id;
     }
 
     /**
@@ -35,7 +29,7 @@ class Contestant
      * @return string
      */
     public function getId() {
-        return $this->id;
+        return $this->name;
     }
 
 }

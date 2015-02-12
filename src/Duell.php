@@ -3,10 +3,10 @@
 namespace derhasi\upmkTournament;
 
 
-class Duell {
+class Duell implements ItemInterface {
 
     /**
-     * @var Contestant[]
+     * @var ContestantCollection
      */
     protected $contestants;
 
@@ -15,9 +15,12 @@ class Duell {
      */
     protected $id;
 
+    /**
+     * @todo: RaceCollection
+     */
     protected $clashes = array();
 
-    public function __construct(array $contestants) {
+    public function __construct(ContestantCollection $contestants) {
         $this->contestants = $contestants;
     }
 
