@@ -30,15 +30,15 @@ h3 {
   font-weight: 400;
 }
 
-th {
-  font-weight: 300;
-  color: #77B302;
-}
-
 .heat {
   clear: both;
   border-bottom: 2px solid #77B302;
   padding: 1rem 0;
+}
+
+.heat th {
+  font-weight: 300;
+  color: #77B302;
 }
 
 .race {
