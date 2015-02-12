@@ -12,7 +12,8 @@
         }
     },
     "require": {
-        "pear/math_combinatorics": "dev-trunk"
+        "pear/math_combinatorics": "dev-trunk",
+        "twig/twig": "~1.0"
     },
     "repositories": [
         {

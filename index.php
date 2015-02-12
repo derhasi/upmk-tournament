@@ -20,7 +20,16 @@ $names = [
   'J',
 ];
 
-
+// Load heats from tournament config.
 $tournament = new upmkTournament\Tournament($names);
+$heats = $tournament->getHeats();
 
-$tournament->buildHeats();
+// Render the heats
+Twig_Autoloader::register();
+
+$loader = new Twig_Loader_Filesystem(__DIR__ . '/templates');
+$twig = new Twig_Environment($loader, array(
+  //'cache' => __DIR__ . '/twig_cache',
+));
+
+echo $twig->render('heats.twig', array('heats' => $heats));

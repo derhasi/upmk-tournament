@@ -1,0 +1,14 @@
+<h1>This is a template</h1>
+
+<div id="heats">
+  {% for heat in heats %}
+    <h2>Heat {{ loop.index }}</h2>
+
+    <p>{{ heat|length }} races</p>
+
+    {% for race in heat %}
+      {% include "race.twig" %}
+    {% endfor %}
+
+  {% endfor %}
+</div>

@@ -1,0 +1,9 @@
+<div class="race">
+  <h3>{{ race.getName() }}</h3>
+
+  <ul>
+  {% for contestant in race.getContestants() %}
+    <li>{{ contestant.getName() }}</li>
+  {% endfor %}
+  </ul>
+</div>

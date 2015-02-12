@@ -56,8 +56,13 @@ class Tournament
         $this->contestants[$id] = new Contestant($name, $id);
     }
 
+    public function getHeats() {
+        // @todo: cache
+        $this->buildHeats();
+        return $this->heats;
+    }
 
-    public function buildHeats()
+    protected function buildHeats()
     {
         $this->heats = array();
         $this->duells = DuellFactory::createSingletons($this->contestants);
@@ -65,8 +70,6 @@ class Tournament
         for ($heat = 1; $heat <= $this->heatCount; $heat++) {
             $this->buildHeat($heat);
         }
-
-        static::debug($this->heats, 'Heats');
     }
 
     protected function buildHeat($heatNo)
@@ -91,8 +94,6 @@ class Tournament
 
         // Sort ids by smallest sum.
         asort($valuatedRaces);
-
-        static::debug($valuatedRaces, 'Val Race: %s', $heatNo);
 
         $participants = array();
         $races = array();
@@ -169,15 +170,5 @@ class Tournament
             $return[] = $c->getId();
         }
         return $return;
-    }
-
-    protected static function debug($val) {
-        $args = func_get_args();
-        array_shift($args);
-
-        print '================= ';
-        print call_user_func_array('sprintf', $args);
-        print ' =================';
-        var_dump($val);
     }
 }
