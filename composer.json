@@ -13,7 +13,8 @@
     },
     "require": {
         "pear/math_combinatorics": "dev-trunk",
-        "twig/twig": "~1.0"
+        "twig/twig": "~1.0",
+        "symfony/yaml": "~2.6"
     },
     "repositories": [
         {

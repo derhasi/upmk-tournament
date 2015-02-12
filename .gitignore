@@ -18,3 +18,4 @@ nbproject
 .sass-cache
 
 /vendor/
+data/contestants.yml

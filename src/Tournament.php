@@ -6,6 +6,11 @@ class Tournament
 {
 
     /**
+     * @var Data
+     */
+    protected $data;
+
+    /**
      * @var ContestantCollection
      */
     protected $contestants;
@@ -41,10 +46,12 @@ class Tournament
     protected $duells;
 
     /**
-     * @param string[] $names
+     * @param Data $names
      */
-    public function __construct($names = array())
+    public function __construct(Data $data)
     {
+        $this->data = $data;
+        $names = $data->loadContestants();
         $this->contestants = new ContestantCollection($names);
     }
 
@@ -76,6 +83,8 @@ class Tournament
                 $this->heats[$heat->getId()] = $heat;
             }
         } while(!empty($heat->races) && $this->nextHeatNeeded());
+
+        $this->data->writeHeats($this->heats);
     }
 
     protected function nextHeatNeeded() {
