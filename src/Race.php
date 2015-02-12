@@ -129,7 +129,7 @@ class Race implements ItemInterface
                     $this->results[$id][] = $results[$id][$i];
                 }
                 else {
-                    $this->results[$id][] = [0, 0];
+                    $this->results[$id][] = 0;
                 }
             }
         }

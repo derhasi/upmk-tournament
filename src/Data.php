@@ -28,7 +28,7 @@ class Data {
       $yamlString = Yaml::dump($data->toArray());
     }
     else {
-      $yamlString = Yaml::dump($data, 4);
+      $yamlString = Yaml::dump($data, 3);
     }
 
     file_put_contents($filepath, $yamlString);
