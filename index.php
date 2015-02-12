@@ -18,11 +18,12 @@ $names = [
   'H',
   'I',
   'J',
+  'K',
 ];
 
 // Load heats from tournament config.
 $tournament = new upmkTournament\Tournament($names);
-$heats = $tournament->getHeats();
+$tournament->buildHeats();
 
 // Render the heats
 Twig_Autoloader::register();

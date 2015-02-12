@@ -13,7 +13,7 @@ class Tournament
     /**
      * @var int
      */
-    protected $heatCount = 3;
+    protected $maxHeatRacesPerContestant = 4;
 
     /**
      * @var int
@@ -23,12 +23,12 @@ class Tournament
     /**
      * @var int
      */
-    protected $maxDuellCount = 2;
+    protected $maxDuellCount = 3;
 
     /**
      * @var Heat[]
      */
-    protected $heats = array();
+    protected $heats;
 
     /**
      * @var \derhasi\upmkTournament\RaceCollection
@@ -52,8 +52,6 @@ class Tournament
      * @return \derhasi\upmkTournament\Heat[]
      */
     public function getHeats() {
-        // @todo: cache
-        $this->buildHeats();
         return $this->heats;
     }
 
@@ -64,13 +62,29 @@ class Tournament
         return $this->contestants;
     }
 
-    protected function buildHeats()
+    public function buildHeats()
     {
         $this->heats = array();
         $this->duells = new DuellCollection($this->contestants);
         $this->races = new RaceCollection($this->contestants, 4);
-        for ($heat = 1; $heat <= $this->heatCount; $heat++) {
-            $this->buildHeat($heat);
+
+        $heatNo = 0;
+        do {
+            $heatNo++;
+            $heat = $this->buildHeat($heatNo);
+            if (!empty($heat->races)) {
+                $this->heats[$heat->getId()] = $heat;
+            }
+        } while(!empty($heat->races) && $this->nextHeatNeeded());
+    }
+
+    protected function nextHeatNeeded() {
+        $amount = $this->amountOfHeatRaces();
+        if ($amount['min'] != $amount['max']) {
+            return true;
+        }
+        elseif ($amount['min'] < $this->maxHeatRacesPerContestant) {
+            return true;
         }
     }
 
@@ -87,10 +101,11 @@ class Tournament
                 continue;
             }
 
-            // Evaluate the sum. If the race is still a vali option after that
-            // we add it to the possible races.
-            $sum = $this->evaluateRaceSum($race);
+            $this->validateHeatRace($race);
+
+            // If the race is still valid, we calculate a sum for duell matching.
             if ($race->isValid()) {
+                $sum = $this->evaluateHeatRaceSum($race);
                 $valuatedRaces[$key] = $sum;
             }
         }
@@ -110,7 +125,26 @@ class Tournament
             }
         }
 
-        $this->heats[$heatNo] = $heat;
+        return $heat;
+    }
+
+    protected function validateHeatRace(Race $race) {
+        // First check if any participant has reached the max race count.
+        foreach ($race->getContestants() as $contestant) {
+            if (count($contestant->heatRaces) >= $this->maxHeatRacesPerContestant) {
+                $race->invalidate();
+                return;
+            }
+        }
+
+        // Then check if the max duell count has been reached.
+        $duells = $this->getDuellsFromRace($race);
+        foreach ($duells as $duell) {
+            if ($duell->getCount() > $this->maxDuellCount) {
+                $race->invalidate();
+                return;
+            }
+        }
     }
 
     /**
@@ -119,18 +153,12 @@ class Tournament
      * @return int
      *   Negative means invalid.
      */
-    protected function evaluateRaceSum(Race $race) {
-
+    protected function evaluateHeatRaceSum(Race $race) {
         $duells = $this->getDuellsFromRace($race);
-
         $sum = 0;
         foreach ($duells as $duell) {
             $sum += $duell->getCount();
-            if ($duell->getCount() > $this->maxDuellCount) {
-                $race->invalidate();
-            }
         }
-
         return $sum;
     }
 
@@ -161,5 +189,14 @@ class Tournament
         foreach ($race->getContestants() as $contestant) {
             $contestant->addHeatRace($race);
         }
+    }
+
+    protected function amountOfHeatRaces() {
+        $counts = array();
+        foreach ($this->contestants as $contestant) {
+            $counts[] = count($contestant->heatRaces);
+        }
+
+        return array('min' => min($counts), 'max' => max($counts));
     }
 }
