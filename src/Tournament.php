@@ -31,7 +31,7 @@ class Tournament
     protected $heats = array();
 
     /**
-     * @var \derhasi\upmkTournament\Race[]
+     * @var \derhasi\upmkTournament\RaceCollection
      */
     protected $races;
 
@@ -58,7 +58,7 @@ class Tournament
     {
         $this->heats = array();
         $this->duells = new DuellCollection($this->contestants);
-        $this->races = RaceFactory::create($this->contestants, 4);
+        $this->races = new RaceCollection($this->contestants, 4);
         for ($heat = 1; $heat <= $this->heatCount; $heat++) {
             $this->buildHeat($heat);
         }
