@@ -62,7 +62,7 @@ class Race implements ItemInterface
     }
 
     public function invalidate() {
-        $this->valid;
+        $this->valid = false;
         return $this;
     }
 
