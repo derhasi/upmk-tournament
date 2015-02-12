@@ -11,15 +11,15 @@ namespace derhasi\upmkTournament;
 
 class RaceFactory {
 
-    public static function create($contestants, $groupSize) {
+    public static function create(ContestantCollection $contestants, $groupSize) {
         $races = array();
-        $combinations = CombinationFactory::create(array_keys($contestants), $groupSize);
+        $combinations = CombinationFactory::create($contestants->array_keys(), $groupSize);
 
         foreach ($combinations as $key => $combination) {
 
-            $race_contestants = array();
+            $race_contestants = new ContestantCollection();
             foreach($combination->getParts() as $contKey) {
-                $race_contestants[] = $contestants[$contKey];
+                $race_contestants->add($contestants[$contKey]);
             }
 
             $race = new Race($race_contestants);

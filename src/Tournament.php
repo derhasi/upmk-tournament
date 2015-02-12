@@ -6,9 +6,9 @@ class Tournament
 {
 
     /**
-     * @var Contestant[]
+     * @var ContestantCollection
      */
-    protected $contestants = array();
+    protected $contestants;
 
     /**
      * @var int
@@ -45,15 +45,7 @@ class Tournament
      */
     public function __construct($names = array())
     {
-        foreach ($names as $name) {
-            $this->addContestant($name);
-        }
-    }
-
-    public function addContestant($name)
-    {
-        $id = count($this->contestants) + 1;
-        $this->contestants[$id] = new Contestant($name, $id);
+        $this->contestants = new ContestantCollection($names);
     }
 
     public function getHeats() {

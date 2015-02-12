@@ -5,22 +5,22 @@ namespace derhasi\upmkTournament;
 class DuellFactory {
 
     /**
-     * @param Contestant[] $contestants
+     * @param ContestantCollection $contestants
      *
      * @return Duell[]
      */
     public static function create($contestants) {
         $duells = array();
 
-        $combinations = CombinationFactory::create(array_keys($contestants), 2);
+        $combinations = CombinationFactory::create($contestants->array_keys(), 2);
 
         foreach ($combinations as $key => $combination) {
-            $duell_contestants = array();
+            $duellContestants = new ContestantCollection();
             foreach($combination->getParts() as $contKey) {
-                $duell_contestants[] = $contestants[$contKey];
+                $duellContestants->add($contestants[$contKey]);
             }
 
-            $duell = new Duell($duell_contestants);
+            $duell = new Duell($duellContestants);
 
             $duells[$duell->getID()] = $duell;
         }
