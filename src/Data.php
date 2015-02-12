@@ -43,4 +43,9 @@ class Data {
     $this->writeToFile('heat-races', $heats);
   }
 
+  public function loadHeatRaces() {
+    $data = $this->loadFromFile('heat-races');
+    return $data;
+  }
+
 }

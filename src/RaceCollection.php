@@ -37,12 +37,10 @@ class RaceCollection extends CollectionBase {
      *
      * @return \derhasi\upmkTournament\RaceCollection
      */
-    public static function generateRaces(ContestantCollection $contestants, $raceSize) {
-        $return = new static();
+    public function generateRaces(ContestantCollection $contestants, $raceSize) {
 
-        $return->contestants = $contestants;
-        $return->raceSize = $raceSize;
-        $return->buildRaces();
-        return $return;
+        $this->contestants = $contestants;
+        $this->raceSize = $raceSize;
+        $this->buildRaces();
     }
 }

@@ -31,4 +31,16 @@ class ContestantCollection extends CollectionBase {
     }
   }
 
+  /**
+   * @param $names
+   * @return \derhasi\upmkTournament\ContestantCollection
+   */
+  public function getByNames($names) {
+    $return = new ContestantCollection();
+    foreach ($names as $name) {
+      $return->add($this->getById($name));
+    }
+    return $return;
+  }
+
 }

@@ -51,8 +51,6 @@ class Tournament
     public function __construct(Data $data)
     {
         $this->data = $data;
-        $names = $data->loadContestants();
-        $this->contestants = new ContestantCollection($names);
     }
 
     /**
@@ -69,11 +67,10 @@ class Tournament
         return $this->contestants;
     }
 
-    public function buildHeats()
+    protected function buildHeats()
     {
-        $this->heats = new HeatsCollection();
-        $this->duells = new DuellCollection($this->contestants);
-        $this->races = RaceCollection::generateRaces($this->contestants, 4);
+        // Build missing races for the given contestants and race size.
+        $this->races->generateRaces($this->contestants, 4);
 
         $heatNo = 0;
         do {
@@ -83,8 +80,6 @@ class Tournament
                 $this->heats[$heat->getId()] = $heat;
             }
         } while(!empty($heat->races) && $this->nextHeatNeeded());
-
-        $this->serializeRaces();
     }
 
     protected function nextHeatNeeded() {
@@ -128,13 +123,17 @@ class Tournament
             $race = $this->races[$key];
 
             if ($heat->validRace($race)) {
-                $heat->addRace($race);
-                $this->setDuellClashesForRace($race);
-                $this->setParticipationForRace($race);
+                $this->addRaceToHeat($race, $heat);
             }
         }
 
         return $heat;
+    }
+
+    protected function addRaceToHeat(Race $race, Heat $heat) {
+        $heat->addRace($race);
+        $this->setDuellClashesForRace($race);
+        $this->setParticipationForRace($race);
     }
 
     protected function validateHeatRace(Race $race) {
@@ -209,18 +208,71 @@ class Tournament
         return array('min' => min($counts), 'max' => max($counts));
     }
 
-
-    public function serializeRaces() {
-
+    /**
+     * Write heat races to yaml.
+     */
+    public function writeHeatRacesToData() {
         $return = array();
         foreach ($this->races as $race) {
             /* @var Race $race */
             if ($race->isScheduled()) {
-                $return[$race->getName()] = $race->toArray();
+                $return[$race->getID()] = $race->toArray();
             }
         }
-        ksort($return);
-        $this->data->writeHeatRaces($return);
 
+        uasort($return, function($a, $b) {
+            return $a['name'] > $b['name'] ;
+        });
+
+        $this->data->writeHeatRaces($return);
+    }
+
+    public function init() {
+        $names = $this->data->loadContestants();
+        $this->contestants = new ContestantCollection($names);
+        $this->duells = new DuellCollection($this->contestants);
+        $this->heats = new HeatsCollection();
+        $this->races = new RaceCollection();
+
+        $raw_races = $this->data->loadHeatRaces();
+
+        // If we got no race data
+        if (!empty($raw_races)) {
+            $this->buildFromRawRaces($raw_races);
+            $this->buildHeats();
+            $this->writeHeatRacesToData();
+        }
+        // Build fresh heat information from scratch with given contestants.
+        else {
+            $this->buildHeats();
+            $this->writeHeatRacesToData();
+        }
+    }
+
+    protected function buildFromRawRaces($raw_races) {
+
+
+        foreach ($raw_races as $raw) {
+
+            // Add or get existing heat.
+            $heatNo = $raw['heat'];
+            $this->heats->add(new Heat($heatNo));
+            $heat = $this->heats->getById($heatNo);
+
+            $contestantNames = array_keys($raw['results']);
+
+            $name = $raw['name'];
+            $contestants = $this->contestants->getByNames($contestantNames);
+
+            // Build race object and register it to the collection.
+            $race = new Race($contestants);
+            $this->races->add($race);
+            $race = $this->races->getItem($race);
+            $race->schedule($name, $heat);
+            $race->setResult($raw['results']);
+
+            // Make sure it
+            $this->addRaceToHeat($race, $heat);
+        }
     }
 }

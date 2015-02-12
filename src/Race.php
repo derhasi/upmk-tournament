@@ -12,6 +12,8 @@ namespace derhasi\upmkTournament;
 class Race implements ItemInterface
 {
 
+    const RACE_COUNT = 3;
+
     /**
      * @var ContestantCollection
      */
@@ -38,12 +40,18 @@ class Race implements ItemInterface
     protected $valid = true;
 
     /**
+     * @var
+     */
+    protected $results;
+
+    /**
      * @var string
      */
     protected $name;
 
     public function __construct(ContestantCollection $contestants) {
         $this->contestants = $contestants;
+        $this->setResult(array());
     }
 
     public function isValid() {
@@ -94,7 +102,6 @@ class Race implements ItemInterface
     public function toArray() {
 
         $return = array(
-          'id' => $this->getID(),
           'name' => $this->getName(),
         );
 
@@ -102,22 +109,29 @@ class Race implements ItemInterface
             $return['heat'] = $this->heat->getId();
         }
 
-        $return['results'] = array();
-        foreach ($this->getContestants() as $contestant) {
-            /**
-             * @var Contestant $contestant
-             */
-            $key = $contestant->getId();
-            $return['results'][$key] = array(
-              array(0, 0),
-              array(0, 0),
-              array(0, 0),
-            );
-        }
+        $return['results'] = $this->results;
         return $return;
-
-
-
     }
 
+    /**
+     * Set or initialise the results.
+     * @param $results
+     */
+    public function setResult($results) {
+        $this->results = array();
+
+        foreach ($this->contestants->getIDs() as $id) {
+            $this->results[$id] = array();
+
+            for ($i = 0; $i < static::RACE_COUNT; $i++) {
+
+                if (isset($results[$id][$i])) {
+                    $this->results[$id][] = $results[$id][$i];
+                }
+                else {
+                    $this->results[$id][] = [0, 0];
+                }
+            }
+        }
+    }
 }

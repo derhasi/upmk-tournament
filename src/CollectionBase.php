@@ -53,7 +53,18 @@ abstract class CollectionBase extends \ArrayObject {
    */
   public function getIDs() {
     return array_keys($this->getArrayCopy());
+  }
 
+  /**
+   * @param $id
+   * @return ItemInterface
+   */
+  public function getById($id) {
+    if (!$this->offsetExists($id)) {
+      throw new \Exception(sprintf('Item %s does not exist in %s.', $id, __CLASS__));
+    }
+
+    return $this->offsetGet($id);
   }
 
 
