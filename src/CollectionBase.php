@@ -21,9 +21,9 @@ abstract class CollectionBase extends \ArrayObject {
   }
 
   /**
-   * @param ItemInterface[] $items
+   * @param \Traversable $items
    */
-  public function addMultiple(array $items) {
+  public function addMultiple(\Traversable $items) {
     foreach ($items as $item) {
       $this->add($item);
     }
