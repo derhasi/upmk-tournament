@@ -84,7 +84,7 @@ class Tournament
             }
         } while(!empty($heat->races) && $this->nextHeatNeeded());
 
-        $this->data->writeHeats($this->heats);
+        $this->serializeRaces();
     }
 
     protected function nextHeatNeeded() {
@@ -207,5 +207,20 @@ class Tournament
         }
 
         return array('min' => min($counts), 'max' => max($counts));
+    }
+
+
+    public function serializeRaces() {
+
+        $return = array();
+        foreach ($this->races as $race) {
+            /* @var Race $race */
+            if ($race->isScheduled()) {
+                $return[$race->getName()] = $race->toArray();
+            }
+        }
+        ksort($return);
+        $this->data->writeHeatRaces($return);
+
     }
 }

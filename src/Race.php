@@ -91,4 +91,33 @@ class Race implements ItemInterface
         return $this->name;
     }
 
+    public function toArray() {
+
+        $return = array(
+          'id' => $this->getID(),
+          'name' => $this->getName(),
+        );
+
+        if (isset($this->heat)) {
+            $return['heat'] = $this->heat->getId();
+        }
+
+        $return['results'] = array();
+        foreach ($this->getContestants() as $contestant) {
+            /**
+             * @var Contestant $contestant
+             */
+            $key = $contestant->getId();
+            $return['results'][$key] = array(
+              array(0, 0),
+              array(0, 0),
+              array(0, 0),
+            );
+        }
+        return $return;
+
+
+
+    }
+
 }

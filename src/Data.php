@@ -28,7 +28,7 @@ class Data {
       $yamlString = Yaml::dump($data->toArray());
     }
     else {
-      $yamlString = Yaml::dump($data);
+      $yamlString = Yaml::dump($data, 4);
     }
 
     file_put_contents($filepath, $yamlString);
@@ -39,8 +39,8 @@ class Data {
     return $data['contestants'];
   }
 
-  public function writeHeats($heats) {
-    $this->writeToFile('heats', $heats);
+  public function writeHeatRaces($heats) {
+    $this->writeToFile('heat-races', $heats);
   }
 
 }
