@@ -5,6 +5,8 @@ namespace derhasi\upmkTournament;
 class Tournament
 {
 
+    public $results = array();
+
     /**
      * @var Data
      */
@@ -39,6 +41,11 @@ class Tournament
      * @var DuellCollection
      */
     protected $duells;
+
+    /**
+     * @var PointRules
+     */
+    protected $pointRules;
 
     /**
      * @param Data $names
@@ -232,6 +239,8 @@ class Tournament
         if (isset($data['maxDuellCount'])) {
             $this->maxDuellCount = $data['maxDuellCount'];
         }
+
+        $this->pointRules = new PointRules($data['pointsAbsolute'], $data['pointsRelative']) ;
     }
 
     public function init() {
@@ -281,4 +290,64 @@ class Tournament
             $this->addRaceToHeat($race, $heat);
         }
     }
+
+
+    public function buildResults() {
+
+        $results = array();
+
+        foreach ($this->races as $race) {
+            /**
+             * @var Race $race
+             */
+
+            if (!$race->isScheduled()) {
+                continue;
+            }
+
+            $race->buildResult($this->pointRules);
+
+            foreach ($race->getResults() as $result) {
+                /**
+                 * @var RaceResult $result
+                 */
+
+                if (!isset($results[$result->name])) {
+                    $results[$result->name] = array(
+                      'name' => $result->name,
+                      'races' => 0,
+                      'scheduled' => 0,
+                      'points' => 0,
+                      'absPoints' => 0,
+                    );
+                }
+
+                $results[$result->name]['scheduled']++;
+                $results[$result->name]['races'] += $result->relSum > 0;
+                $results[$result->name]['points'] += $result->relSum;
+                $results[$result->name]['absPoints'] += $result->absSum;
+            }
+        }
+
+        usort($results, function($a, $b) {
+            if ($a['races'] != $b['races']) {
+                return $a['races'] > $b['races'];
+            }
+            elseif ($a['points'] != $b['points']) {
+                return $a['points'] > $b['points'];
+            }
+            else {
+                return $a['absPoints'] > $b['absPoints'];
+            };
+        });
+
+        $pos = 1;
+        foreach ($results as &$item) {
+            $item['pos'] = $pos++;
+        }
+
+        $this->results = $results;
+    }
+
+
 }

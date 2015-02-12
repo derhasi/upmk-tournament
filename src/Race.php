@@ -44,6 +44,8 @@ class Race implements ItemInterface
      */
     protected $results;
 
+    protected $resultObjects;
+
     /**
      * @var string
      */
@@ -133,5 +135,35 @@ class Race implements ItemInterface
                 }
             }
         }
+
+        $this->resultObjects = array();
+    }
+
+    public function buildResult(PointRules $pointRules) {
+        $allRuns = array();
+        // First collect all positions for the runs.
+        for ($raceNo = 0; $raceNo< static::RACE_COUNT; $raceNo++) {
+            $allRuns[$raceNo] = array();
+            foreach ($this->results as $result) {
+                $allRuns[$raceNo][] = $result[$raceNo];
+            }
+        }
+
+        foreach ($this->results as $name => $runs) {
+            $this->resultObjects[$name] = new RaceResult($name, $runs, $allRuns, $pointRules);
+        }
+
+        usort($this->resultObjects, function($a, $b) {
+            if ($a->relSum == 0) {
+                return +1;
+            }
+
+            return $a->relSum < $b->relSum;
+        });
+    }
+
+
+    public function getResults() {
+        return $this->resultObjects;
     }
 }

@@ -13,6 +13,7 @@ $data = new Data(__DIR__ . '/data');
 // Load heats from tournament config.
 $tournament = new Tournament($data);
 $tournament->init();
+$tournament->buildResults();
 
 // Render the heats
 Twig_Autoloader::register();

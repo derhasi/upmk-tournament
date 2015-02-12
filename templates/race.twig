@@ -4,14 +4,18 @@
   <table>
     <thead><tr>
       <th>Name</th>
-      <th>P1</th>
-      <th>P2</th>
+      <th>Finished</th>
+      <th>Pos</th>
+      <th>Pte</th>
+      <th>&sum;</th>
     </tr></thead>
-  {% for contestant in race.getContestants() %}
+  {% for result in race.getResults() %}
     <tr>
-      <td>{{ contestant.getName() }}</td>
-      <td> 0 </td>
-      <td> 0 </td>
+      <td class="bold">{{ result.name }}</td>
+      <td>{{ result.absPos|join(',')  }}</td>
+      <td>{{ result.relPos|join(',')  }}</td>
+      <td>{{ result.relPts|join(',')  }}</td>
+      <td class="bold">{{ result.relSum }}</td>
     </tr>
   {% endfor %}
   </table>

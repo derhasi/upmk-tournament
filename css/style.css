@@ -41,7 +41,14 @@ h3 {
   color: #77B302;
 }
 
+.heat td {
+  padding: 0 0.5em;
+}
+
 .race {
   display: inline-block;
   margin-right: 2rem;
+}
+.bold {
+  font-weight: 400;
 }
