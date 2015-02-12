@@ -7,12 +7,12 @@
             <th>Races</th>
             <th>Points</th>
         </tr></thead>
-        {% for contestant in tournament.getContestants() %}
+        {% for result in tournament.results %}
             <tr>
-                <td>?</td>
-                <td>{{ contestant.getName() }}</td>
-                <td>{{ contestant.heatRaces|length }}</td>
-                <td>?</td>
+                <td>{{ result.pos }}</td>
+                <td>{{ result.name }}</td>
+                <td>{{ result.races}}</td>
+                <td>{{ result.points }}</td>
             </tr>
         {% endfor %}
     </table>

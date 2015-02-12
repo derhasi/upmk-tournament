@@ -331,13 +331,13 @@ class Tournament
 
         usort($results, function($a, $b) {
             if ($a['races'] != $b['races']) {
-                return $a['races'] > $b['races'];
+                return $a['races'] < $b['races'];
             }
             elseif ($a['points'] != $b['points']) {
-                return $a['points'] > $b['points'];
+                return $a['points'] < $b['points'];
             }
             else {
-                return $a['absPoints'] > $b['absPoints'];
+                return $a['absPoints'] < $b['absPoints'];
             };
         });
 

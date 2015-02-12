@@ -31,15 +31,15 @@ class PointRules {
   }
 
   public function getAbsolutePoint($position) {
-    if (isset($this->absolute[$position])) {
-      return $this->absolute[$position];
+    if (isset($this->absolute[$position - 1])) {
+      return $this->absolute[$position - 1 ];
     }
     return 0;
   }
 
   public function getRelativePoint($relativePosition) {
-    if (isset($this->relative[$relativePosition])) {
-      return $this->relative[$relativePosition];
+    if (isset($this->relative[$relativePosition - 1 ])) {
+      return $this->relative[$relativePosition - 1 ];
     }
     return 0;
   }
