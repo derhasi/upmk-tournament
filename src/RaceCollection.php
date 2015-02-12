@@ -21,8 +21,7 @@ class RaceCollection extends CollectionBase {
     }
 
     protected function build() {
-        $races = array();
-        $combinations = CombinationFactory::create($this->contestants->array_keys(), $this->raceSize);
+        $combinations = CombinationFactory::create($this->contestants->getIDs(), $this->raceSize);
 
         foreach ($combinations as $key => $combination) {
 

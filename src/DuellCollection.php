@@ -44,7 +44,7 @@ class DuellCollection extends CollectionBase {
      * @param ContestantCollection $contestants
      */
     protected function build() {
-        $combinations = CombinationFactory::create($this->contestantCollection->array_keys(), 2);
+        $combinations = CombinationFactory::create($this->contestantCollection->getIDs(), 2);
 
         foreach ($combinations as $key => $combination) {
             $duellContestants = new ContestantCollection();

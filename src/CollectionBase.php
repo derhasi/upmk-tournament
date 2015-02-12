@@ -12,19 +12,6 @@ namespace derhasi\upmkTournament;
 abstract class CollectionBase extends \ArrayObject {
 
   /**
-   * Magic method to make array functions work with the object.
-   *
-   * Example: $this->array_keys()
-   */
-  public function __call($func, $argv) {
-    if (!is_callable($func) || substr($func, 0, 6) !== 'array_') {
-      throw new \BadMethodCallException(__CLASS__ . '->' . $func);
-    }
-    return call_user_func_array($func,
-      array_merge(array($this->getArrayCopy()), $argv));
-  }
-
-  /**
    * @param \derhasi\upmkTournament\ItemInterface $item
    */
   public function add(ItemInterface $item) {
@@ -59,6 +46,14 @@ abstract class CollectionBase extends \ArrayObject {
    */
   public function getItem(ItemInterface $item) {
     return $this->offsetGet($item->getID());
+  }
+
+  /**
+   * @return string[]
+   */
+  public function getIDs() {
+    return array_keys($this->getArrayCopy());
+
   }
 
 
