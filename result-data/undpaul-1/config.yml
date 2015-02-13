@@ -1,0 +1,15 @@
+contestants:
+  - Anja
+  - Andreas
+  - Chrische
+  - derHasi
+  - k4rstenV
+  - Kiki
+  - Luca
+  - Lucio
+  - Steffen
+  - hcTom
+maxHeatRacesPerContestant: 4
+maxDuellCount: 2
+pointsAbsolute: [15, 12, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
+pointsRelative: [4, 3, 2, 1]

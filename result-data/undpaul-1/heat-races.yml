@@ -1,0 +1,80 @@
+'Kiki:Lucio:Steffen:k4rstenV':
+    name: 'Race 1.1'
+    heat: 1
+    results:
+        Kiki: [12, 11, 12]
+        Lucio: [2, 1, 1]
+        Steffen: [3, 4, 3]
+        k4rstenV: [6, 6, 7]
+'Chrische:Luca:derHasi:hcTom':
+    name: 'Race 1.2'
+    heat: 1
+    results:
+        Chrische: [10, 8, 8]
+        Luca: [3, 1, 1]
+        derHasi: [1, 5, 2]
+        hcTom: [8, 2, 5]
+'Andreas:Anja:Luca:k4rstenV':
+    name: 'Race 2.1'
+    heat: 2
+    results:
+        Andreas: [6, 5, 2]
+        Anja: [1, 1, 1]
+        Luca: [2, 4, 3]
+        k4rstenV: [9, 9, 7]
+'Chrische:Lucio:Steffen:hcTom':
+    name: 'Race 2.2'
+    heat: 2
+    results:
+        Chrische: [11, 7, 4]
+        Lucio: [3, 3, 2]
+        Steffen: [5, 6, 6]
+        hcTom: [2, 1, 1]
+'Andreas:Kiki:Steffen:derHasi':
+    name: 'Race 3.1'
+    heat: 3
+    results:
+        Andreas: [4, 3, 3]
+        Kiki: [12, 12, 11]
+        Steffen: [3, 5, 2]
+        derHasi: [1, 2, 1]
+'Anja:Luca:Lucio:hcTom':
+    name: 'Race 3.2'
+    heat: 3
+    results:
+        Anja: [3, 1, 2]
+        Luca: [1, 2, 4]
+        Lucio: [2, 3, 3]
+        hcTom: [4, 4, 5]
+'Anja:Chrische:Kiki:k4rstenV':
+    name: 'Race 4.1'
+    heat: 4
+    results:
+        Anja: [1, 2, 1]
+        Chrische: [5, 5, 4]
+        Kiki: [12, 11, 12]
+        k4rstenV: [7, 10, 6]
+'Andreas:Anja:Lucio:derHasi':
+    name: 'Race 4.2'
+    heat: 4
+    results:
+        Andreas: [9, 3, 5]
+        Anja: [5, 2, 7]
+        Lucio: [7, 1, 1]
+        derHasi: [1, 4, 3]
+'Kiki:Luca:Steffen:hcTom':
+    name: 'Race 5.1'
+    heat: 5
+    results:
+        Kiki: [8, 11, 11]
+        Luca: [3, 1, 1]
+        Steffen: [5, 5, 5]
+        hcTom: [2, 4, 8]
+'Andreas:Chrische:derHasi:k4rstenV':
+    name: 'Race 5.2'
+    heat: 5
+    results:
+        Andreas: [1, 2, 4]
+        Chrische: [6, 11, 6]
+        derHasi: [4, 1, 1]
+        k4rstenV: [12, 9, 8]
