@@ -5,9 +5,7 @@
 {% endblock %}
 
 {% block stylesheets %}
-    {% stylesheets "@upmkBundle/Resources/public/css/style.css" %}
-    <link rel="stylesheet" href="{{ asset_url }}">
-    {% endstylesheets %}
+    <link rel="stylesheet" href="{{ asset('bundles/upmk/css/style.css') }}" />
 {% endblock %}
 
 {% block body %}
