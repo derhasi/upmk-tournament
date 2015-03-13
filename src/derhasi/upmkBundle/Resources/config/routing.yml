@@ -1,0 +1,3 @@
+upmk_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: upmkBundle:Default:index }
