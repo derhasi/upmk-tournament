@@ -1,14 +1,17 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>MarioKart Tournament</title>
+{% extends '::base.html.twig' %}
+
+{% block title%}
+    MarioKart Tournament
+{% endblock %}
+
+{% block stylesheets %}
     {% stylesheets "@upmkBundle/Resources/public/css/style.css" %}
     <link rel="stylesheet" href="{{ asset_url }}">
     {% endstylesheets %}
-</head>
-<body>
+{% endblock %}
+
+{% block body %}
     <h1>MarioKart Tournament</h1>
     {% include "upmkBundle:Legacy:heats.html.twig" %}
     {% include "upmkBundle:Legacy:heats-result.html.twig" %}
-</body>
-</html>
+{% endblock %}
