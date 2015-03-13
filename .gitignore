@@ -20,3 +20,15 @@ nbproject
 /vendor/
 data/config.yml
 data/heat-races.yml
+
+# Add gitignore for symfony standard edition
+/app/bootstrap.php.cache
+/app/cache/*
+!app/cache/.gitkeep
+/app/config/parameters.yml
+/app/logs/*
+!app/logs/.gitkeep
+/app/phpunit.xml
+/bin/
+/composer.phar
+/web/bundles/
