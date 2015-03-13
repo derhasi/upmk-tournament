@@ -1,5 +1,5 @@
 upmk_homepage:
-    path:     /hello/{name}
+    path:     /
     defaults: { _controller: upmkBundle:Default:index }
 upmk_legacy:
     path:     /legacy
