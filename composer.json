@@ -7,8 +7,8 @@
         }
     ],
     "autoload": {
-        "psr-4": {
-            "derhasi\\upmkTournament\\": "src/"
+        "psr-0": {
+            "": "src/"
         }
     },
     "require": {
