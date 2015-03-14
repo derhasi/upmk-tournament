@@ -32,3 +32,4 @@ data/heat-races.yml
 /bin/
 /composer.phar
 /web/bundles/
+/app/data
