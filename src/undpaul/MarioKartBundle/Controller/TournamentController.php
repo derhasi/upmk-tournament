@@ -11,7 +11,12 @@ class TournamentController extends Controller
 {
     public function indexAction()
     {
-        return $this->redirect($this->generateUrl('undpaul_mario_kart_legacy'));
+        $em = $this->getDoctrine()->getManager();
+        $tournaments = $em->getRepository('undpaulMarioKartBundle:Tournament')->findAll();
+
+        return $this->render('undpaulMarioKartBundle:Tournament:index.html.twig', array(
+          'tournaments' => $tournaments,
+        ));
     }
 
 
