@@ -40,9 +40,19 @@ class TournamentController extends Controller
             return $this->redirectToRoute('undpaul_mario_kart_tournament_index');
         }
 
-
         return $this->render('undpaulMarioKartBundle:Tournament:new.html.twig', array(
           'form' => $form->createView(),
+        ));
+
+    }
+
+    public function viewAction($tournament)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $tournamentObj = $em->getRepository('undpaulMarioKartBundle:Tournament')->find($tournament);
+
+        return $this->render('undpaulMarioKartBundle:Tournament:view.html.twig', array(
+          'tournament' => $tournamentObj,
         ));
 
     }

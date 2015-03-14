@@ -10,7 +10,11 @@
     {% if tournaments %}
         <ul>
             {% for tournament in tournaments %}
-                <li>{{ tournament.name }}</li>
+                <li><a href="{{ path('undpaul_mario_kart_tournament_view', { 'tournament': tournament.id}) }}"
+                            title="View {{ tournament.name }}">
+                        {{ tournament.name }}
+                    </a>
+                </li>
             {% endfor %}
         </ul>
     {% else %}

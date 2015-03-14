@@ -10,3 +10,8 @@ undpaul_mario_kart_tournament_index:
 undpaul_mario_kart_tournament_new:
     path:     /tournament/new
     defaults: { _controller: undpaulMarioKartBundle:Tournament:new }
+undpaul_mario_kart_tournament_view:
+    path:     /tournament/{tournament}
+    defaults: { _controller: undpaulMarioKartBundle:Tournament:view }
+    requirements: { page:  \d+ }
+
