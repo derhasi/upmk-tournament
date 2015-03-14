@@ -72,3 +72,10 @@ label {
 label:after {
   content: ':';
 }
+
+.flash-notice {
+  padding: 1em;
+  margin: 1em;
+  border: 1px solid #77B302;
+  color: #77B302;
+}

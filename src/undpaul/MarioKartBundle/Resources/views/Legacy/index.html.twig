@@ -4,8 +4,11 @@
     MarioKart Tournament
 {% endblock %}
 
-{% block body %}
-    <h1>MarioKart Tournament</h1>
+{% block page_title%}
+    MarioKart Tournament
+{% endblock %}
+
+{% block content %}
     {% include "undpaulMarioKartBundle:Legacy:heats.html.twig" %}
     {% include "undpaulMarioKartBundle:Legacy:heats-result.html.twig" %}
 {% endblock %}
