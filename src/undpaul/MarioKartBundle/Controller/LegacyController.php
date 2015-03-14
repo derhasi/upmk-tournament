@@ -1,6 +1,6 @@
 <?php
 
-namespace derhasi\upmkBundle\Controller;
+namespace undpaul\MarioKartBundle\Controller;
 
 use derhasi\upmkTournament\Data;
 use derhasi\upmkTournament\Tournament;
@@ -20,6 +20,6 @@ class LegacyController extends Controller
         $tournament->init();
         $tournament->buildResults();
 
-        return $this->render('upmkBundle:Legacy:index.html.twig', array('tournament' => $tournament));
+        return $this->render('undpaulMarioKartBundle:Legacy:index.html.twig', array('tournament' => $tournament));
     }
 }

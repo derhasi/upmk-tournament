@@ -1,6 +1,6 @@
 <?php
 
-namespace derhasi\upmkBundle\Tests\Controller;
+namespace undpaul\MarioKartBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 

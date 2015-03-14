@@ -1,0 +1,6 @@
+undpaul_mario_kart_homepage:
+    path:     /
+    defaults: { _controller: undpaulMarioKartBundle:Default:index }
+undpaul_mario_kart_legacy:
+    path:     /legacy
+    defaults: { _controller: undpaulMarioKartBundle:Legacy:index }

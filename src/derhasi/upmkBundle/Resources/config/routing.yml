@@ -1,6 +1,0 @@
-upmk_homepage:
-    path:     /
-    defaults: { _controller: upmkBundle:Default:index }
-upmk_legacy:
-    path:     /legacy
-    defaults: { _controller: upmkBundle:Legacy:index }

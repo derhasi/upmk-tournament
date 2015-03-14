@@ -1,0 +1,15 @@
+{% extends '::base.html.twig' %}
+
+{% block title%}
+    MarioKart Tournament
+{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('bundles/undpaulmariokart/css/style.css') }}" />
+{% endblock %}
+
+{% block body %}
+    <h1>MarioKart Tournament</h1>
+    {% include "undpaulMarioKartBundle:Legacy:heats.html.twig" %}
+    {% include "undpaulMarioKartBundle:Legacy:heats-result.html.twig" %}
+{% endblock %}
