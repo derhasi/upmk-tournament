@@ -1,7 +1,7 @@
 {% extends '::base.html.twig' %}
 
 {% block title %}
-    undpaul MarioKart
+    {{ block('page_title')|striptags }} | undpaul MarioKart
 {% endblock %}
 
 {% block stylesheets %}
