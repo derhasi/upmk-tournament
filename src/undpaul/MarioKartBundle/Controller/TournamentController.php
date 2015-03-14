@@ -24,8 +24,13 @@ class TournamentController extends Controller
 
         if ($form->isValid()) {
 
-            // @todo: write
-            $request->getSession()->getFlashBag()->set('notice', 'Message sent!');
+            // Save the tournament to the database.
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($tournament);
+            $em->flush();
+
+            // Provide a message.
+            $this->addFlash('notice', sprintf('Tournament "%s" created!', $tournament->getName()));
 
             return $this->redirectToRoute('undpaul_mario_kart_tournament_index');
         }
