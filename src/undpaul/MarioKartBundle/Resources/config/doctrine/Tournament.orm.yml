@@ -1,0 +1,16 @@
+undpaul\MarioKartBundle\Entity\Tournament:
+    type: entity
+    table: mariokart_tournament
+    repositoryClass: undpaul\MarioKartBundle\Entity\TournamentRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: string
+            length: '100'
+            column: Name
+    lifecycleCallbacks: {  }
