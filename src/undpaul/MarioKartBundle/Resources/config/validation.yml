@@ -1,0 +1,4 @@
+undpaul\MarioKartBundle\Entity\Tournament:
+    properties:
+        name:
+            - NotBlank: ~
