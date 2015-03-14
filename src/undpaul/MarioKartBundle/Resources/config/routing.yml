@@ -4,3 +4,9 @@ undpaul_mario_kart_homepage:
 undpaul_mario_kart_legacy:
     path:     /legacy
     defaults: { _controller: undpaulMarioKartBundle:Legacy:index }
+undpaul_mario_kart_tournament_index:
+    path:     /tournament
+    defaults: { _controller: undpaulMarioKartBundle:Tournament:index }
+undpaul_mario_kart_tournament_new:
+    path:     /tournament/new
+    defaults: { _controller: undpaulMarioKartBundle:Tournament:new }

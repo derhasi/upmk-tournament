@@ -30,6 +30,10 @@ h3 {
   font-weight: 400;
 }
 
+.content {
+  padding: 2em;
+}
+
 .heat {
   clear: both;
   border-bottom: 2px solid #77B302;

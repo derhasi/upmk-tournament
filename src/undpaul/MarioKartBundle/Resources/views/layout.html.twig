@@ -1,6 +1,6 @@
 {% extends '::base.html.twig' %}
 
-{% block title%}
+{% block title %}
     undpaul MarioKart
 {% endblock %}
 
@@ -9,5 +9,8 @@
 {% endblock %}
 
 {% block body %}
-    <h1>undpaul MarioKart</h1>
+    <h1>{% block page_title %} undpaul MarioKart {% endblock %}</h1>
+    <div class="content">
+        {% block content %}{% endblock %}
+    </div>
 {% endblock %}
