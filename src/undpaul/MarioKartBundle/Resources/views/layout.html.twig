@@ -11,6 +11,14 @@
 
 {% block body %}
     <h1>{% block page_title %} undpaul MarioKart {% endblock %}</h1>
+
+    {# Print messages provided via flashbag. #}
+    {% for flashMessage in app.session.flashbag.get('notice') %}
+        <div class="flash-notice">
+            {{ flashMessage }}
+        </div>
+    {% endfor %}
+
     <div class="content">
         {% block content %}{% endblock %}
     </div>
