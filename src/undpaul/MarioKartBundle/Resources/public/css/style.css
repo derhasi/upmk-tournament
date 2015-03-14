@@ -61,3 +61,14 @@ sup {
   font-size: 0.75rem;
   color: gray;
 }
+
+/**
+ * Forms
+ */
+
+label {
+  margin-right: 1em;
+}
+label:after {
+  content: ':';
+}
