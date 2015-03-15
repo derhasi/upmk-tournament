@@ -1,0 +1,15 @@
+{% extends 'undpaulMarioKartBundle::layout.html.twig' %}
+
+{% block page_title %}
+    {{ tournament.name }}: Add round</em>
+{% endblock %}
+
+{% block content %}
+  {% if form %}
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
+  {% else %}
+    Cannot generate new round.
+  {% endif %}
+{% endblock %}

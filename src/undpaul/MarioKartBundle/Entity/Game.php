@@ -10,6 +10,11 @@ use Doctrine\ORM\Mapping as ORM;
 class Game
 {
     /**
+     * The maximum number of players per game.
+     */
+    const MAX_PLAYERS = 4;
+
+    /**
      * @var integer
      */
     private $id;
@@ -23,7 +28,6 @@ class Game
      * @var \undpaul\MarioKartBundle\Entity\Round
      */
     private $round;
-
 
     /**
      * Get id

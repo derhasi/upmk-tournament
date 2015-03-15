@@ -31,3 +31,7 @@ undpaul_mario_kart_user_index:
 undpaul_mario_kart_user_new:
     path:     /user/new
     defaults: { _controller: undpaulMarioKartBundle:User:new }
+
+undpaul_mario_kart_tournament_generate_round:
+    path:     /tournament/{tournament_id}/round/generate
+    defaults: { _controller: undpaulMarioKartBundle:Round:generate }

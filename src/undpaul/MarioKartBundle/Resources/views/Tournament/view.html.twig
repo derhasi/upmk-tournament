@@ -30,7 +30,7 @@
   {% if tournament.rounds | length > 0 %}
     <ul>
       {% for round in tournament.rounds %}
-        <li>Round {{ round.id }}</li>
+        <li>Round {{ round.delta + 1 }}</li>
       {% endfor %}
     </ul>
   {% else %}

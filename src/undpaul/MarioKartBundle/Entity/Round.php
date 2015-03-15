@@ -127,4 +127,27 @@ class Round
     {
         return $this->games;
     }
+
+
+    /**
+     * Generates games for the new round.
+     *
+     * @param int $raceCount
+     */
+    public function generateGames($raceCount = 3) {
+
+        $contestants = $this->tournament->getContestants();
+
+        // For now we "only" generate the necessary amount of races.
+        $games_count = ceil(count($contestants) / Game::MAX_PLAYERS);
+        $games = array_fill(0, $games_count, 0);
+
+        foreach ($games as $delta => $val) {
+            $game = new Game();
+            $game->setDelta($delta);
+            $this->addGame($game);
+        }
+
+    }
+
 }
