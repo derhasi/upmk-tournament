@@ -10,6 +10,11 @@ use Doctrine\ORM\Mapping as ORM;
 class Game
 {
     /**
+     * Maximum number of players for a game.
+     */
+    const MAX_PLAYERS = 4;
+
+    /**
      * @var integer
      */
     private $id;
@@ -18,6 +23,11 @@ class Game
      * @var integer
      */
     private $delta;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $players;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
@@ -140,5 +150,38 @@ class Game
             $race->setDelta($i);
             $this->addRace($race);
         }
+    }
+
+    /**
+     * Add players
+     *
+     * @param \undpaul\MarioKartBundle\Entity\Player $players
+     * @return Game
+     */
+    public function addPlayer(\undpaul\MarioKartBundle\Entity\Player $players)
+    {
+        $this->players[] = $players;
+
+        return $this;
+    }
+
+    /**
+     * Remove players
+     *
+     * @param \undpaul\MarioKartBundle\Entity\Player $players
+     */
+    public function removePlayer(\undpaul\MarioKartBundle\Entity\Player $players)
+    {
+        $this->players->removeElement($players);
+    }
+
+    /**
+     * Get players
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getPlayers()
+    {
+        return $this->players;
     }
 }
