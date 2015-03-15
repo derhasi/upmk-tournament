@@ -20,11 +20,15 @@ class Tournament
      */
     private $name;
 
-
     /**
      * @var \Doctrine\Common\Collections\ArrayCollection
      */
     protected $contestants;
+
+    /**
+     * @var \Doctrine\Common\Collections\ArrayCollection
+     */
+    protected $rounds;
 
     /**
      * Constructor.
@@ -32,6 +36,7 @@ class Tournament
     public function __construct()
     {
         $this->contestants = new ArrayCollection();
+        $this->rounds = new ArrayCollection();
     }
 
     /**
@@ -98,5 +103,38 @@ class Tournament
     public function getContestants()
     {
         return $this->contestants;
+    }
+
+    /**
+     * Add rounds
+     *
+     * @param \undpaul\MarioKartBundle\Entity\Round $rounds
+     * @return Tournament
+     */
+    public function addRound(\undpaul\MarioKartBundle\Entity\Round $rounds)
+    {
+        $this->rounds[] = $rounds;
+
+        return $this;
+    }
+
+    /**
+     * Remove rounds
+     *
+     * @param \undpaul\MarioKartBundle\Entity\Round $rounds
+     */
+    public function removeRound(\undpaul\MarioKartBundle\Entity\Round $rounds)
+    {
+        $this->rounds->removeElement($rounds);
+    }
+
+    /**
+     * Get rounds
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getRounds()
+    {
+        return $this->rounds;
     }
 }

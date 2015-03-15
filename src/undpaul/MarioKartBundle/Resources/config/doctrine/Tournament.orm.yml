@@ -13,6 +13,10 @@ undpaul\MarioKartBundle\Entity\Tournament:
             type: string
             length: '100'
             column: Name
+    oneToMany:
+        rounds:
+          targetEntity: undpaul\MarioKartBundle\Entity\Round
+          mappedBy: tournament
     manyToMany:
         contestants:
             targetEntity: undpaul\MarioKartBundle\Entity\User

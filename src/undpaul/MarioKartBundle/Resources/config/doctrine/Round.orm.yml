@@ -1,0 +1,21 @@
+undpaul\MarioKartBundle\Entity\Round:
+    type: entity
+    table: mariokart_round
+    repositoryClass: undpaul\MarioKartBundle\Entity\RoundRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: string
+            length: 255
+        delta:
+            type: integer
+    manyToOne:
+        tournament:
+          targetEntity: undpaul\MarioKartBundle\Entity\Tournament
+          inversedBy: rounds
+    lifecycleCallbacks: {  }

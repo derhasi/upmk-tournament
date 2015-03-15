@@ -7,7 +7,7 @@
 {% block content %}
 
     <h2>Contestants</h2>
-    {% if tournament.contestants %}
+    {% if tournament.contestants | length > 0 %}
         <ul>
             {% for contestant in tournament.contestants %}
                 <li>{{ contestant.name }}</li>
@@ -15,8 +15,18 @@
         </ul>
     {% endif %}
     <div class="add-more"><a href="{{ path('undpaul_mario_kart_tournament_add_contestant', {'tournament_id': tournament.id}) }}">
-      Add more contestants
+      Add contestants
     </a></div>
 
+    <h2>Rounds</h2>
+    {% if tournament.rounds | length > 0 %}
+        <ul>
+            {% for round in tournament.rounds %}
+                <li>{{ round.name }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <div>No rounds added.</div>
+    {% endif %}
 
 {% endblock %}
