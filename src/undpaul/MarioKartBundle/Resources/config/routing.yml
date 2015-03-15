@@ -15,3 +15,11 @@ undpaul_mario_kart_tournament_view:
     defaults: { _controller: undpaulMarioKartBundle:Tournament:view }
     requirements: { page:  \d+ }
 
+
+undpaul_mario_kart_user_index:
+    path:     /user
+    defaults: { _controller: undpaulMarioKartBundle:User:index }
+
+undpaul_mario_kart_user_new:
+    path:     /user/new
+    defaults: { _controller: undpaulMarioKartBundle:User:new }
