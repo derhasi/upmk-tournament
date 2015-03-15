@@ -20,4 +20,5 @@ undpaul\MarioKartBundle\Entity\Round:
             targetEntity: undpaul\MarioKartBundle\Entity\Game
             mappedBy: round
             cascade: ['all']
+            orphanRemoval: true
     lifecycleCallbacks: {  }
