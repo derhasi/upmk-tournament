@@ -2,21 +2,23 @@
   <h3>{{ race.getName() }}</h3>
 
   <table>
-    <thead><tr>
+    <thead>
+    <tr>
       <th>Name</th>
       <th>Finished</th>
       <th>Pos</th>
       <th>Pte</th>
       <th>&sum;</th>
-    </tr></thead>
-  {% for result in race.getResults() %}
-    <tr>
-      <td class="bold">{{ result.name }}</td>
-      <td>{{ result.absPos|join(',')  }}</td>
-      <td>{{ result.relPos|join(',')  }}</td>
-      <td>{{ result.relPts|join(',')  }}</td>
-      <td class="bold">{{ result.relSum }}</td>
     </tr>
-  {% endfor %}
+    </thead>
+    {% for result in race.getResults() %}
+      <tr>
+        <td class="bold">{{ result.name }}</td>
+        <td>{{ result.absPos|join(',') }}</td>
+        <td>{{ result.relPos|join(',') }}</td>
+        <td>{{ result.relPts|join(',') }}</td>
+        <td class="bold">{{ result.relSum }}</td>
+      </tr>
+    {% endfor %}
   </table>
 </div>

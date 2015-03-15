@@ -1,25 +1,27 @@
 {% extends '::base.html.twig' %}
 
 {% block title %}
-    {{ block('page_title')|striptags }} | undpaul MarioKart
+  {{ block('page_title')|striptags }} | undpaul MarioKart
 {% endblock %}
 
 {% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('bundles/undpaulmariokart/css/normalize.css') }}" />
-    <link rel="stylesheet" href="{{ asset('bundles/undpaulmariokart/css/style.css') }}" />
+  <link rel="stylesheet"
+        href="{{ asset('bundles/undpaulmariokart/css/normalize.css') }}"/>
+  <link rel="stylesheet"
+        href="{{ asset('bundles/undpaulmariokart/css/style.css') }}"/>
 {% endblock %}
 
 {% block body %}
-    <h1>{% block page_title %} undpaul MarioKart {% endblock %}</h1>
+  <h1>{% block page_title %} undpaul MarioKart {% endblock %}</h1>
 
-    {# Print messages provided via flashbag. #}
-    {% for flashMessage in app.session.flashbag.get('notice') %}
-        <div class="flash-notice">
-            {{ flashMessage }}
-        </div>
-    {% endfor %}
-
-    <div class="content">
-        {% block content %}{% endblock %}
+  {# Print messages provided via flashbag. #}
+  {% for flashMessage in app.session.flashbag.get('notice') %}
+    <div class="flash-notice">
+      {{ flashMessage }}
     </div>
+  {% endfor %}
+
+  <div class="content">
+    {% block content %}{% endblock %}
+  </div>
 {% endblock %}

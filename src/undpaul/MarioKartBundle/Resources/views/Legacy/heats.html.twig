@@ -1,10 +1,10 @@
 <div class="heats">
   {% for heat in tournament.getHeats() %}
-  <div class="heat">
-    <h2>Heat {{ heat.getID() }}</h2>
-    {% for race in heat.races %}
-      {% include "undpaulMarioKartBundle:Legacy:race.html.twig" %}
-    {% endfor %}
-  </div>
+    <div class="heat">
+      <h2>Heat {{ heat.getID() }}</h2>
+      {% for race in heat.races %}
+        {% include "undpaulMarioKartBundle:Legacy:race.html.twig" %}
+      {% endfor %}
+    </div>
   {% endfor %}
 </div>

@@ -33,7 +33,7 @@ class Round
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -56,7 +56,7 @@ class Round
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -79,7 +79,7 @@ class Round
     /**
      * Get delta
      *
-     * @return integer 
+     * @return integer
      */
     public function getDelta()
     {
@@ -92,8 +92,9 @@ class Round
      * @param \undpaul\MarioKartBundle\Entity\Tournament $tournament
      * @return Round
      */
-    public function setTournament(\undpaul\MarioKartBundle\Entity\Tournament $tournament = null)
-    {
+    public function setTournament(
+      \undpaul\MarioKartBundle\Entity\Tournament $tournament = null
+    ) {
         $this->tournament = $tournament;
 
         return $this;
@@ -102,12 +103,13 @@ class Round
     /**
      * Get tournament
      *
-     * @return \undpaul\MarioKartBundle\Entity\Tournament 
+     * @return \undpaul\MarioKartBundle\Entity\Tournament
      */
     public function getTournament()
     {
         return $this->tournament;
     }
+
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
@@ -147,7 +149,7 @@ class Round
     /**
      * Get games
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getGames()
     {

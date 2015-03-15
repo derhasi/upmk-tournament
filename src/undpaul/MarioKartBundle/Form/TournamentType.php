@@ -16,17 +16,16 @@ class TournamentType extends AbstractType
     {
         $builder
           ->add('name')
-          ->add('save', 'submit');
-        ;
+          ->add('save', 'submit');;
     }
-    
+
     /**
      * @param OptionsResolverInterface $resolver
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'undpaul\MarioKartBundle\Entity\Tournament'
+          'data_class' => 'undpaul\MarioKartBundle\Entity\Tournament'
         ));
     }
 

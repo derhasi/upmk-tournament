@@ -20,6 +20,7 @@ class LegacyController extends Controller
         $tournament->init();
         $tournament->buildResults();
 
-        return $this->render('undpaulMarioKartBundle:Legacy:index.html.twig', array('tournament' => $tournament));
+        return $this->render('undpaulMarioKartBundle:Legacy:index.html.twig',
+          array('tournament' => $tournament));
     }
 }

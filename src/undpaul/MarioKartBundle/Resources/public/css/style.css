@@ -53,6 +53,7 @@ h3 {
   display: inline-block;
   margin-right: 2rem;
 }
+
 .bold {
   font-weight: 400;
 }
@@ -69,6 +70,7 @@ sup {
 label {
   margin-right: 1em;
 }
+
 label:after {
   content: ':';
 }

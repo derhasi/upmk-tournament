@@ -1,24 +1,25 @@
 {% extends 'undpaulMarioKartBundle::layout.html.twig' %}
 
 {% block page_title %}
-    Tournaments
+  Tournaments
 {% endblock %}
 
 
 {% block content %}
 
-    {% if tournaments %}
-        <ul>
-            {% for tournament in tournaments %}
-                <li><a href="{{ path('undpaul_mario_kart_tournament_view', { 'tournament_id': tournament.id}) }}"
-                            title="View {{ tournament.name }}">
-                        {{ tournament.name }}
-                    </a>
-                </li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <div class="list-empty">No tournaments available.</div>
-    {% endif %}
+  {% if tournaments %}
+    <ul>
+      {% for tournament in tournaments %}
+        <li><a
+              href="{{ path('undpaul_mario_kart_tournament_view', { 'tournament_id': tournament.id}) }}"
+              title="View {{ tournament.name }}">
+            {{ tournament.name }}
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <div class="list-empty">No tournaments available.</div>
+  {% endif %}
 
 {% endblock %}

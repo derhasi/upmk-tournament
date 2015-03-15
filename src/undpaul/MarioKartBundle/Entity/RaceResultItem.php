@@ -33,7 +33,7 @@ class RaceResultItem
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -56,7 +56,7 @@ class RaceResultItem
     /**
      * Get delta
      *
-     * @return integer 
+     * @return integer
      */
     public function getDelta()
     {
@@ -79,7 +79,7 @@ class RaceResultItem
     /**
      * Get race
      *
-     * @return \undpaul\MarioKartBundle\Entity\Race 
+     * @return \undpaul\MarioKartBundle\Entity\Race
      */
     public function getRace()
     {
@@ -102,7 +102,7 @@ class RaceResultItem
     /**
      * Get user
      *
-     * @return \undpaul\MarioKartBundle\Entity\User 
+     * @return \undpaul\MarioKartBundle\Entity\User
      */
     public function getUser()
     {

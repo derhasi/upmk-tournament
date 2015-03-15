@@ -28,7 +28,7 @@ class Game
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -51,7 +51,7 @@ class Game
     /**
      * Get delta
      *
-     * @return integer 
+     * @return integer
      */
     public function getDelta()
     {
@@ -64,8 +64,9 @@ class Game
      * @param \undpaul\MarioKartBundle\Entity\Round $round
      * @return Game
      */
-    public function setRound(\undpaul\MarioKartBundle\Entity\Round $round = null)
-    {
+    public function setRound(
+      \undpaul\MarioKartBundle\Entity\Round $round = null
+    ) {
         $this->round = $round;
 
         return $this;
@@ -74,12 +75,13 @@ class Game
     /**
      * Get round
      *
-     * @return \undpaul\MarioKartBundle\Entity\Round 
+     * @return \undpaul\MarioKartBundle\Entity\Round
      */
     public function getRound()
     {
         return $this->round;
     }
+
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
@@ -119,7 +121,7 @@ class Game
     /**
      * Get races
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getRaces()
     {

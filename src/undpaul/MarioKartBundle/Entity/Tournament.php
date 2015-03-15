@@ -42,7 +42,7 @@ class Tournament
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -65,7 +65,7 @@ class Tournament
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -78,8 +78,9 @@ class Tournament
      * @param \undpaul\MarioKartBundle\Entity\User $contestants
      * @return Tournament
      */
-    public function addContestant(\undpaul\MarioKartBundle\Entity\User $contestants)
-    {
+    public function addContestant(
+      \undpaul\MarioKartBundle\Entity\User $contestants
+    ) {
         $this->contestants[] = $contestants;
 
         return $this;
@@ -90,15 +91,16 @@ class Tournament
      *
      * @param \undpaul\MarioKartBundle\Entity\User $contestants
      */
-    public function removeContestant(\undpaul\MarioKartBundle\Entity\User $contestants)
-    {
+    public function removeContestant(
+      \undpaul\MarioKartBundle\Entity\User $contestants
+    ) {
         $this->contestants->removeElement($contestants);
     }
 
     /**
      * Get contestants
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getContestants()
     {
@@ -131,7 +133,7 @@ class Tournament
     /**
      * Get rounds
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getRounds()
     {

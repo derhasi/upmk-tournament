@@ -40,7 +40,7 @@ class Race
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -63,7 +63,7 @@ class Race
     /**
      * Get delta
      *
-     * @return integer 
+     * @return integer
      */
     public function getDelta()
     {
@@ -76,8 +76,9 @@ class Race
      * @param \undpaul\MarioKartBundle\Entity\RaceResultItem $results
      * @return Race
      */
-    public function addResult(\undpaul\MarioKartBundle\Entity\RaceResultItem $results)
-    {
+    public function addResult(
+      \undpaul\MarioKartBundle\Entity\RaceResultItem $results
+    ) {
         $this->results[] = $results;
 
         return $this;
@@ -88,15 +89,16 @@ class Race
      *
      * @param \undpaul\MarioKartBundle\Entity\RaceResultItem $results
      */
-    public function removeResult(\undpaul\MarioKartBundle\Entity\RaceResultItem $results)
-    {
+    public function removeResult(
+      \undpaul\MarioKartBundle\Entity\RaceResultItem $results
+    ) {
         $this->results->removeElement($results);
     }
 
     /**
      * Get results
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getResults()
     {
@@ -119,7 +121,7 @@ class Race
     /**
      * Get game
      *
-     * @return \undpaul\MarioKartBundle\Entity\Game 
+     * @return \undpaul\MarioKartBundle\Entity\Game
      */
     public function getGame()
     {

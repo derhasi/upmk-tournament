@@ -1,21 +1,23 @@
 <div class="heats-result">
-    <h2>Heats: Result</h2>
-    <table>
-        <thead><tr>
-            <th>Pos</th>
-            <th>Name</th>
-            <th>Races</th>
-            <th>&sum;</th>
-            <th></th>
-        </tr></thead>
-        {% for result in tournament.results %}
-            <tr>
-                <td>{{ result.pos }}</td>
-                <td>{{ result.name }}</td>
-                <td>{{ result.races}}/{{ result.scheduled }}</td>
-                <td>{{ result.points }}</td>
-                <td><sup>({{ result.absPoints }})</sup></td>
-            </tr>
-        {% endfor %}
-    </table>
+  <h2>Heats: Result</h2>
+  <table>
+    <thead>
+    <tr>
+      <th>Pos</th>
+      <th>Name</th>
+      <th>Races</th>
+      <th>&sum;</th>
+      <th></th>
+    </tr>
+    </thead>
+    {% for result in tournament.results %}
+      <tr>
+        <td>{{ result.pos }}</td>
+        <td>{{ result.name }}</td>
+        <td>{{ result.races }}/{{ result.scheduled }}</td>
+        <td>{{ result.points }}</td>
+        <td><sup>({{ result.absPoints }})</sup></td>
+      </tr>
+    {% endfor %}
+  </table>
 </div>
