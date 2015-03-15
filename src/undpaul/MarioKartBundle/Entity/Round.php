@@ -145,6 +145,7 @@ class Round
         foreach ($games as $delta => $val) {
             $game = new Game();
             $game->setDelta($delta);
+            $game->generateRaces($raceCount);
             $this->addGame($game);
         }
 

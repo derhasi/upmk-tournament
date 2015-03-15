@@ -131,4 +131,19 @@ class Game
     {
         return $this->races;
     }
+
+    /**
+     * Build races for the given game.
+     *
+     * @param int $raceCount
+     */
+    public function generateRaces($raceCount = 3) {
+
+        for ($i = 0; $i < $raceCount; $i++) {
+            $race = new Race();
+            $race->setGame($this);
+            $race->setDelta($i);
+            $this->addRace($race);
+        }
+    }
 }

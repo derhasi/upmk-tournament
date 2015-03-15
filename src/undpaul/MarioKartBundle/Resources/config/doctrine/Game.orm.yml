@@ -19,4 +19,5 @@ undpaul\MarioKartBundle\Entity\Game:
         races:
             targetEntity: undpaul\MarioKartBundle\Entity\Race
             mappedBy: game
+            cascade: ['all']
     lifecycleCallbacks: {  }

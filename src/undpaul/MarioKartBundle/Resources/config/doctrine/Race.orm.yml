@@ -19,4 +19,5 @@ undpaul\MarioKartBundle\Entity\Race:
         results:
             targetEntity: undpaul\MarioKartBundle\Entity\RaceResultItem
             mappedBy: race
+            cascade: ['all']
     lifecycleCallbacks: {  }
