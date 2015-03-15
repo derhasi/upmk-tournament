@@ -6,6 +6,17 @@
 
 {% block content %}
 
-    Here comes the ranking.
+    <h2>Contestants</h2>
+    {% if tournament.contestants %}
+        <ul>
+            {% for contestant in tournament.contestants %}
+                <li>{{ contestant.name }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <div class="add-more"><a href="{{ path('undpaul_mario_kart_tournament_add_contestant', {'tournament_id': tournament.id}) }}">
+      Add more contestants
+    </a></div>
+
 
 {% endblock %}

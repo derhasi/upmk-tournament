@@ -13,4 +13,15 @@ undpaul\MarioKartBundle\Entity\Tournament:
             type: string
             length: '100'
             column: Name
+    manyToMany:
+        contestants:
+            targetEntity: undpaul\MarioKartBundle\Entity\User
+            joinTable:
+                name: tournament_contestants
+                joinColumns:
+                    tournament_id:
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    contestant_id:
+                        referencedColumnName: id
     lifecycleCallbacks: {  }

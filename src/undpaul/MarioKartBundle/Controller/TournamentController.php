@@ -46,14 +46,46 @@ class TournamentController extends Controller
 
     }
 
-    public function viewAction($tournament)
+    public function viewAction($tournament_id)
     {
         $em = $this->getDoctrine()->getManager();
-        $tournamentObj = $em->getRepository('undpaulMarioKartBundle:Tournament')->find($tournament);
+        $tournament = $em->getRepository('undpaulMarioKartBundle:Tournament')->find($tournament_id);
 
         return $this->render('undpaulMarioKartBundle:Tournament:view.html.twig', array(
-          'tournament' => $tournamentObj,
+          'tournament' => $tournament,
         ));
 
+    }
+
+    public function addContestantAction($tournament_id, Request $request) {
+
+        $em = $this->getDoctrine()->getManager();
+        $tournament = $em->getRepository('undpaulMarioKartBundle:Tournament')->find($tournament_id);
+
+        $form = $this->createFormBuilder(array())
+          ->add('contestant', 'entity', array(
+            'class' => 'undpaulMarioKartBundle:User',
+            'property' => 'name',
+          ))
+          ->add('add', 'submit')
+          ->getForm();
+
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+            $data = $form->getData();
+
+            $tournament->addContestant($data['contestant']);
+            $em->flush();
+
+            return $this->redirectToRoute('undpaul_mario_kart_tournament_view', array(
+                'tournament_id' => $tournament->getId(),
+            ));
+        }
+
+        return $this->render('undpaulMarioKartBundle:Tournament:addContestant.html.twig', array(
+            'tournament' => $tournament,
+            'form' => $form->createView(),
+        ));
     }
 }

@@ -1,20 +1,28 @@
 undpaul_mario_kart_homepage:
     path:     /
     defaults: { _controller: undpaulMarioKartBundle:Default:index }
+
 undpaul_mario_kart_legacy:
     path:     /legacy
     defaults: { _controller: undpaulMarioKartBundle:Legacy:index }
+
 undpaul_mario_kart_tournament_index:
     path:     /tournament
     defaults: { _controller: undpaulMarioKartBundle:Tournament:index }
+
 undpaul_mario_kart_tournament_new:
     path:     /tournament/new
     defaults: { _controller: undpaulMarioKartBundle:Tournament:new }
-undpaul_mario_kart_tournament_view:
-    path:     /tournament/{tournament}
-    defaults: { _controller: undpaulMarioKartBundle:Tournament:view }
-    requirements: { page:  \d+ }
 
+undpaul_mario_kart_tournament_view:
+    path:     /tournament/{tournament_id}
+    defaults: { _controller: undpaulMarioKartBundle:Tournament:view }
+    requirements: { tournament_id:  \d+ }
+
+undpaul_mario_kart_tournament_add_contestant:
+    path:     /tournament/{tournament_id}/contestant/add
+    defaults: { _controller: undpaulMarioKartBundle:Tournament:addContestant }
+    requirements: { tournament_id:  \d+ }
 
 undpaul_mario_kart_user_index:
     path:     /user

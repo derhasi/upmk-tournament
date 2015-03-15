@@ -1,0 +1,11 @@
+{% extends 'undpaulMarioKartBundle::layout.html.twig' %}
+
+{% block page_title %}
+    {{ tournament.name }}: Add contestant</em>
+{% endblock %}
+
+{% block content %}
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
+{% endblock %}
