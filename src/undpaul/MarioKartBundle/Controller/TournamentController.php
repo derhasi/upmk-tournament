@@ -103,6 +103,7 @@ class TournamentController extends Controller
           ))
           ->add('create_new_user', 'text')
           ->add('add', 'submit')
+          ->add('add_another', 'submit')
           ->getForm();
 
         $form->handleRequest($request);
@@ -113,6 +114,11 @@ class TournamentController extends Controller
             // Add contestant if one was selected.
             if ($data['select_existing_user']) {
                 $tournament->addContestant($data['select_existing_user']);
+
+                $this->addFlash('notice',
+                  sprintf('Added "%s" to "%s"!',
+                    $data['select_existing_user']->getName(),
+                    $tournament->getName()));
             }
             // And/or create a new user and add it to the list.
             if ($data['create_new_user']) {
@@ -120,14 +126,27 @@ class TournamentController extends Controller
                 $u->setName($data['create_new_user']);
                 $em->persist($u);
                 $tournament->addContestant($u);
+
+                $this->addFlash('notice',
+                  sprintf('Created "%s" and added to "%s"!',
+                    $u->getName(),
+                    $tournament->getName()));
             }
 
             $em->flush();
 
-            return $this->redirectToRoute('undpaul_mario_kart_tournament_view',
-              array(
-                'tournament_id' => $tournament->getId(),
-              ));
+            if ($form->get('add')->isClicked()) {
+                return $this->redirectToRoute('undpaul_mario_kart_tournament_view',
+                  array(
+                    'tournament_id' => $tournament->getId(),
+                  ));
+            } else {
+                return $this->redirectToRoute('undpaul_mario_kart_tournament_add_contestant',
+                  array(
+                    'tournament_id' => $tournament->getId(),
+                  ));
+            }
+
         }
 
         return $this->render('undpaulMarioKartBundle:Tournament:addContestant.html.twig',
