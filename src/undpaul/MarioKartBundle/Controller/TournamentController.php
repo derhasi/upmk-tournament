@@ -83,9 +83,10 @@ class TournamentController extends Controller
         })->toArray();
 
         $form = $this->createFormBuilder(array())
-          ->add('contestant', 'entity', array(
+          ->add('select_existing_user', 'entity', array(
             'class' => 'undpaulMarioKartBundle:User',
             'property' => 'name',
+            'required' => false,
             'query_builder' => function (EntityRepository $er) use (
               $contestants_ids
             ) {
@@ -100,6 +101,7 @@ class TournamentController extends Controller
                 return $queryBuilder;
             },
           ))
+          ->add('create_new_user', 'text')
           ->add('add', 'submit')
           ->getForm();
 
@@ -108,7 +110,18 @@ class TournamentController extends Controller
         if ($form->isValid()) {
             $data = $form->getData();
 
-            $tournament->addContestant($data['contestant']);
+            // Add contestant if one was selected.
+            if ($data['select_existing_user']) {
+                $tournament->addContestant($data['select_existing_user']);
+            }
+            // And/or create a new user and add it to the list.
+            if ($data['create_new_user']) {
+                $u = new User();
+                $u->setName($data['create_new_user']);
+                $em->persist($u);
+                $tournament->addContestant($u);
+            }
+
             $em->flush();
 
             return $this->redirectToRoute('undpaul_mario_kart_tournament_view',
