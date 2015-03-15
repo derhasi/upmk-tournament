@@ -1,6 +1,6 @@
 undpaul\MarioKartBundle\Entity\RaceResultItem:
     type: entity
-    table: mariokart_race_result_item
+    table: null
     repositoryClass: undpaul\MarioKartBundle\Entity\RaceResultItemRepository
     id:
         id:

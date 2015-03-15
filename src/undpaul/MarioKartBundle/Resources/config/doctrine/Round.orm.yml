@@ -1,6 +1,6 @@
 undpaul\MarioKartBundle\Entity\Round:
     type: entity
-    table: mariokart_round
+    table: null
     repositoryClass: undpaul\MarioKartBundle\Entity\RoundRepository
     id:
         id:

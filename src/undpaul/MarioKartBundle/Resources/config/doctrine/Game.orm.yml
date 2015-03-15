@@ -1,6 +1,6 @@
 undpaul\MarioKartBundle\Entity\Game:
     type: entity
-    table: mariokart_game
+    table: null
     repositoryClass: undpaul\MarioKartBundle\Entity\GameRepository
     id:
         id:
