@@ -37,12 +37,7 @@ class RoundController extends Controller
 
             $data = $form->getData();
 
-            $round = new Round();
-            $round->setTournament($tournament)
-                ->setDelta(count($tournament->getRounds()));
-
-            $round->generateGames($data['number_of_races']);
-
+            $round = Round::generate($tournament, $data['number_of_races']);
             $em->persist($round);
 
             $tournament->addRound($round);

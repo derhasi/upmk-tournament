@@ -146,4 +146,24 @@ class Tournament
     {
         return count($this->rounds) > 0;
     }
+
+    /**
+     * Retrieve the delta to be used for the next tournament round.
+     *
+     * @return int
+     */
+    public function getNextDelta()
+    {
+        $next_delta = 0;
+
+        /**
+         * @var Round $round
+         */
+        foreach ($this->rounds as $round) {
+            if ($round->getDelta() >= $next_delta) {
+                $next_delta = $round->getDelta() + 1;
+            }
+        }
+        return $next_delta;
+    }
 }

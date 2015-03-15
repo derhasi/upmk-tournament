@@ -133,7 +133,6 @@ class Round
      */
     public function generateGames($raceCount = 3)
     {
-
         $players = $this->tournament->getPlayers();
 
         // For now we "only" generate the necessary amount of races.
@@ -156,5 +155,22 @@ class Round
      */
     public function getFullName() {
         return sprintf('Round %d', $this->delta + 1);
+    }
+
+    /**
+     * Autogenerate the next round for a given tournament.
+     *
+     * @param \undpaul\MarioKartBundle\Entity\Tournament $tournament
+     * @param integer $number_of_races
+     *
+     * @return \undpaul\MarioKartBundle\Entity\Round
+     */
+    public static function generate(Tournament $tournament, $number_of_races = 3)
+    {
+        $round = new Round();
+        $round->setTournament($tournament)
+          ->setDelta($tournament->getNextDelta());
+        $round->generateGames($number_of_races);
+        return $round;
     }
 }
