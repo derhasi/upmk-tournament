@@ -1,0 +1,22 @@
+undpaul\MarioKartBundle\Entity\Race:
+    type: entity
+    table: mariokart_race
+    repositoryClass: undpaul\MarioKartBundle\Entity\RaceRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        delta:
+            type: integer
+    manyToOne:
+        game:
+          targetEntity: undpaul\MarioKartBundle\Entity\Game
+          inversedBy: races
+    oneToMany:
+        results:
+            targetEntity: undpaul\MarioKartBundle\Entity\RaceResultItem
+            mappedBy: race
+    lifecycleCallbacks: {  }

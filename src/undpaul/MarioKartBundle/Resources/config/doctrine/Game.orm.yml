@@ -15,4 +15,8 @@ undpaul\MarioKartBundle\Entity\Game:
         round:
           targetEntity: undpaul\MarioKartBundle\Entity\Round
           inversedBy: games
+    oneToMany:
+        races:
+            targetEntity: undpaul\MarioKartBundle\Entity\Race
+            mappedBy: game
     lifecycleCallbacks: {  }

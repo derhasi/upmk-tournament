@@ -80,4 +80,49 @@ class Game
     {
         return $this->round;
     }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $races;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->races = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add races
+     *
+     * @param \undpaul\MarioKartBundle\Entity\Race $races
+     * @return Game
+     */
+    public function addRace(\undpaul\MarioKartBundle\Entity\Race $races)
+    {
+        $this->races[] = $races;
+
+        return $this;
+    }
+
+    /**
+     * Remove races
+     *
+     * @param \undpaul\MarioKartBundle\Entity\Race $races
+     */
+    public function removeRace(\undpaul\MarioKartBundle\Entity\Race $races)
+    {
+        $this->races->removeElement($races);
+    }
+
+    /**
+     * Get races
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getRaces()
+    {
+        return $this->races;
+    }
 }

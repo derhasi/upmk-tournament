@@ -1,0 +1,20 @@
+undpaul\MarioKartBundle\Entity\RaceResultItem:
+    type: entity
+    table: mariokart_race_result_item
+    repositoryClass: undpaul\MarioKartBundle\Entity\RaceResultItemRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        delta:
+            type: integer
+    manyToOne:
+        race:
+          targetEntity: undpaul\MarioKartBundle\Entity\Race
+          inversedBy: results
+        user:
+          targetEntity: undpaul\MarioKartBundle\Entity\User
+    lifecycleCallbacks: {  }
