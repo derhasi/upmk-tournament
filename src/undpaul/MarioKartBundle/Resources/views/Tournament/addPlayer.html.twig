@@ -1,7 +1,7 @@
 {% extends 'undpaulMarioKartBundle::layout.html.twig' %}
 
 {% block page_title %}
-    {{ tournament.name }}: Add contestant</em>
+    {{ tournament.name }}: Add player</em>
 {% endblock %}
 
 {% block content %}
@@ -10,6 +10,6 @@
     {{ form_widget(form) }}
     {{ form_end(form) }}
   {% else %}
-    Tournament already has started. So we cannot add anymore contestants.
+    Tournament already has started. So we cannot add anymore players.
   {% endif %}
 {% endblock %}

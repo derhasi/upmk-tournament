@@ -19,9 +19,9 @@ undpaul_mario_kart_tournament_view:
     defaults: { _controller: undpaulMarioKartBundle:Tournament:view }
     requirements: { tournament_id:  \d+ }
 
-undpaul_mario_kart_tournament_add_contestant:
-    path:     /tournament/{tournament_id}/contestant/add
-    defaults: { _controller: undpaulMarioKartBundle:Tournament:addContestant }
+undpaul_mario_kart_tournament_add_player:
+    path:     /tournament/{tournament_id}/player/add
+    defaults: { _controller: undpaulMarioKartBundle:Tournament:addPlayer }
     requirements: { tournament_id:  \d+ }
 
 undpaul_mario_kart_player_index:

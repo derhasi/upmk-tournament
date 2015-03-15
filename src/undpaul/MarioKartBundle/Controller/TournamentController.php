@@ -65,7 +65,7 @@ class TournamentController extends Controller
 
     }
 
-    public function addContestantAction($tournament_id, Request $request)
+    public function addPlayerAction($tournament_id, Request $request)
     {
 
         $em = $this->getDoctrine()->getManager();
@@ -77,13 +77,13 @@ class TournamentController extends Controller
           ->find($tournament_id);
 
         if ($tournament->isStarted()) {
-            return $this->render('undpaulMarioKartBundle:Tournament:addContestant.html.twig',
+            return $this->render('undpaulMarioKartBundle:Tournament:addPlayer.html.twig',
               array(
                 'tournament' => $tournament,
               ));
         }
 
-        $contestants_ids = $tournament->getContestants()->map(function (
+        $players_ids = $tournament->getPlayers()->map(function (
           Player $player
         ) {
             return $player->getId();
@@ -95,13 +95,13 @@ class TournamentController extends Controller
             'property' => 'name',
             'required' => false,
             'query_builder' => function (EntityRepository $er) use (
-              $contestants_ids
+              $players_ids
             ) {
                 $queryBuilder = $er->createQueryBuilder('u');
                 // Limit players to those who are not participating already.
-                if (count($contestants_ids)) {
+                if (count($players_ids)) {
                     $queryBuilder->where(
-                      $queryBuilder->expr()->notIn('u.id', $contestants_ids)
+                      $queryBuilder->expr()->notIn('u.id', $players_ids)
                     );
                 }
 
@@ -118,9 +118,9 @@ class TournamentController extends Controller
         if ($form->isValid()) {
             $data = $form->getData();
 
-            // Add contestant if one was selected.
+            // Add player if one was selected.
             if ($data['select_existing_player']) {
-                $tournament->addContestant($data['select_existing_player']);
+                $tournament->addPlayer($data['select_existing_player']);
 
                 $this->addFlash('notice',
                   sprintf('Added "%s" to "%s"!',
@@ -132,7 +132,7 @@ class TournamentController extends Controller
                 $u = new Player();
                 $u->setName($data['create_new_player']);
                 $em->persist($u);
-                $tournament->addContestant($u);
+                $tournament->addPlayer($u);
 
                 $this->addFlash('notice',
                   sprintf('Created "%s" and added to "%s"!',
@@ -148,7 +148,7 @@ class TournamentController extends Controller
                     'tournament_id' => $tournament->getId(),
                   ));
             } else {
-                return $this->redirectToRoute('undpaul_mario_kart_tournament_add_contestant',
+                return $this->redirectToRoute('undpaul_mario_kart_tournament_add_player',
                   array(
                     'tournament_id' => $tournament->getId(),
                   ));
@@ -156,7 +156,7 @@ class TournamentController extends Controller
 
         }
 
-        return $this->render('undpaulMarioKartBundle:Tournament:addContestant.html.twig',
+        return $this->render('undpaulMarioKartBundle:Tournament:addPlayer.html.twig',
           array(
             'tournament' => $tournament,
             'form' => $form->createView(),

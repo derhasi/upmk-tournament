@@ -6,22 +6,22 @@
 
 {% block content %}
 
-  <h2>Contestants</h2>
-  {% if tournament.contestants | length > 0 %}
+  <h2>Players</h2>
+  {% if tournament.players | length > 0 %}
     <ul>
-      {% for contestant in tournament.contestants %}
-        <li>{{ contestant.name }}</li>
+      {% for player in tournament.players %}
+        <li>{{ player.name }}</li>
       {% endfor %}
     </ul>
   {% endif %}
 
   {% if tournament.isStarted() %}
-    <div>You cannot add anymore contestants.</div>
+    <div>You cannot add anymore players.</div>
   {% else %}
     <div class="add-more">
       <a
-          href="{{ path('undpaul_mario_kart_tournament_add_contestant', {'tournament_id': tournament.id}) }}">
-        Add contestants
+          href="{{ path('undpaul_mario_kart_tournament_add_player', {'tournament_id': tournament.id}) }}">
+        Add players
       </a>
     </div>
   {% endif %}
