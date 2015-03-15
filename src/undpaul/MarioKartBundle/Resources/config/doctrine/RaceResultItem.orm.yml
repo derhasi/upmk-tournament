@@ -9,7 +9,13 @@ undpaul\MarioKartBundle\Entity\RaceResultItem:
             generator:
                 strategy: AUTO
     fields:
-        delta:
+        pos_rel:
+            type: integer
+        pos_abs:
+            type: integer
+        pts_rel:
+            type: integer
+        pts_abs:
             type: integer
     manyToOne:
         race:
