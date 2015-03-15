@@ -4,20 +4,20 @@ namespace undpaul\MarioKartBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class UserControllerTest extends WebTestCase
+class PlayerControllerTest extends WebTestCase
 {
     public function testIndex()
     {
         $client = static::createClient();
 
-        $crawler = $client->request('GET', '/user');
+        $crawler = $client->request('GET', '/player');
     }
 
     public function testNew()
     {
         $client = static::createClient();
 
-        $crawler = $client->request('GET', '/user/new');
+        $crawler = $client->request('GET', '/player/new');
     }
 
 }

@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class UserType extends AbstractType
+class PlayerType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -24,7 +24,7 @@ class UserType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-          'data_class' => 'undpaul\MarioKartBundle\Entity\User'
+          'data_class' => 'undpaul\MarioKartBundle\Entity\Player'
         ));
     }
 
@@ -33,6 +33,6 @@ class UserType extends AbstractType
      */
     public function getName()
     {
-        return 'undpaul_mariokartbundle_user';
+        return 'undpaul_mariokartbundle_player';
     }
 }

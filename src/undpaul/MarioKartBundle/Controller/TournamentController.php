@@ -6,7 +6,7 @@ use Doctrine\ORM\EntityRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use undpaul\MarioKartBundle\Entity\Tournament;
-use undpaul\MarioKartBundle\Entity\User;
+use undpaul\MarioKartBundle\Entity\Player;
 use undpaul\MarioKartBundle\Form\TournamentType;
 
 class TournamentController extends Controller
@@ -84,21 +84,21 @@ class TournamentController extends Controller
         }
 
         $contestants_ids = $tournament->getContestants()->map(function (
-          User $user
+          Player $player
         ) {
-            return $user->getId();
+            return $player->getId();
         })->toArray();
 
         $form = $this->createFormBuilder(array())
-          ->add('select_existing_user', 'entity', array(
-            'class' => 'undpaulMarioKartBundle:User',
+          ->add('select_existing_player', 'entity', array(
+            'class' => 'undpaulMarioKartBundle:Player',
             'property' => 'name',
             'required' => false,
             'query_builder' => function (EntityRepository $er) use (
               $contestants_ids
             ) {
                 $queryBuilder = $er->createQueryBuilder('u');
-                // Limit users to those who are not participating already.
+                // Limit players to those who are not participating already.
                 if (count($contestants_ids)) {
                     $queryBuilder->where(
                       $queryBuilder->expr()->notIn('u.id', $contestants_ids)
@@ -108,7 +108,7 @@ class TournamentController extends Controller
                 return $queryBuilder;
             },
           ))
-          ->add('create_new_user', 'text')
+          ->add('create_new_player', 'text')
           ->add('add', 'submit')
           ->add('add_another', 'submit')
           ->getForm();
@@ -119,18 +119,18 @@ class TournamentController extends Controller
             $data = $form->getData();
 
             // Add contestant if one was selected.
-            if ($data['select_existing_user']) {
-                $tournament->addContestant($data['select_existing_user']);
+            if ($data['select_existing_player']) {
+                $tournament->addContestant($data['select_existing_player']);
 
                 $this->addFlash('notice',
                   sprintf('Added "%s" to "%s"!',
-                    $data['select_existing_user']->getName(),
+                    $data['select_existing_player']->getName(),
                     $tournament->getName()));
             }
-            // And/or create a new user and add it to the list.
-            if ($data['create_new_user']) {
-                $u = new User();
-                $u->setName($data['create_new_user']);
+            // And/or create a new player and add it to the list.
+            if ($data['create_new_player']) {
+                $u = new Player();
+                $u->setName($data['create_new_player']);
                 $em->persist($u);
                 $tournament->addContestant($u);
 

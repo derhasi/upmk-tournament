@@ -24,13 +24,13 @@ undpaul_mario_kart_tournament_add_contestant:
     defaults: { _controller: undpaulMarioKartBundle:Tournament:addContestant }
     requirements: { tournament_id:  \d+ }
 
-undpaul_mario_kart_user_index:
-    path:     /user
-    defaults: { _controller: undpaulMarioKartBundle:User:index }
+undpaul_mario_kart_player_index:
+    path:     /player
+    defaults: { _controller: undpaulMarioKartBundle:Player:index }
 
-undpaul_mario_kart_user_new:
-    path:     /user/new
-    defaults: { _controller: undpaulMarioKartBundle:User:new }
+undpaul_mario_kart_player_new:
+    path:     /player/new
+    defaults: { _controller: undpaulMarioKartBundle:Player:new }
 
 undpaul_mario_kart_tournament_generate_round:
     path:     /tournament/{tournament_id}/round/generate

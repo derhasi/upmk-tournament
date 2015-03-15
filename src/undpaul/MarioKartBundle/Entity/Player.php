@@ -5,9 +5,9 @@ namespace undpaul\MarioKartBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * User
+ * Player
  */
-class User
+class Player
 {
     /**
      * @var integer
@@ -23,7 +23,7 @@ class User
     /**
      * Get id
      *
-     * @return integer
+     * @return integer 
      */
     public function getId()
     {
@@ -34,7 +34,7 @@ class User
      * Set name
      *
      * @param string $name
-     * @return User
+     * @return Player
      */
     public function setName($name)
     {
@@ -46,7 +46,7 @@ class User
     /**
      * Get name
      *
-     * @return string
+     * @return string 
      */
     public function getName()
     {

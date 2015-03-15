@@ -10,11 +10,6 @@ use Doctrine\ORM\Mapping as ORM;
 class Game
 {
     /**
-     * The maximum number of players per game.
-     */
-    const MAX_PLAYERS = 4;
-
-    /**
      * @var integer
      */
     private $id;
@@ -25,9 +20,22 @@ class Game
     private $delta;
 
     /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $races;
+
+    /**
      * @var \undpaul\MarioKartBundle\Entity\Round
      */
     private $round;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->races = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
@@ -60,43 +68,6 @@ class Game
     public function getDelta()
     {
         return $this->delta;
-    }
-
-    /**
-     * Set round
-     *
-     * @param \undpaul\MarioKartBundle\Entity\Round $round
-     * @return Game
-     */
-    public function setRound(
-      \undpaul\MarioKartBundle\Entity\Round $round = null
-    ) {
-        $this->round = $round;
-
-        return $this;
-    }
-
-    /**
-     * Get round
-     *
-     * @return \undpaul\MarioKartBundle\Entity\Round
-     */
-    public function getRound()
-    {
-        return $this->round;
-    }
-
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
-    private $races;
-
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->races = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -133,7 +104,31 @@ class Game
     }
 
     /**
-     * Build races for the given game.
+     * Set round
+     *
+     * @param \undpaul\MarioKartBundle\Entity\Round $round
+     * @return Game
+     */
+    public function setRound(
+      \undpaul\MarioKartBundle\Entity\Round $round = null
+    ) {
+        $this->round = $round;
+
+        return $this;
+    }
+
+    /**
+     * Get round
+     *
+     * @return \undpaul\MarioKartBundle\Entity\Round
+     */
+    public function getRound()
+    {
+        return $this->round;
+    }
+
+    /**
+     * Generate races for this game.
      *
      * @param int $raceCount
      */

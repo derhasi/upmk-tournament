@@ -15,72 +15,6 @@ class RaceResultItem
     private $id;
 
     /**
-     * @var \undpaul\MarioKartBundle\Entity\Race
-     */
-    private $race;
-
-    /**
-     * @var \undpaul\MarioKartBundle\Entity\User
-     */
-    private $user;
-
-
-    /**
-     * Get id
-     *
-     * @return integer
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * Set race
-     *
-     * @param \undpaul\MarioKartBundle\Entity\Race $race
-     * @return RaceResultItem
-     */
-    public function setRace(\undpaul\MarioKartBundle\Entity\Race $race = null)
-    {
-        $this->race = $race;
-
-        return $this;
-    }
-
-    /**
-     * Get race
-     *
-     * @return \undpaul\MarioKartBundle\Entity\Race
-     */
-    public function getRace()
-    {
-        return $this->race;
-    }
-
-    /**
-     * Set user
-     *
-     * @param \undpaul\MarioKartBundle\Entity\User $user
-     * @return RaceResultItem
-     */
-    public function setUser(\undpaul\MarioKartBundle\Entity\User $user = null)
-    {
-        $this->user = $user;
-
-        return $this;
-    }
-
-    /**
-     * Get user
-     *
-     * @return \undpaul\MarioKartBundle\Entity\User
-     */
-    public function getUser()
-    {
-        return $this->user;
-    }
-    /**
      * @var integer
      */
     private $pos_rel;
@@ -100,6 +34,26 @@ class RaceResultItem
      */
     private $pts_abs;
 
+    /**
+     * @var \undpaul\MarioKartBundle\Entity\Race
+     */
+    private $race;
+
+    /**
+     * @var \undpaul\MarioKartBundle\Entity\Player
+     */
+    private $player;
+
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
     /**
      * Set pos_rel
@@ -191,5 +145,51 @@ class RaceResultItem
     public function getPtsAbs()
     {
         return $this->pts_abs;
+    }
+
+    /**
+     * Set race
+     *
+     * @param \undpaul\MarioKartBundle\Entity\Race $race
+     * @return RaceResultItem
+     */
+    public function setRace(\undpaul\MarioKartBundle\Entity\Race $race = null)
+    {
+        $this->race = $race;
+
+        return $this;
+    }
+
+    /**
+     * Get race
+     *
+     * @return \undpaul\MarioKartBundle\Entity\Race 
+     */
+    public function getRace()
+    {
+        return $this->race;
+    }
+
+    /**
+     * Set player
+     *
+     * @param \undpaul\MarioKartBundle\Entity\Player $player
+     * @return RaceResultItem
+     */
+    public function setPlayer(\undpaul\MarioKartBundle\Entity\Player $player = null)
+    {
+        $this->player = $player;
+
+        return $this;
+    }
+
+    /**
+     * Get player
+     *
+     * @return \undpaul\MarioKartBundle\Entity\Player 
+     */
+    public function getPlayer()
+    {
+        return $this->player;
     }
 }

@@ -1,7 +1,7 @@
-undpaul\MarioKartBundle\Entity\User:
+undpaul\MarioKartBundle\Entity\Player:
     type: entity
-    table: mariokart_user
-    repositoryClass: undpaul\MarioKartBundle\Entity\UserRepository
+    table: null
+    repositoryClass: undpaul\MarioKartBundle\Entity\PlayerRepository
     id:
         id:
             type: integer

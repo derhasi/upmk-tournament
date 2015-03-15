@@ -21,6 +21,6 @@ undpaul\MarioKartBundle\Entity\RaceResultItem:
         race:
           targetEntity: undpaul\MarioKartBundle\Entity\Race
           inversedBy: results
-        user:
-          targetEntity: undpaul\MarioKartBundle\Entity\User
+        player:
+          targetEntity: undpaul\MarioKartBundle\Entity\Player
     lifecycleCallbacks: {  }

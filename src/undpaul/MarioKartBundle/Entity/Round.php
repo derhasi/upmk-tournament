@@ -3,7 +3,6 @@
 namespace undpaul\MarioKartBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use undpaul\MarioKartBundle\Entity\Tournament;
 
 /**
  * Round
@@ -21,14 +20,27 @@ class Round
     private $delta;
 
     /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $games;
+
+    /**
      * @var \undpaul\MarioKartBundle\Entity\Tournament
      */
     private $tournament;
 
     /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->games = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
      * Get id
      *
-     * @return integer
+     * @return integer 
      */
     public function getId()
     {
@@ -51,48 +63,11 @@ class Round
     /**
      * Get delta
      *
-     * @return integer
+     * @return integer 
      */
     public function getDelta()
     {
         return $this->delta;
-    }
-
-    /**
-     * Set tournament
-     *
-     * @param \undpaul\MarioKartBundle\Entity\Tournament $tournament
-     * @return Round
-     */
-    public function setTournament(
-      \undpaul\MarioKartBundle\Entity\Tournament $tournament = null
-    ) {
-        $this->tournament = $tournament;
-
-        return $this;
-    }
-
-    /**
-     * Get tournament
-     *
-     * @return \undpaul\MarioKartBundle\Entity\Tournament
-     */
-    public function getTournament()
-    {
-        return $this->tournament;
-    }
-
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
-    private $games;
-
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->games = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -121,25 +96,48 @@ class Round
     /**
      * Get games
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return \Doctrine\Common\Collections\Collection 
      */
     public function getGames()
     {
         return $this->games;
     }
 
+    /**
+     * Set tournament
+     *
+     * @param \undpaul\MarioKartBundle\Entity\Tournament $tournament
+     * @return Round
+     */
+    public function setTournament(\undpaul\MarioKartBundle\Entity\Tournament $tournament = null)
+    {
+        $this->tournament = $tournament;
+
+        return $this;
+    }
+
+    /**
+     * Get tournament
+     *
+     * @return \undpaul\MarioKartBundle\Entity\Tournament 
+     */
+    public function getTournament()
+    {
+        return $this->tournament;
+    }
 
     /**
      * Generates games for the new round.
      *
      * @param int $raceCount
      */
-    public function generateGames($raceCount = 3) {
+    public function generateGames($raceCount = 3)
+    {
 
-        $contestants = $this->tournament->getContestants();
+        $players = $this->tournament->getPlayers();
 
         // For now we "only" generate the necessary amount of races.
-        $games_count = ceil(count($contestants) / Game::MAX_PLAYERS);
+        $games_count = ceil(count($players) / Game::MAX_PLAYERS);
         $games = array_fill(0, $games_count, 0);
 
         foreach ($games as $delta => $val) {
@@ -148,7 +146,5 @@ class Round
             $game->generateRaces($raceCount);
             $this->addGame($game);
         }
-
     }
-
 }

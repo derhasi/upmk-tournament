@@ -2,7 +2,6 @@
 
 namespace undpaul\MarioKartBundle\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -10,7 +9,6 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Tournament
 {
-
     /**
      * @var integer
      */
@@ -22,28 +20,28 @@ class Tournament
     private $name;
 
     /**
-     * @var \Doctrine\Common\Collections\ArrayCollection
+     * @var \Doctrine\Common\Collections\Collection
      */
-    protected $contestants;
+    private $rounds;
 
     /**
-     * @var \Doctrine\Common\Collections\ArrayCollection
+     * @var \Doctrine\Common\Collections\Collection
      */
-    protected $rounds;
+    private $players;
 
     /**
-     * Constructor.
+     * Constructor
      */
     public function __construct()
     {
-        $this->contestants = new ArrayCollection();
-        $this->rounds = new ArrayCollection();
+        $this->rounds = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->players = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
      * Get id
      *
-     * @return integer
+     * @return integer 
      */
     public function getId()
     {
@@ -66,46 +64,11 @@ class Tournament
     /**
      * Get name
      *
-     * @return string
+     * @return string 
      */
     public function getName()
     {
         return $this->name;
-    }
-
-    /**
-     * Add contestants
-     *
-     * @param \undpaul\MarioKartBundle\Entity\User $contestants
-     * @return Tournament
-     */
-    public function addContestant(
-      \undpaul\MarioKartBundle\Entity\User $contestants
-    ) {
-        $this->contestants[] = $contestants;
-
-        return $this;
-    }
-
-    /**
-     * Remove contestants
-     *
-     * @param \undpaul\MarioKartBundle\Entity\User $contestants
-     */
-    public function removeContestant(
-      \undpaul\MarioKartBundle\Entity\User $contestants
-    ) {
-        $this->contestants->removeElement($contestants);
-    }
-
-    /**
-     * Get contestants
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getContestants()
-    {
-        return $this->contestants;
     }
 
     /**
@@ -134,11 +97,44 @@ class Tournament
     /**
      * Get rounds
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return \Doctrine\Common\Collections\Collection 
      */
     public function getRounds()
     {
         return $this->rounds;
+    }
+
+    /**
+     * Add players
+     *
+     * @param \undpaul\MarioKartBundle\Entity\Player $players
+     * @return Tournament
+     */
+    public function addPlayer(\undpaul\MarioKartBundle\Entity\Player $players)
+    {
+        $this->players[] = $players;
+
+        return $this;
+    }
+
+    /**
+     * Remove players
+     *
+     * @param \undpaul\MarioKartBundle\Entity\Player $players
+     */
+    public function removePlayer(\undpaul\MarioKartBundle\Entity\Player $players)
+    {
+        $this->players->removeElement($players);
+    }
+
+    /**
+     * Get players
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getPlayers()
+    {
+        return $this->players;
     }
 
     /**
