@@ -12,6 +12,12 @@
 {% endblock %}
 
 {% block body %}
+  <div class="breadcrumbs">
+  {% block breadcrumbs %}
+    <a href="{{ path('undpaul_mario_kart_homepage') }}">Home</a>
+  {% endblock %}
+  </div>
+
   <h1>{% block page_title %} undpaul MarioKart {% endblock %}</h1>
 
   {# Print messages provided via flashbag. #}

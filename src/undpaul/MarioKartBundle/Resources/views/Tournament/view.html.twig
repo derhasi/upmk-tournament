@@ -1,8 +1,17 @@
 {% extends 'undpaulMarioKartBundle::layout.html.twig' %}
 
-{% block page_title %}
-  Tournament: {{ tournament.name }}
+{% block breadcrumbs %}
+  {{ parent() }}
+  <a href="{{ path('undpaul_mario_kart_tournament_index') }}">
+    Tournaments
+  </a>
 {% endblock %}
+
+{% block page_title %}
+  {{ tournament.name }}
+{% endblock %}
+
+
 
 {% block content %}
 

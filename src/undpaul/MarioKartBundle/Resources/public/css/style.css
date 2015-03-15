@@ -81,3 +81,7 @@ label:after {
   border: 1px solid #77B302;
   color: #77B302;
 }
+
+.breadcrumbs > * {
+  margin-right: 1em;
+}
