@@ -1,0 +1,25 @@
+{% extends 'undpaulMarioKartBundle::layout.html.twig' %}
+
+{% block breadcrumbs %}
+  {{ parent() }}
+  <a href="{{ path('upmk_tournament_index') }}">
+    Tournaments
+  </a>
+  <a href="{{ path('upmk_tournament_view', { 'tournament_id': round.tournament.id}) }}">
+    {{ round.tournament.name }}
+  </a>
+{% endblock %}
+
+{% block page_title %}
+  Remove round
+{% endblock %}
+
+{% block content %}
+  Are you sure you want to remove <em>{{ round.getFullName() }}</em>?
+
+  {% if form %}
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
+  {% endif %}
+{% endblock %}

@@ -39,7 +39,9 @@
   {% if tournament.rounds | length > 0 %}
     <ul>
       {% for round in tournament.rounds %}
-        <li>Round {{ round.delta + 1 }}</li>
+        <li> {{ round.getFullName() }}
+          <a href="{{ path('upmk_round_remove', {'round_id': round.id}) }}">X</a>
+        </li>
       {% endfor %}
     </ul>
   {% else %}
@@ -47,7 +49,7 @@
   {% endif %}
   <div class="add-more">
     <a
-        href="{{ path('upmk_tournament_generate_round',
+        href="{{ path('upmk_round_generate',
         {'tournament_id': tournament.id}) }}">
       Generate new round
     </a>

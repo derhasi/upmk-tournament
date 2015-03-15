@@ -59,4 +59,45 @@ class RoundController extends Controller
           'form' => $form->createView(),
         ));
     }
+
+    public function removeAction($round_id, Request $request)
+    {
+
+        $em = $this->getDoctrine()->getManager();
+        $round = $em->getRepository('undpaulMarioKartBundle:Round')
+          ->find($round_id);
+
+        if (!$round) {
+            return $this->createNotFoundException();
+        }
+
+        $form = $this->createFormBuilder()
+          ->add('remove', 'submit')
+          ->getForm();
+
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+
+            if ($form->get('remove')->isClicked()) {
+                $em->remove($round);
+                $em->flush();
+
+                $this->addFlash('notice', sprintf('Round %d removed from %s',
+                  $round->getDelta() + 1,
+                  $round->getTournament()->getName()
+                ));
+
+                return $this->redirectToRoute('upmk_tournament_view', [
+                    'tournament_id' => $round->getTournament()->getId(),
+                ]);
+            }
+        }
+
+        return $this->render('undpaulMarioKartBundle:Round:remove.html.twig',
+          array(
+          'round' => $round,
+          'form' => $form->createView(),
+        ));
+    }
 }

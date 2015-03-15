@@ -147,4 +147,13 @@ class Round
             $this->addGame($game);
         }
     }
+
+    /**
+     * Wrapper for the full name.
+     *
+     * @return string
+     */
+    public function getFullName() {
+        return sprintf('Round %d', $this->delta + 1);
+    }
 }
