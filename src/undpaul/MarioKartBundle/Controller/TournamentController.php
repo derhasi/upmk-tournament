@@ -76,6 +76,13 @@ class TournamentController extends Controller
         $tournament = $em->getRepository('undpaulMarioKartBundle:Tournament')
           ->find($tournament_id);
 
+        if ($tournament->isStarted()) {
+            return $this->render('undpaulMarioKartBundle:Tournament:addContestant.html.twig',
+              array(
+                'tournament' => $tournament,
+              ));
+        }
+
         $contestants_ids = $tournament->getContestants()->map(function (
           User $user
         ) {

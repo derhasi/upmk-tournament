@@ -14,10 +14,19 @@
       {% endfor %}
     </ul>
   {% endif %}
-  <div class="add-more"><a
-        href="{{ path('undpaul_mario_kart_tournament_add_contestant', {'tournament_id': tournament.id}) }}">
-      Add contestants
-    </a></div>
+
+  {% if tournament.isStarted() %}
+    <div>You cannot add anymore contestants.</div>
+  {% else %}
+    <div class="add-more">
+      <a
+          href="{{ path('undpaul_mario_kart_tournament_add_contestant', {'tournament_id': tournament.id}) }}">
+        Add contestants
+      </a>
+    </div>
+  {% endif %}
+
+
 
   <h2>Rounds</h2>
   {% if tournament.rounds | length > 0 %}

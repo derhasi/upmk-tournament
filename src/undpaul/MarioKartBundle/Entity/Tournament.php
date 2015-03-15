@@ -139,4 +139,14 @@ class Tournament
     {
         return $this->rounds;
     }
+
+    /**
+     * Check if the tournament already has started.
+     *
+     * @return bool
+     */
+    public function isStarted()
+    {
+        return count($this->rounds) > 0;
+    }
 }
