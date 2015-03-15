@@ -108,4 +108,49 @@ class Round
     {
         return $this->tournament;
     }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $games;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->games = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add games
+     *
+     * @param \undpaul\MarioKartBundle\Entity\Game $games
+     * @return Round
+     */
+    public function addGame(\undpaul\MarioKartBundle\Entity\Game $games)
+    {
+        $this->games[] = $games;
+
+        return $this;
+    }
+
+    /**
+     * Remove games
+     *
+     * @param \undpaul\MarioKartBundle\Entity\Game $games
+     */
+    public function removeGame(\undpaul\MarioKartBundle\Entity\Game $games)
+    {
+        $this->games->removeElement($games);
+    }
+
+    /**
+     * Get games
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getGames()
+    {
+        return $this->games;
+    }
 }

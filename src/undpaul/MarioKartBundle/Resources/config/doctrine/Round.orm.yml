@@ -18,4 +18,8 @@ undpaul\MarioKartBundle\Entity\Round:
         tournament:
           targetEntity: undpaul\MarioKartBundle\Entity\Tournament
           inversedBy: rounds
+    oneToMany:
+        games:
+            targetEntity: undpaul\MarioKartBundle\Entity\Game
+            mappedBy: tournament
     lifecycleCallbacks: {  }
