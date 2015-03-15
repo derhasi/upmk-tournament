@@ -1,0 +1,16 @@
+undpaul\MarioKartBundle\Entity\User:
+    type: entity
+    table: null
+    repositoryClass: undpaul\MarioKartBundle\Entity\UserRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: string
+            length: '64'
+            column: Name
+    lifecycleCallbacks: {  }
