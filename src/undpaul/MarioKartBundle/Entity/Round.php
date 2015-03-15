@@ -16,11 +16,6 @@ class Round
     private $id;
 
     /**
-     * @var string
-     */
-    private $name;
-
-    /**
      * @var integer
      */
     private $delta;
@@ -38,29 +33,6 @@ class Round
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set name
-     *
-     * @param string $name
-     * @return Round
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    /**
-     * Get name
-     *
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->name;
     }
 
     /**
