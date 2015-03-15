@@ -2,9 +2,11 @@
 
 namespace undpaul\MarioKartBundle\Controller;
 
+use Doctrine\ORM\EntityRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use undpaul\MarioKartBundle\Entity\Tournament;
+use undpaul\MarioKartBundle\Entity\User;
 use undpaul\MarioKartBundle\Form\TournamentType;
 
 class TournamentController extends Controller
@@ -60,12 +62,30 @@ class TournamentController extends Controller
     public function addContestantAction($tournament_id, Request $request) {
 
         $em = $this->getDoctrine()->getManager();
+
+        /**
+         * @var $tournament \undpaul\MarioKartBundle\Entity\Tournament
+         */
         $tournament = $em->getRepository('undpaulMarioKartBundle:Tournament')->find($tournament_id);
+
+        $contestants_ids = $tournament->getContestants()->map(function(User $user) {
+            return $user->getId();
+        })->toArray();
 
         $form = $this->createFormBuilder(array())
           ->add('contestant', 'entity', array(
             'class' => 'undpaulMarioKartBundle:User',
             'property' => 'name',
+            'query_builder' => function(EntityRepository $er) use ($contestants_ids) {
+                $queryBuilder = $er->createQueryBuilder('u');
+                // Limit users to those who are not participating already.
+                if (count($contestants_ids)) {
+                    $queryBuilder->where(
+                      $queryBuilder->expr()->notIn('u.id', $contestants_ids)
+                    );
+                }
+                return $queryBuilder;
+            },
           ))
           ->add('add', 'submit')
           ->getForm();
