@@ -2,7 +2,7 @@
 
 {% block breadcrumbs %}
   {{ parent() }}
-  <a href="{{ path('undpaul_mario_kart_tournament_index') }}">
+  <a href="{{ path('upmk_tournament_index') }}">
     Tournaments
   </a>
 {% endblock %}
@@ -29,7 +29,7 @@
   {% else %}
     <div class="add-more">
       <a
-          href="{{ path('undpaul_mario_kart_tournament_add_player', {'tournament_id': tournament.id}) }}">
+          href="{{ path('upmk_tournament_add_player', {'tournament_id': tournament.id}) }}">
         Add players
       </a>
     </div>
@@ -47,7 +47,7 @@
   {% endif %}
   <div class="add-more">
     <a
-        href="{{ path('undpaul_mario_kart_tournament_generate_round',
+        href="{{ path('upmk_tournament_generate_round',
         {'tournament_id': tournament.id}) }}">
       Generate new round
     </a>

@@ -8,6 +8,6 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
-        return $this->redirect($this->generateUrl('undpaul_mario_kart_legacy'));
+        return $this->redirect($this->generateUrl('upmk_legacy'));
     }
 }

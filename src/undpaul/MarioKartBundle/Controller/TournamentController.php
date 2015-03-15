@@ -42,7 +42,7 @@ class TournamentController extends Controller
             $this->addFlash('notice',
               sprintf('Tournament "%s" created!', $tournament->getName()));
 
-            return $this->redirectToRoute('undpaul_mario_kart_tournament_index');
+            return $this->redirectToRoute('upmk_tournament_index');
         }
 
         return $this->render('undpaulMarioKartBundle:Tournament:new.html.twig',
@@ -143,12 +143,12 @@ class TournamentController extends Controller
             $em->flush();
 
             if ($form->get('add')->isClicked()) {
-                return $this->redirectToRoute('undpaul_mario_kart_tournament_view',
+                return $this->redirectToRoute('upmk_tournament_view',
                   array(
                     'tournament_id' => $tournament->getId(),
                   ));
             } else {
-                return $this->redirectToRoute('undpaul_mario_kart_tournament_add_player',
+                return $this->redirectToRoute('upmk_tournament_add_player',
                   array(
                     'tournament_id' => $tournament->getId(),
                   ));

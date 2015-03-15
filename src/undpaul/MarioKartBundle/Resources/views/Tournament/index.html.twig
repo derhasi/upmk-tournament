@@ -10,7 +10,7 @@
     <ul>
       {% for tournament in tournaments %}
         <li><a
-              href="{{ path('undpaul_mario_kart_tournament_view', { 'tournament_id': tournament.id}) }}"
+              href="{{ path('upmk_tournament_view', { 'tournament_id': tournament.id}) }}"
               title="View {{ tournament.name }}">
             {{ tournament.name }}
           </a>

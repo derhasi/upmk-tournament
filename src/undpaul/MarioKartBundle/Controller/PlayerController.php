@@ -39,7 +39,7 @@ class PlayerController extends Controller
             $this->addFlash('notice',
               sprintf('Player "%s" created!', $player->getName()));
 
-            return $this->redirectToRoute('undpaul_mario_kart_player_index');
+            return $this->redirectToRoute('upmk_player_index');
         }
 
         return $this->render('undpaulMarioKartBundle:Player:new.html.twig', array(

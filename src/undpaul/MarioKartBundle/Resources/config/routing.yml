@@ -1,37 +1,37 @@
-undpaul_mario_kart_homepage:
+upmk_homepage:
     path:     /
     defaults: { _controller: undpaulMarioKartBundle:Default:index }
 
-undpaul_mario_kart_legacy:
+upmk_legacy:
     path:     /legacy
     defaults: { _controller: undpaulMarioKartBundle:Legacy:index }
 
-undpaul_mario_kart_tournament_index:
+upmk_tournament_index:
     path:     /tournament
     defaults: { _controller: undpaulMarioKartBundle:Tournament:index }
 
-undpaul_mario_kart_tournament_new:
+upmk_tournament_new:
     path:     /tournament/new
     defaults: { _controller: undpaulMarioKartBundle:Tournament:new }
 
-undpaul_mario_kart_tournament_view:
+upmk_tournament_view:
     path:     /tournament/{tournament_id}
     defaults: { _controller: undpaulMarioKartBundle:Tournament:view }
     requirements: { tournament_id:  \d+ }
 
-undpaul_mario_kart_tournament_add_player:
+upmk_tournament_add_player:
     path:     /tournament/{tournament_id}/player/add
     defaults: { _controller: undpaulMarioKartBundle:Tournament:addPlayer }
     requirements: { tournament_id:  \d+ }
 
-undpaul_mario_kart_player_index:
+upmk_player_index:
     path:     /player
     defaults: { _controller: undpaulMarioKartBundle:Player:index }
 
-undpaul_mario_kart_player_new:
+upmk_player_new:
     path:     /player/new
     defaults: { _controller: undpaulMarioKartBundle:Player:new }
 
-undpaul_mario_kart_tournament_generate_round:
+upmk_tournament_generate_round:
     path:     /tournament/{tournament_id}/round/generate
     defaults: { _controller: undpaulMarioKartBundle:Round:generate }

@@ -2,10 +2,10 @@
 
 {% block breadcrumbs %}
   {{ parent() }}
-  <a href="{{ path('undpaul_mario_kart_tournament_index') }}">
+  <a href="{{ path('upmk_tournament_index') }}">
     Tournaments
   </a>
-  <a href="{{ path('undpaul_mario_kart_tournament_view', { 'tournament_id': tournament.id}) }}">
+  <a href="{{ path('upmk_tournament_view', { 'tournament_id': tournament.id}) }}">
     {{ tournament.name }}
   </a>
 {% endblock %}

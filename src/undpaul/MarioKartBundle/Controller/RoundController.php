@@ -48,7 +48,7 @@ class RoundController extends Controller
             $tournament->addRound($round);
             $em->flush();
 
-            return $this->redirectToRoute('undpaul_mario_kart_tournament_view', array(
+            return $this->redirectToRoute('upmk_tournament_view', array(
                 'tournament_id' => $tournament->getId(),
             ));
         }
