@@ -1,24 +1,22 @@
-<div class="game">
-  <h3>{{ game.getFullName() }}</h3>
+{% extends 'undpaulMarioKartBundle::layout.html.twig' %}
 
-  <table>
-    <thead>
-    <tr>
-      <th>Name</th>
-      <th>Finished</th>
-      <th>Pos</th>
-      <th>Pte</th>
-      <th>&sum;</th>
-    </tr>
-    </thead>
-    {% for result in game.getOverviewData() %}
-      <tr>
-        <td class="bold">{{ result.player.name }}</td>
-        <td>{{ result.pos_abs|join(',') }}</td>
-        <td>{{ result.pos_rel|join(',') }}</td>
-        <td>{{ result.pts_rel|join(',') }}</td>
-        <td class="bold">{{ result.getSumAbsolute() }}</td>
-      </tr>
-    {% endfor %}
-  </table>
-</div>
+{% block breadcrumbs %}
+  {{ parent() }}
+  <a href="{{ path('upmk_tournament_index') }}">
+    Tournaments
+  </a>
+  <a href="{{ path('upmk_tournament_view', { 'tournament_id': game.round.tournament.id}) }}">
+    {{ game.round.tournament.name }}
+  </a>
+  <a href="{{ path('upmk_round_view', { 'round_id': game.round.id}) }}">
+    {{ game.round.getFullName() }}
+  </a>
+{% endblock %}
+
+{% block page_title %}
+  {{ game.getFullName() }}
+{% endblock %}
+
+{% block content %}
+  {{ render(controller('undpaulMarioKartBundle:Game:viewFull', {'game': game })) }}
+{% endblock %}

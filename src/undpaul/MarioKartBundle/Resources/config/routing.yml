@@ -43,3 +43,11 @@ upmk_round_generate:
 upmk_round_remove:
     path:     /round/{round_id}/remove
     defaults: { _controller: undpaulMarioKartBundle:Round:remove }
+
+upmk_game_view:
+    path:     /game/{game_id}
+    defaults: { _controller: undpaulMarioKartBundle:Game:view }
+
+upmk_game_edit:
+    path:     /game/{game_id}/edit
+    defaults: { _controller: undpaulMarioKartBundle:Game:edit }
