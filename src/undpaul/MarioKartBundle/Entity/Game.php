@@ -142,7 +142,7 @@ class Game
      *
      * @param int $raceCount
      */
-    public function generateRaces($raceCount = 3) {
+    protected function generateRaces($raceCount = 3) {
 
         for ($i = 0; $i < $raceCount; $i++) {
             $race = new Race();
@@ -183,5 +183,27 @@ class Game
     public function getPlayers()
     {
         return $this->players;
+    }
+
+    /**
+     * Generate game for a given round.
+     *
+     * @param \undpaul\MarioKartBundle\Entity\Round $round
+     * @param $number_of_races
+     *
+     * @return \undpaul\MarioKartBundle\Entity\Round $game
+     */
+    public static function generate(Round $round, array $players, $number_of_races) {
+
+        $game = new Game();
+        $game->setRound($round)
+          ->setDelta($round->getNextDelta());
+        foreach ($players as $player) {
+            $game->addPlayer($player);
+        }
+
+        $game->generateRaces($number_of_races);
+
+        return $game;
     }
 }

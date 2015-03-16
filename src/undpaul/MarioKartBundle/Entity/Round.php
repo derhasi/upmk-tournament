@@ -131,20 +131,22 @@ class Round
      *
      * @param int $raceCount
      */
-    public function generateGames($raceCount = 3)
+    protected function generateGames($raceCount = 3)
     {
         $players = $this->tournament->getPlayers();
 
-        // For now we "only" generate the necessary amount of races.
+        // For now we "only" generate the games the simple way. The algorithm
+        // for swiss style tournaments will follow later.
         $games_count = ceil(count($players) / Game::MAX_PLAYERS);
         $games = array_fill(0, $games_count, 0);
 
+        $offset = 0;
+
         foreach ($games as $delta => $val) {
-            $game = new Game();
-            $game->setRound($this);
-            $game->setDelta($delta);
-            $game->generateRaces($raceCount);
+            $gamePlayers = $players->slice($offset, Game::MAX_PLAYERS);
+            $game = Game::generate($this, $gamePlayers, $raceCount);
             $this->addGame($game);
+            $offset += Game::MAX_PLAYERS;
         }
     }
 
@@ -155,6 +157,26 @@ class Round
      */
     public function getFullName() {
         return sprintf('Round %d', $this->delta + 1);
+    }
+
+    /**
+     * Retrieve the delta to be used for the next tournament round.
+     *
+     * @return int
+     */
+    public function getNextDelta()
+    {
+        $next_delta = 0;
+
+        /**
+         * @var Game $game
+         */
+        foreach ($this->games as $game) {
+            if ($game->getDelta() >= $next_delta) {
+                $next_delta = $game->getDelta() + 1;
+            }
+        }
+        return $next_delta;
     }
 
     /**
@@ -169,8 +191,8 @@ class Round
     {
         $round = new Round();
         $round->setTournament($tournament)
-          ->setDelta($tournament->getNextDelta());
-        $round->generateGames($number_of_races);
+          ->setDelta($tournament->getNextDelta())
+          ->generateGames($number_of_races);
         return $round;
     }
 }
