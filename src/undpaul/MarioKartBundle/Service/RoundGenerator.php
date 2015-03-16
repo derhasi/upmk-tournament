@@ -3,6 +3,7 @@
 namespace undpaul\MarioKartBundle\Service;
 
 use Doctrine\Bundle\DoctrineBundle\Registry;
+use undpaul\MarioKartBundle\Entity\Game;
 use undpaul\MarioKartBundle\Entity\Round;
 use undpaul\MarioKartBundle\Entity\Tournament;
 
@@ -41,19 +42,41 @@ class RoundGenerator {
 
         // For now we "only" generate the games the simple way. The algorithm
         // for swiss style tournaments will follow later.
-        $games_count = ceil(count($ps) / Game::MAX_PLAYERS);
-        $games = array_fill(0, $games_count, 0);
+        $gamesCount = $this->calculateGamesCount(count($ps));
 
         $offset = 0;
-
-        foreach ($games as $delta => $val) {
-            $gamePs = $ps->slice($offset, Game::MAX_PLAYERS);
-            $game = Game::generate($this, $gamePs, $number_of_races);
+        foreach ($gamesCount as $playerCount) {
+            $gamePs = $ps->slice($offset, $playerCount);
+            $game = Game::generate($round, $gamePs, $number_of_races);
             $round->addGame($game);
-            $offset += Game::MAX_PLAYERS;
+            $offset += $playerCount;
         }
 
         return $round;
+    }
+
+    /**
+     * Calculate the games count with relevant number of players for each game.
+     *
+     * @param integer $playerCount
+     *
+     * @return array
+     */
+    protected function calculateGamesCount($playerCount)
+    {
+        $games_count = ceil($playerCount / Game::MAX_PLAYERS);
+        $games = array_fill(0, $games_count, 0);
+
+        for ($i = 0; $i < $playerCount; $i++) {
+            $key = key($games);
+            $games[$key]++;
+
+            if (next($games) === false) {
+                reset($games);
+            }
+        }
+
+        return $games;
     }
 
 }
