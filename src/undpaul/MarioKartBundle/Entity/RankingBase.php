@@ -8,14 +8,14 @@ namespace undpaul\MarioKartBundle\Entity;
 abstract class RankingBase {
 
     /**
-     * @var ResultOverviewRow[]
+     * @var RankingRow[]
      */
     protected $rows;
 
     /**
      * Get the calculated result rows.
      *
-     * @return ResultOverviewRow[]
+     * @return RankingRow[]
      */
     public function calculate()
     {
@@ -38,12 +38,12 @@ abstract class RankingBase {
         foreach ($this->getRaceResultItems() as $result) {
             $pid = $result->getParticipation()->getId();
             if (!isset($this->rows[$pid])) {
-                $this->rows[$pid] = new ResultOverviewRow($result->getParticipation());
+                $this->rows[$pid] = new RankingRow($result->getParticipation());
             }
             $this->rows[$pid]->addResult($result);
         }
 
-        ResultOverviewRow::sort($this->rows);
+        RankingRow::sort($this->rows);
 
         return $this->rows;
     }

@@ -2,7 +2,10 @@
 
 namespace undpaul\MarioKartBundle\Entity;
 
-class ResultOverviewRow {
+/**
+ * Holds information for a player participation in a ranking context.
+ */
+class RankingRow {
 
     /**
      * @var Participation
@@ -89,21 +92,21 @@ class ResultOverviewRow {
     /**
      * Sorts an array of result rows.
      *
-     * @param ResultOverviewRow[] $arr
+     * @param RankingRow[] $arr
      */
     public static function sort(array &$arr)
     {
-        uasort($arr, '\undpaul\MarioKartBundle\Entity\ResultOverviewRow::sortCallback');
+        uasort($arr, '\undpaul\MarioKartBundle\Entity\RankingRow::sortCallback');
     }
 
     /**
      * Callback function for use in usort() like functions.
      *
-     * @param \undpaul\MarioKartBundle\Entity\ResultOverviewRow $a
-     * @param \undpaul\MarioKartBundle\Entity\ResultOverviewRow $b
+     * @param \undpaul\MarioKartBundle\Entity\RankingRow $a
+     * @param \undpaul\MarioKartBundle\Entity\RankingRow $b
      * @return int
      */
-    public static function sortCallback(ResultOverviewRow $a, ResultOverviewRow $b)
+    public static function sortCallback(RankingRow $a, RankingRow $b)
     {
         $diff = $a->getSumRelative() - $b->getSumRelative();
         if ($diff != 0) {
