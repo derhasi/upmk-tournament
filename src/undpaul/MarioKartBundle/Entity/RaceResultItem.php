@@ -41,10 +41,9 @@ class RaceResultItem
     private $race;
 
     /**
-     * @var \undpaul\MarioKartBundle\Entity\Player
+     * @var \undpaul\MarioKartBundle\Entity\Participation
      */
-    private $player;
-
+    private $participation;
 
     /**
      * Get id
@@ -159,26 +158,13 @@ class RaceResultItem
     }
 
     /**
-     * Set player
-     *
-     * @param \undpaul\MarioKartBundle\Entity\Player $player
-     * @return RaceResultItem
-     */
-    public function setPlayer(\undpaul\MarioKartBundle\Entity\Player $player = null)
-    {
-        $this->player = $player;
-
-        return $this;
-    }
-
-    /**
      * Get player
      *
      * @return \undpaul\MarioKartBundle\Entity\Player 
      */
     public function getPlayer()
     {
-        return $this->player;
+        return $this->participation->getPlayer();
     }
 
     /**
@@ -240,5 +226,41 @@ class RaceResultItem
         $item->setRace($race)
             ->setPlayer($player);
         return $item;
+    }
+
+    /**
+     * Set pos_rel
+     *
+     * @param integer $posRel
+     * @return RaceResultItem
+     */
+    public function setPosRel($posRel)
+    {
+        $this->pos_rel = $posRel;
+
+        return $this;
+    }
+
+    /**
+     * Set participation
+     *
+     * @param \undpaul\MarioKartBundle\Entity\Participation $participation
+     * @return RaceResultItem
+     */
+    public function setParticipation(\undpaul\MarioKartBundle\Entity\Participation $participation = null)
+    {
+        $this->participation = $participation;
+
+        return $this;
+    }
+
+    /**
+     * Get participation
+     *
+     * @return \undpaul\MarioKartBundle\Entity\Participation 
+     */
+    public function getParticipation()
+    {
+        return $this->participation;
     }
 }

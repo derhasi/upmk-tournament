@@ -23,11 +23,11 @@ class Tournament
      * @var \Doctrine\Common\Collections\Collection
      */
     private $rounds;
-
+    
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
-    private $players;
+    private $participations;
 
     /**
      * Constructor
@@ -105,39 +105,6 @@ class Tournament
     }
 
     /**
-     * Add players
-     *
-     * @param \undpaul\MarioKartBundle\Entity\Player $players
-     * @return Tournament
-     */
-    public function addPlayer(\undpaul\MarioKartBundle\Entity\Player $players)
-    {
-        $this->players[] = $players;
-
-        return $this;
-    }
-
-    /**
-     * Remove players
-     *
-     * @param \undpaul\MarioKartBundle\Entity\Player $players
-     */
-    public function removePlayer(\undpaul\MarioKartBundle\Entity\Player $players)
-    {
-        $this->players->removeElement($players);
-    }
-
-    /**
-     * Get players
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getPlayers()
-    {
-        return $this->players;
-    }
-
-    /**
      * Check if the tournament already has started.
      *
      * @return bool
@@ -165,5 +132,38 @@ class Tournament
             }
         }
         return $next_delta;
+    }
+
+    /**
+     * Add participations
+     *
+     * @param \undpaul\MarioKartBundle\Entity\Participation $participations
+     * @return Tournament
+     */
+    public function addParticipation(\undpaul\MarioKartBundle\Entity\Participation $participations)
+    {
+        $this->participations[] = $participations;
+
+        return $this;
+    }
+
+    /**
+     * Remove participations
+     *
+     * @param \undpaul\MarioKartBundle\Entity\Participation $participations
+     */
+    public function removeParticipation(\undpaul\MarioKartBundle\Entity\Participation $participations)
+    {
+        $this->participations->removeElement($participations);
+    }
+
+    /**
+     * Get participations
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getParticipations()
+    {
+        return $this->participations;
     }
 }

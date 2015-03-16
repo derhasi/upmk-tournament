@@ -21,7 +21,8 @@ undpaul\MarioKartBundle\Entity\RaceResultItem:
         race:
           targetEntity: undpaul\MarioKartBundle\Entity\Race
           inversedBy: results
-        player:
-          targetEntity: undpaul\MarioKartBundle\Entity\Player
+        participation:
+          targetEntity: undpaul\MarioKartBundle\Entity\Participation
+          inversedBy: results
     lifecycleCallbacks: {}
 

@@ -17,7 +17,9 @@ undpaul\MarioKartBundle\Entity\Tournament:
         rounds:
           targetEntity: undpaul\MarioKartBundle\Entity\Round
           mappedBy: tournament
-    manyToMany:
-        players:
-            targetEntity: undpaul\MarioKartBundle\Entity\Player
+          cascade: [all]
+        participations:
+          targetEntity: undpaul\MarioKartBundle\Entity\Participation
+          mappedBy: tournament
+          cascade: [all]
     lifecycleCallbacks: {  }

@@ -1,0 +1,24 @@
+undpaul\MarioKartBundle\Entity\Participation:
+    type: entity
+    table: null
+    repositoryClass: undpaul\MarioKartBundle\Entity\ParticipationRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    manyToOne:
+        tournament:
+          targetEntity: undpaul\MarioKartBundle\Entity\Race
+          inversedBy: participants
+        player:
+          targetEntity: undpaul\MarioKartBundle\Entity\Player
+    oneToMany:
+        results:
+          targetEntity: undpaul\MarioKartBundle\Entity\RaceResultItem
+          mappedBy: participation
+          cascade: ['all']
+
+    lifecycleCallbacks: {}
+
