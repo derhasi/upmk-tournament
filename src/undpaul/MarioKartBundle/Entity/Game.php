@@ -195,6 +195,33 @@ class Game
     }
 
     /**
+     * Retrieve players from races.
+     *
+     * @return \Doctrine\Common\Collections\ArrayCollection
+     */
+    public function getPlayers()
+    {
+        $players = new \Doctrine\Common\Collections\ArrayCollection();
+
+        /**
+         * @var Race $race
+         * @var RaceResultItem $result
+         */
+        foreach ($this->races as $race)
+        {
+            foreach ($race->getResults() as $result)
+            {
+                $player = $result->getPlayer();
+                if (!$players->contains($player)) {
+                    $players->add($player);
+                }
+            }
+        }
+
+        return $players;
+    }
+
+    /**
      * Generate game for a given round.
      *
      * @param \undpaul\MarioKartBundle\Entity\Round $round
