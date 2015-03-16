@@ -11,7 +11,7 @@ undpaul\MarioKartBundle\Entity\Participation:
     manyToOne:
         tournament:
           targetEntity: undpaul\MarioKartBundle\Entity\Tournament
-          inversedBy: participants
+          inversedBy: participations
         player:
           targetEntity: undpaul\MarioKartBundle\Entity\Player
     oneToMany:
