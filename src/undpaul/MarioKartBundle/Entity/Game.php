@@ -135,7 +135,7 @@ class Game
     /**
      * Generate races for this game.
      *
-     * @params array $players
+     * @param array $players
      * @param int $raceCount
      */
     protected function generateRaces($players, $raceCount = 3) {
@@ -198,7 +198,7 @@ class Game
      * Generate game for a given round.
      *
      * @param \undpaul\MarioKartBundle\Entity\Round $round
-     * @params array $players
+     * @param array $players
      * @param integer $number_of_races
      *
      * @return \undpaul\MarioKartBundle\Entity\Round $game

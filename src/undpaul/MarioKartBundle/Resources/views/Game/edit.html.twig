@@ -1,7 +1,28 @@
-{% extends "::base.html.twig" %}
+{% extends 'undpaulMarioKartBundle::layout.html.twig' %}
 
-{% block title %}undpaulMarioKartBundle:Game:edit{% endblock %}
+{% block breadcrumbs %}
+  {{ parent() }}
+  <a href="{{ path('upmk_tournament_index') }}">
+    Tournaments
+  </a>
+  <a href="{{ path('upmk_tournament_view', { 'tournament_id': game.round.tournament.id}) }}">
+    {{ game.round.tournament.name }}
+  </a>
+  <a href="{{ path('upmk_round_view', { 'round_id': game.round.id}) }}">
+    {{ game.round.getFullName() }}
+  </a>
+{% endblock %}
 
-{% block body %}
-<h1>Welcome to the Game:edit page</h1>
+{% block page_title %}
+    Edit {{ game.getFullName() }}</em>
+{% endblock %}
+
+{% form_theme form 'undpaulMarioKartBundle:Form:form.html.twig' %}
+
+{% block content %}
+  {% if form %}
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
+  {% endif %}
 {% endblock %}

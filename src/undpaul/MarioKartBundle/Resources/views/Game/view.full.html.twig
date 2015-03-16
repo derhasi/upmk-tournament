@@ -1,5 +1,9 @@
 <div class="game">
-  <{{ titleTag }}>{{ game.getFullName() }}</{{ titleTag }}>
+  <{{ titleTag }}>
+    {{ game.getFullName() }}
+    <sup><a href="{{ path('upmk_game_edit', { 'game_id': game.id }) }}">Edit</a></sup>
+  </{{ titleTag }}>
+
   <table>
     <thead>
     <tr>

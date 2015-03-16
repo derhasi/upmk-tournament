@@ -126,6 +126,20 @@ class Race
         return $this->game;
     }
 
+    /**
+     * Get a label for the game.
+     *
+     * @return string
+     */
+    public function getFullName()
+    {
+        return sprintf('Race %d.%d.%d',
+          $this->getGame()->getDelta() + 1,
+          $this->getGame()->getDelta() + 1,
+          $this->getDelta() + 1
+        );
+    }
+
     protected function generateResultItems($players)
     {
         foreach ($players as $player) {

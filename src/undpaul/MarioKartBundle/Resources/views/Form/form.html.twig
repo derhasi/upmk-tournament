@@ -1,0 +1,36 @@
+{# Customized to show name of race as label #}
+{% block _undpaul_mariokartbundle_game_races_entry_row %}
+  {% spaceless %}
+    <label class="label--race">{{- form.vars.value.getFullName() -}}</label>
+    {{- form_errors(form) -}}
+    {{- form_widget(form) -}}
+  {% endspaceless %}
+{% endblock %}
+
+{# Customize to render les output for the result item. #}
+{% block _undpaul_mariokartbundle_game_races_entry_results_entry_row %}
+  {% spaceless %}
+    <div class="form-result-item">
+    <label  class="label--result-item">{{- form.vars.value.player.getName() -}}</label>
+    {{- form_errors(form) -}}
+    {{- form_widget(form) -}}
+    </div>
+  {% endspaceless %}
+{% endblock %}
+
+{% block _undpaul_mariokartbundle_game_races_entry_results_entry_widget %}
+  {% spaceless %}
+    {%- if form.parent is empty -%}
+      {{ form_errors(form) }}
+    {%- endif -%}
+    {{- block('form_rows') -}}
+    {{- form_rest(form) -}}
+  {% endspaceless %}
+{% endblock %}
+
+{% block _undpaul_mariokartbundle_game_races_entry_results_entry_pos_abs_row %}
+  {% spaceless %}
+    {{- form_errors(form) -}}
+    {{- form_widget(form) -}}
+  {% endspaceless %}
+{% endblock %}
