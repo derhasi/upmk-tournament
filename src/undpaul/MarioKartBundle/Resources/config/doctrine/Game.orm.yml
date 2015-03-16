@@ -20,7 +20,4 @@ undpaul\MarioKartBundle\Entity\Game:
             targetEntity: undpaul\MarioKartBundle\Entity\Race
             mappedBy: game
             cascade: ['all']
-    manyToMany:
-        players:
-            targetEntity: undpaul\MarioKartBundle\Entity\Player
     lifecycleCallbacks: {  }

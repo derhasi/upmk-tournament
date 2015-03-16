@@ -27,11 +27,6 @@ class Game
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
-    private $players;
-
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
     private $races;
 
     /**
@@ -150,39 +145,6 @@ class Game
             $race->setDelta($i);
             $this->addRace($race);
         }
-    }
-
-    /**
-     * Add players
-     *
-     * @param \undpaul\MarioKartBundle\Entity\Player $players
-     * @return Game
-     */
-    public function addPlayer(\undpaul\MarioKartBundle\Entity\Player $players)
-    {
-        $this->players[] = $players;
-
-        return $this;
-    }
-
-    /**
-     * Remove players
-     *
-     * @param \undpaul\MarioKartBundle\Entity\Player $players
-     */
-    public function removePlayer(\undpaul\MarioKartBundle\Entity\Player $players)
-    {
-        $this->players->removeElement($players);
-    }
-
-    /**
-     * Get players
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getPlayers()
-    {
-        return $this->players;
     }
 
     /**
