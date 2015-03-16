@@ -75,4 +75,33 @@ class ResultOverviewRow {
     {
         return array_sum($this->pts_rel);
     }
+
+    /**
+     * Sorts an array of result rows.
+     *
+     * @param ResultOverviewRow[] $arr
+     */
+    public static function sort(array &$arr)
+    {
+        uasort($arr, '\undpaul\MarioKartBundle\Entity\ResultOverviewRow::sortCallback');
+    }
+
+    /**
+     * Callback function for use in usort() like functions.
+     *
+     * @param \undpaul\MarioKartBundle\Entity\ResultOverviewRow $a
+     * @param \undpaul\MarioKartBundle\Entity\ResultOverviewRow $b
+     * @return int
+     */
+    public static function sortCallback(ResultOverviewRow $a, ResultOverviewRow $b)
+    {
+        $diff = $a->getSumRelative() - $b->getSumRelative();
+        if ($diff != 0) {
+            return -1 * $diff;
+        }
+        $diff = $a->getSumAbsolute() - $b->getSumAbsolute();
+        if ($diff != 0) {
+            return -1 * $diff;
+        }
+    }
 }

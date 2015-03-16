@@ -191,6 +191,8 @@ class Game
             }
         }
 
+        ResultOverviewRow::sort($rows);
+
         return $rows;
     }
 

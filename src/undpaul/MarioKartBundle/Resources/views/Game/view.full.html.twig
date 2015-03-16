@@ -20,7 +20,10 @@
         <td>{{ result.pos_abs|join(',') }}</td>
         <td>{{ result.pos_rel|join(',') }}</td>
         <td>{{ result.pts_rel|join(',') }}</td>
-        <td class="bold">{{ result.getSumAbsolute() }}</td>
+        <td class="bold">
+          {{ result.getSumRelative() }}
+          <sup>({{ result.getSumAbsolute() }})</sup>
+        </td>
       </tr>
     {% endfor %}
   </table>
