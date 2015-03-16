@@ -17,22 +17,22 @@ class RaceResultItem
     /**
      * @var integer
      */
-    private $pos_rel;
+    private $pos_rel = 0;
 
     /**
      * @var integer
      */
-    private $pos_abs;
+    private $pos_abs = 0;
 
     /**
      * @var integer
      */
-    private $pts_rel;
+    private $pts_rel = 0;
 
     /**
      * @var integer
      */
-    private $pts_abs;
+    private $pts_abs = 0;
 
     /**
      * @var \undpaul\MarioKartBundle\Entity\Race
@@ -191,5 +191,20 @@ class RaceResultItem
     public function getPlayer()
     {
         return $this->player;
+    }
+
+    /**
+     * Generate a new race result item.
+     *
+     * @param \undpaul\MarioKartBundle\Entity\Race $race
+     * @param \undpaul\MarioKartBundle\Entity\Player $player
+     * @return \undpaul\MarioKartBundle\Entity\RaceResultItem
+     */
+    public static function generate(Race $race, Player $player)
+    {
+        $item = new RaceResultItem();
+        $item->setRace($race)
+            ->setPlayer($player);
+        return $item;
     }
 }

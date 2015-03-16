@@ -135,23 +135,38 @@ class Game
     /**
      * Generate races for this game.
      *
+     * @params array $players
      * @param int $raceCount
      */
-    protected function generateRaces($raceCount = 3) {
-
+    protected function generateRaces($players, $raceCount = 3) {
         for ($i = 0; $i < $raceCount; $i++) {
-            $race = new Race();
-            $race->setGame($this);
-            $race->setDelta($i);
+            $race = Race::generate($this, $players);
             $this->addRace($race);
         }
+    }
+
+    /**
+     * Retrieve the delta to be used for the next race.
+     *
+     * @return int
+     */
+    public function getNextDelta()
+    {
+        $next_delta = 0;
+        foreach ($this->races as $race) {
+            if ($race->getDelta() >= $next_delta) {
+                $next_delta = $race->getDelta() + 1;
+            }
+        }
+        return $next_delta;
     }
 
     /**
      * Generate game for a given round.
      *
      * @param \undpaul\MarioKartBundle\Entity\Round $round
-     * @param $number_of_races
+     * @params array $players
+     * @param integer $number_of_races
      *
      * @return \undpaul\MarioKartBundle\Entity\Round $game
      */
@@ -160,11 +175,7 @@ class Game
         $game = new Game();
         $game->setRound($round)
           ->setDelta($round->getNextDelta());
-        foreach ($players as $player) {
-            $game->addPlayer($player);
-        }
-
-        $game->generateRaces($number_of_races);
+        $game->generateRaces($players, $number_of_races);
 
         return $game;
     }

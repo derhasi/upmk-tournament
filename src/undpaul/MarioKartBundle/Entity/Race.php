@@ -125,4 +125,30 @@ class Race
     {
         return $this->game;
     }
+
+    protected function generateResultItems($players)
+    {
+        foreach ($players as $player) {
+            $item = RaceResultItem::generate($this, $player);
+            $this->addResult($item);
+        }
+    }
+
+    /**
+     * Generates a fresh race with the given players.
+     *
+     * @param \undpaul\MarioKartBundle\Entity\Game $game
+     * @param array $players
+     *
+     * @return \undpaul\MarioKartBundle\Entity\Race
+     */
+    public static function generate(Game $game, array $players)
+    {
+        $race = new Race();
+        $race->setGame($game)
+            ->setDelta($game->getNextDelta());
+        $race->generateResultItems($players);
+
+        return $race;
+    }
 }
