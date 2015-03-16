@@ -41,7 +41,8 @@ class GameController extends Controller
         $game = $em->getRepository('undpaulMarioKartBundle:Game')
           ->find($game_id);
 
-        $form = $this->createForm(new GameType(), $game);
+        $form = $this->createForm(new GameType(), $game)
+          ->add('save', 'submit');
 
         $form->handleRequest($request);
 

@@ -1,4 +1,10 @@
 services:
-#    upmk.example:
-#        class: undpaul\MarioKartBundle\Example
-#        arguments: [@service_id, "plain_value", %parameter%]
+    upmk.pointrules:
+        class: undpaul\MarioKartBundle\Service\PointRules
+        arguments: []
+
+    upmk.resultitem:
+        class: undpaul\MarioKartBundle\Listener\ResultItemListener
+        arguments: [@upmk.pointrules]
+        tags:
+            - { name: doctrine.event_listener, event: preFlush }

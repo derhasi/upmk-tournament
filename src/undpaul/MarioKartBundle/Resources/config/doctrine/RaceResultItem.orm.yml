@@ -23,4 +23,5 @@ undpaul\MarioKartBundle\Entity\RaceResultItem:
           inversedBy: results
         player:
           targetEntity: undpaul\MarioKartBundle\Entity\Player
-    lifecycleCallbacks: {  }
+    lifecycleCallbacks: {}
+

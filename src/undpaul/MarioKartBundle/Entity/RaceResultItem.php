@@ -3,6 +3,7 @@
 namespace undpaul\MarioKartBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use undpaul\MarioKartBundle\Service\PointRules;
 
 /**
  * RaceResultItem
@@ -53,19 +54,6 @@ class RaceResultItem
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set pos_rel
-     *
-     * @param integer $posRel
-     * @return RaceResultItem
-     */
-    public function setPosRel($posRel)
-    {
-        $this->pos_rel = $posRel;
-
-        return $this;
     }
 
     /**
@@ -191,6 +179,52 @@ class RaceResultItem
     public function getPlayer()
     {
         return $this->player;
+    }
+
+    /**
+     * Calculates or recalculates the item in relation to items of the race.
+     *
+     * @param \undpaul\MarioKartBundle\Service\PointRules $rules
+     */
+    public function calculate(Pointrules $rules)
+    {
+        $this->calculatePosition();
+        $this->calculatePoints($rules);
+    }
+
+    /**
+     * Lifecycle callback to calculate positions.
+     */
+    protected function calculatePosition()
+    {
+        if (empty($this->pos_abs)) {
+            $this->pos_rel = 0;
+            return;
+        }
+
+        // We start on Position one and check the number of result items that
+        // are positioned in front of us.
+        $pos_rel = 1;
+
+        /**
+         * @var RaceResultItem $result
+         */
+        foreach ($this->race->getResults() as $result) {
+            if ($result->getPosAbs() && $result->getPosAbs() < $this->pos_abs) {
+                $pos_rel++;
+            }
+        }
+
+        $this->pos_rel = $pos_rel;
+    }
+
+    /**
+     * Lifecycle callback to calulcate points based on the position.
+     */
+    protected function calculatePoints(PointRules $rules)
+    {
+        $this->pts_abs = $rules->getAbsolutePoint($this->pos_abs);
+        $this->pts_rel = $rules->getRelativePoint($this->pos_rel);
     }
 
     /**
