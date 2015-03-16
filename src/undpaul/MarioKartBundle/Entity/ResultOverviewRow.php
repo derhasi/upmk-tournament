@@ -5,9 +5,9 @@ namespace undpaul\MarioKartBundle\Entity;
 class ResultOverviewRow {
 
     /**
-     * @var Player
+     * @var Participation
      */
-    public $player;
+    protected $participation;
 
     /**
      * @var array
@@ -34,8 +34,8 @@ class ResultOverviewRow {
      *
      * @param \undpaul\MarioKartBundle\Entity\Player $player
      */
-    public function __construct(Player $player) {
-        $this->player = $player;
+    public function __construct(Participation $participation) {
+        $this->participation = $participation;
     }
 
     /**
@@ -46,7 +46,7 @@ class ResultOverviewRow {
      */
     public function addResult(RaceResultItem $result)
     {
-        if ($result->getPlayer()->getId() != $this->player->getId()) {
+        if ($result->getParticipation()->getId() != $this->participation->getId()) {
             throw new \Exception('Invalid player');
         }
 
@@ -74,6 +74,16 @@ class ResultOverviewRow {
     public function getSumRelative()
     {
         return array_sum($this->pts_rel);
+    }
+
+    /**
+     * Retrieve player for result row.
+     *
+     * @return \undpaul\MarioKartBundle\Entity\Player
+     */
+    public function getPlayer()
+    {
+        return $this->participation->getPlayer();
     }
 
     /**

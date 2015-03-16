@@ -172,28 +172,8 @@ class Game
     }
 
     public function getOverviewData() {
-
-        $rows = array();
-
-        /**
-         * @var Race $race
-         */
-        foreach ($this->getRaces() as $race) {
-            /**
-             * @var RaceResultItem $result
-             */
-            foreach ($race->getResults() as $result) {
-                $player_id = $result->getPlayer()->getId();
-                if (!isset($rows[$player_id])) {
-                    $rows[$player_id] = new ResultOverviewRow($result->getPlayer());
-                }
-                $rows[$player_id]->addResult($result);
-            }
-        }
-
-        ResultOverviewRow::sort($rows);
-
-        return $rows;
+        $ranking = new RankingGame($this);
+        return $ranking->calculate();
     }
 
     /**
