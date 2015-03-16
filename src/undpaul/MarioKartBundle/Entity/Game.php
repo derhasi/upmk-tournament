@@ -161,6 +161,11 @@ class Game
         return $next_delta;
     }
 
+    public function getFullName()
+    {
+        return sprintf('Game %d.%d', $this->getRound()->getDelta() + 1, $this->getDelta() + 1);
+    }
+
     /**
      * Generate game for a given round.
      *

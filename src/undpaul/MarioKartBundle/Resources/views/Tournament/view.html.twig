@@ -39,8 +39,10 @@
   {% if tournament.rounds | length > 0 %}
     <ul>
       {% for round in tournament.rounds %}
-        <li> {{ round.getFullName() }}
-          <a href="{{ path('upmk_round_remove', {'round_id': round.id}) }}">X</a>
+        <li>
+          <a href="{{ path('upmk_round_view', {'round_id': round.id}) }}">
+            {{ round.getFullName() }}
+          </a>
         </li>
       {% endfor %}
     </ul>

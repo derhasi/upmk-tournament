@@ -10,6 +10,23 @@ use undpaul\MarioKartBundle\Entity\Round;
 
 class RoundController extends Controller
 {
+
+    public function viewAction($round_id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $round = $em->getRepository('undpaulMarioKartBundle:Round')
+          ->find($round_id);
+
+        if (!$round) {
+            return $this->createNotFoundException();
+        }
+
+        return $this->render('undpaulMarioKartBundle:Round:view.html.twig',
+          array(
+            'round' => $round,
+          ));
+    }
+
     public function generateAction($tournament_id, Request $request)
     {
         /**

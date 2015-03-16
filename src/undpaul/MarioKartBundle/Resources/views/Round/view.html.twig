@@ -8,21 +8,17 @@
   <a href="{{ path('upmk_tournament_view', { 'tournament_id': round.tournament.id}) }}">
     {{ round.tournament.name }}
   </a>
-  <a href="{{ path('upmk_round_view', { 'round_id': round.id}) }}">
-    {{ round.getFullName() }}
-  </a>
 {% endblock %}
 
 {% block page_title %}
-  Remove round
+  {{ round.getFullName() }}
 {% endblock %}
 
 {% block content %}
-  Are you sure you want to remove <em>{{ round.getFullName() }}</em>?
 
-  {% if form %}
-    {{ form_start(form) }}
-    {{ form_widget(form) }}
-    {{ form_end(form) }}
-  {% endif %}
+  {% for game in round.games %}
+    <div class="game">{{ game.getFullName() }}</div>
+  {% endfor %}
+
+  <a href="{{ path('upmk_round_remove', {'round_id': round.id}) }}">(x) Delete round</a>
 {% endblock %}

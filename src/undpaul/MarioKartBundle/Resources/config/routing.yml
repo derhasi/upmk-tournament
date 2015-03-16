@@ -32,6 +32,10 @@ upmk_player_new:
     path:     /player/new
     defaults: { _controller: undpaulMarioKartBundle:Player:new }
 
+upmk_round_view:
+    path:     /round/{round_id}
+    defaults: { _controller: undpaulMarioKartBundle:Round:view }
+
 upmk_round_generate:
     path:     /tournament/{tournament_id}/round/generate
     defaults: { _controller: undpaulMarioKartBundle:Round:generate }
