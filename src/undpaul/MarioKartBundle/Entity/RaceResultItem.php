@@ -217,14 +217,14 @@ class RaceResultItem
      * Generate a new race result item.
      *
      * @param \undpaul\MarioKartBundle\Entity\Race $race
-     * @param \undpaul\MarioKartBundle\Entity\Player $player
+     * @param \undpaul\MarioKartBundle\Entity\Participation $participation
      * @return \undpaul\MarioKartBundle\Entity\RaceResultItem
      */
-    public static function generate(Race $race, Player $player)
+    public static function generate(Race $race, Participation $participation)
     {
         $item = new RaceResultItem();
         $item->setRace($race)
-            ->setPlayer($player);
+            ->setParticipation($participation);
         return $item;
     }
 

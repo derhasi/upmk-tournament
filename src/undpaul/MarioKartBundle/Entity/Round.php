@@ -133,18 +133,18 @@ class Round
      */
     protected function generateGames($raceCount = 3)
     {
-        $players = $this->tournament->getPlayers();
+        $ps = $this->tournament->getParticipations();
 
         // For now we "only" generate the games the simple way. The algorithm
         // for swiss style tournaments will follow later.
-        $games_count = ceil(count($players) / Game::MAX_PLAYERS);
+        $games_count = ceil(count($ps) / Game::MAX_PLAYERS);
         $games = array_fill(0, $games_count, 0);
 
         $offset = 0;
 
         foreach ($games as $delta => $val) {
-            $gamePlayers = $players->slice($offset, Game::MAX_PLAYERS);
-            $game = Game::generate($this, $gamePlayers, $raceCount);
+            $gamePs = $ps->slice($offset, Game::MAX_PLAYERS);
+            $game = Game::generate($this, $gamePs, $raceCount);
             $this->addGame($game);
             $offset += Game::MAX_PLAYERS;
         }

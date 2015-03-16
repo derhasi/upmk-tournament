@@ -140,10 +140,15 @@ class Race
         );
     }
 
-    protected function generateResultItems($players)
+    /**
+     * Generate result items for the given race.
+     *
+     * @param array $participations
+     */
+    protected function generateResultItems($participations)
     {
-        foreach ($players as $player) {
-            $item = RaceResultItem::generate($this, $player);
+        foreach ($participations as $p) {
+            $item = RaceResultItem::generate($this, $p);
             $this->addResult($item);
         }
     }
@@ -152,16 +157,16 @@ class Race
      * Generates a fresh race with the given players.
      *
      * @param \undpaul\MarioKartBundle\Entity\Game $game
-     * @param array $players
+     * @param array $participations
      *
      * @return \undpaul\MarioKartBundle\Entity\Race
      */
-    public static function generate(Game $game, array $players)
+    public static function generate(Game $game, array $participations)
     {
         $race = new Race();
         $race->setGame($game)
             ->setDelta($game->getNextDelta());
-        $race->generateResultItems($players);
+        $race->generateResultItems($participations);
 
         return $race;
     }

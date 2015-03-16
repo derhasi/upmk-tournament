@@ -11,7 +11,7 @@
 {% block _undpaul_mariokartbundle_game_races_entry_results_entry_row %}
   {% spaceless %}
     <div class="form-result-item">
-    <label  class="label--result-item">{{- form.vars.value.player.getName() -}}</label>
+    <label  class="label--result-item">{{- form.vars.value.getPlayer().getName() -}}</label>
     {{- form_errors(form) -}}
     {{- form_widget(form) -}}
     </div>
