@@ -17,7 +17,7 @@
 {% block content %}
 
   {% for game in round.games %}
-    <div class="game">{{ game.getFullName() }}</div>
+    {% include "undpaulMarioKartBundle:Game:view.html.twig" %}
   {% endfor %}
 
   <a href="{{ path('upmk_round_remove', {'round_id': round.id}) }}">(x) Delete round</a>

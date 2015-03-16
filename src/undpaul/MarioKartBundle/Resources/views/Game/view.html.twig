@@ -1,0 +1,24 @@
+<div class="game">
+  <h3>{{ game.getFullName() }}</h3>
+
+  <table>
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>Finished</th>
+      <th>Pos</th>
+      <th>Pte</th>
+      <th>&sum;</th>
+    </tr>
+    </thead>
+    {% for result in game.getOverviewData() %}
+      <tr>
+        <td class="bold">{{ result.player.name }}</td>
+        <td>{{ result.pos_abs|join(',') }}</td>
+        <td>{{ result.pos_rel|join(',') }}</td>
+        <td>{{ result.pts_rel|join(',') }}</td>
+        <td class="bold">{{ result.getSumAbsolute() }}</td>
+      </tr>
+    {% endfor %}
+  </table>
+</div>

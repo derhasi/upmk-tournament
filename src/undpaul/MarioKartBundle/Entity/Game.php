@@ -161,9 +161,37 @@ class Game
         return $next_delta;
     }
 
+    /**
+     * Get a label for the game.
+     *
+     * @return string
+     */
     public function getFullName()
     {
         return sprintf('Game %d.%d', $this->getRound()->getDelta() + 1, $this->getDelta() + 1);
+    }
+
+    public function getOverviewData() {
+
+        $rows = array();
+
+        /**
+         * @var Race $race
+         */
+        foreach ($this->getRaces() as $race) {
+            /**
+             * @var RaceResultItem $result
+             */
+            foreach ($race->getResults() as $result) {
+                $player_id = $result->getPlayer()->getId();
+                if (!isset($rows[$player_id])) {
+                    $rows[$player_id] = new ResultOverviewRow($result->getPlayer());
+                }
+                $rows[$player_id]->addResult($result);
+            }
+        }
+
+        return $rows;
     }
 
     /**
