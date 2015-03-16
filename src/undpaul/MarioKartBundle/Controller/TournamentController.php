@@ -5,6 +5,7 @@ namespace undpaul\MarioKartBundle\Controller;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use undpaul\MarioKartBundle\Entity\Participation;
 use undpaul\MarioKartBundle\Entity\Tournament;
 use undpaul\MarioKartBundle\Entity\Player;
 use undpaul\MarioKartBundle\Form\TournamentType;
@@ -108,7 +109,7 @@ class TournamentController extends Controller
                 return $queryBuilder;
             },
           ))
-          ->add('create_new_player', 'text')
+          ->add('create_new_player', 'text', array('required' => false))
           ->add('add', 'submit')
           ->add('add_another', 'submit')
           ->getForm();
@@ -120,7 +121,12 @@ class TournamentController extends Controller
 
             // Add player if one was selected.
             if ($data['select_existing_player']) {
-                $tournament->addPlayer($data['select_existing_player']);
+                // Create new participation for selected player.
+                $participation = new Participation();
+                $participation->setPlayer($data['select_existing_player']);
+                $participation->setTournament($tournament);
+                $em->persist($participation);
+                $tournament->addParticipation($participation);
 
                 $this->addFlash('notice',
                   sprintf('Added "%s" to "%s"!',
@@ -132,7 +138,13 @@ class TournamentController extends Controller
                 $u = new Player();
                 $u->setName($data['create_new_player']);
                 $em->persist($u);
-                $tournament->addPlayer($u);
+
+                $participation = new Participation();
+                $participation->setPlayer($u);
+                $participation->setTournament($tournament);
+                $em->persist($participation);
+
+                $tournament->addParticipation($participation);
 
                 $this->addFlash('notice',
                   sprintf('Created "%s" and added to "%s"!',

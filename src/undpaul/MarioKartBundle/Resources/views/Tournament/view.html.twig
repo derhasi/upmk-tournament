@@ -16,9 +16,9 @@
 {% block content %}
 
   <h2>Players</h2>
-  {% if tournament.players | length > 0 %}
+  {% if tournament.participations | length > 0 %}
     <ul>
-      {% for player in tournament.players %}
+      {% for player in tournament.getPlayers() %}
         <li>{{ player.name }}</li>
       {% endfor %}
     </ul>

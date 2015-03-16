@@ -10,7 +10,7 @@ undpaul\MarioKartBundle\Entity\Participation:
                 strategy: AUTO
     manyToOne:
         tournament:
-          targetEntity: undpaul\MarioKartBundle\Entity\Race
+          targetEntity: undpaul\MarioKartBundle\Entity\Tournament
           inversedBy: participants
         player:
           targetEntity: undpaul\MarioKartBundle\Entity\Player

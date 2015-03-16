@@ -20,7 +20,7 @@ class Participation
     private $results;
 
     /**
-     * @var \undpaul\MarioKartBundle\Entity\Race
+     * @var \undpaul\MarioKartBundle\Entity\Tournament
      */
     private $tournament;
 
@@ -83,10 +83,10 @@ class Participation
     /**
      * Set tournament
      *
-     * @param \undpaul\MarioKartBundle\Entity\Race $tournament
+     * @param \undpaul\MarioKartBundle\Entity\Tournament $tournament
      * @return Participation
      */
-    public function setTournament(\undpaul\MarioKartBundle\Entity\Race $tournament = null)
+    public function setTournament(\undpaul\MarioKartBundle\Entity\Tournament $tournament = null)
     {
         $this->tournament = $tournament;
 
@@ -96,7 +96,7 @@ class Participation
     /**
      * Get tournament
      *
-     * @return \undpaul\MarioKartBundle\Entity\Race 
+     * @return \undpaul\MarioKartBundle\Entity\Tournament
      */
     public function getTournament()
     {
@@ -124,5 +124,15 @@ class Participation
     public function getPlayer()
     {
         return $this->player;
+    }
+
+    /**
+     * String representation of the object.
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->player->getName();
     }
 }

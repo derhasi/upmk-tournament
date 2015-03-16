@@ -35,7 +35,7 @@ class Tournament
     public function __construct()
     {
         $this->rounds = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->players = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->participations = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -165,5 +165,16 @@ class Tournament
     public function getParticipations()
     {
         return $this->participations;
+    }
+
+    public function getPlayers()
+    {
+        $players = new \Doctrine\Common\Collections\ArrayCollection();
+
+        /* @var Participation $participation */
+        foreach ($this->participations as $participation) {
+            $players->add($participation->getPlayer());
+        }
+        return $players;
     }
 }
