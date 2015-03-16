@@ -1,0 +1,19 @@
+<table class="ranking">
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Races</th>
+    <th>&sum;</th>
+  </tr>
+  </thead>
+  {% for row in ranking %}
+    <tr>
+      <td class="bold">{{ row.player.name }}</td>
+      <td>{{ row.getFinishedCount() }}</td>
+      <td class="bold">
+        {{ row.getSumRelative() }}
+        <sup>({{ row.getSumAbsolute() }})</sup>
+      </td>
+    </tr>
+  {% endfor %}
+</table>

@@ -6,6 +6,7 @@ use Doctrine\ORM\EntityRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use undpaul\MarioKartBundle\Entity\Participation;
+use undpaul\MarioKartBundle\Entity\RankingTournament;
 use undpaul\MarioKartBundle\Entity\Tournament;
 use undpaul\MarioKartBundle\Entity\Player;
 use undpaul\MarioKartBundle\Form\TournamentType;
@@ -59,9 +60,12 @@ class TournamentController extends Controller
         $tournament = $em->getRepository('undpaulMarioKartBundle:Tournament')
           ->find($tournament_id);
 
+        $ranking = new RankingTournament($tournament);
+
         return $this->render('undpaulMarioKartBundle:Tournament:view.html.twig',
           array(
             'tournament' => $tournament,
+            'ranking' => $ranking->calculate(),
           ));
 
     }

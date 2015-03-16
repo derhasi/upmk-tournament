@@ -60,6 +60,16 @@ class RankingRow {
     }
 
     /**
+     * Get the number of races the participant finished.
+     *
+     * @return int
+     */
+    public function getFinishedCount()
+    {
+        return count(array_filter($this->pos_abs));
+    }
+
+    /**
      * Get sum of absolute points.
      *
      * @return number
