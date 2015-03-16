@@ -8,6 +8,7 @@ use Symfony\Component\Validator\Constraints\GreaterThan;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use undpaul\MarioKartBundle\Entity\RankingRound;
 use undpaul\MarioKartBundle\Entity\Round;
+use undpaul\MarioKartBundle\Service\RoundGenerator;
 
 class RoundController extends Controller
 {
@@ -58,7 +59,13 @@ class RoundController extends Controller
 
             $data = $form->getData();
 
-            $round = Round::generate($tournament, $data['number_of_races']);
+            /**
+             * @var RoundGenerator $generator
+             */
+            $generator = $this->get('upmk.roundgenerator');
+
+            $round = $generator->generateNewRound($tournament, $data['number_of_races']);
+
             $em->persist($round);
 
             $tournament->addRound($round);

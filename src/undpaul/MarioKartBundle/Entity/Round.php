@@ -127,30 +127,6 @@ class Round
     }
 
     /**
-     * Generates games for the new round.
-     *
-     * @param int $raceCount
-     */
-    protected function generateGames($raceCount = 3)
-    {
-        $ps = $this->tournament->getParticipations();
-
-        // For now we "only" generate the games the simple way. The algorithm
-        // for swiss style tournaments will follow later.
-        $games_count = ceil(count($ps) / Game::MAX_PLAYERS);
-        $games = array_fill(0, $games_count, 0);
-
-        $offset = 0;
-
-        foreach ($games as $delta => $val) {
-            $gamePs = $ps->slice($offset, Game::MAX_PLAYERS);
-            $game = Game::generate($this, $gamePs, $raceCount);
-            $this->addGame($game);
-            $offset += Game::MAX_PLAYERS;
-        }
-    }
-
-    /**
      * Wrapper for the full name.
      *
      * @return string
@@ -177,22 +153,5 @@ class Round
             }
         }
         return $next_delta;
-    }
-
-    /**
-     * Autogenerate the next round for a given tournament.
-     *
-     * @param \undpaul\MarioKartBundle\Entity\Tournament $tournament
-     * @param integer $number_of_races
-     *
-     * @return \undpaul\MarioKartBundle\Entity\Round
-     */
-    public static function generate(Tournament $tournament, $number_of_races = 3)
-    {
-        $round = new Round();
-        $round->setTournament($tournament)
-          ->setDelta($tournament->getNextDelta())
-          ->generateGames($number_of_races);
-        return $round;
     }
 }

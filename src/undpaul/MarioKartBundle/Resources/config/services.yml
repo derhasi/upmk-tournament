@@ -8,3 +8,7 @@ services:
         arguments: [@upmk.pointrules]
         tags:
             - { name: doctrine.event_listener, event: preFlush }
+
+    upmk.roundgenerator:
+        class: undpaul\MarioKartBundle\Service\RoundGenerator
+        arguments: [@doctrine]
