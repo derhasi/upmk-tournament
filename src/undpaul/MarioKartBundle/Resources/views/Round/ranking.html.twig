@@ -2,18 +2,14 @@
   <thead>
   <tr>
     <th>Name</th>
-    <th>Finished</th>
-    <th>Pos</th>
-    <th>Pte</th>
+    <th>Races</th>
     <th>&sum;</th>
   </tr>
   </thead>
   {% for row in ranking %}
     <tr>
       <td class="bold">{{ row.player.name }}</td>
-      <td>{{ row.pos_abs|join(',') }}</td>
-      <td>{{ row.pos_rel|join(',') }}</td>
-      <td>{{ row.pts_rel|join(',') }}</td>
+      <td>{{ row.pos_abs|length }}</td>
       <td class="bold">
         {{ row.getSumRelative() }}
         <sup>({{ row.getSumAbsolute() }})</sup>

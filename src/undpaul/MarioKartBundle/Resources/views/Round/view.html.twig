@@ -20,5 +20,8 @@
     {{ render(controller('undpaulMarioKartBundle:Game:viewFull', {'game': game, 'titleTag': 'h3' })) }}
   {% endfor %}
 
+  <h3>Ranking</h3>
+  {% include "undpaulMarioKartBundle:Round:ranking.html.twig" %}
+
   <a href="{{ path('upmk_round_remove', {'round_id': round.id}) }}">(x) Delete round</a>
 {% endblock %}

@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints\GreaterThan;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use undpaul\MarioKartBundle\Entity\RankingRound;
 use undpaul\MarioKartBundle\Entity\Round;
 
 class RoundController extends Controller
@@ -21,9 +22,12 @@ class RoundController extends Controller
             return $this->createNotFoundException();
         }
 
+        $ranking = new RankingRound($round);
+
         return $this->render('undpaulMarioKartBundle:Round:view.html.twig',
           array(
             'round' => $round,
+            'ranking' => $ranking->calculate(),
           ));
     }
 
