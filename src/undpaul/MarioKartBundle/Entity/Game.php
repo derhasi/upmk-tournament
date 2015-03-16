@@ -171,11 +171,6 @@ class Game
         return sprintf('Game %d.%d', $this->getRound()->getDelta() + 1, $this->getDelta() + 1);
     }
 
-    public function getOverviewData() {
-        $ranking = new RankingGame($this);
-        return $ranking->calculate();
-    }
-
     /**
      * Retrieve players from races.
      *

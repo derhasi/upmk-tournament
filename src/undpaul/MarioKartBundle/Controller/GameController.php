@@ -5,6 +5,7 @@ namespace undpaul\MarioKartBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use undpaul\MarioKartBundle\Entity\Game;
+use undpaul\MarioKartBundle\Entity\RankingGame;
 use undpaul\MarioKartBundle\Form\GameType;
 
 class GameController extends Controller
@@ -19,16 +20,20 @@ class GameController extends Controller
           ->find($game_id);
 
         return $this->render('undpaulMarioKartBundle:Game:view.html.twig', array(
-                'game' => $game,
-
+          'game' => $game,
         ));
     }
 
     public function viewFullAction(Game $game, $titleTag = 'h1')
     {
+
+        // Provide ranking for the given game.
+        $ranking = new RankingGame($game);
+
         return $this->render('undpaulMarioKartBundle:Game:view.full.html.twig', array(
           'game' => $game,
           'titleTag' => $titleTag,
+          'ranking' => $ranking->calculate(),
         ));
     }
 
