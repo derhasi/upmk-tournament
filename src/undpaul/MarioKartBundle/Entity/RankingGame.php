@@ -3,17 +3,12 @@
 namespace undpaul\MarioKartBundle\Entity;
 
 
-class RankingGame {
+class RankingGame extends RankingBase {
 
     /**
      * @var \undpaul\MarioKartBundle\Entity\Game
      */
     protected $game;
-
-    /**
-     * @var ResultOverviewRow[]
-     */
-    protected $rows;
 
     /**
      * Constructor.
@@ -25,50 +20,20 @@ class RankingGame {
         $this->game = $game;
     }
 
-    /**
-     * Get the calculated result rows.
-     *
-     * @return ResultOverviewRow[]
-     */
-    public function calculate()
-    {
-        if (!empty($this->rows)) {
-            return $this->rows;
-        }
-
-        return $this->recalculate();
-    }
 
     /**
-     * Recalculate the result rows for the given game.
-     *
-     * @return array
+     * {@inheritdoc}
      */
-    public function recalculate()
+    protected function getRaceResultItems()
     {
-        $this->rows = array();
-
-        /**
-         * @var Race $race
-         */
+        $results = array();
         foreach ($this->game->getRaces() as $race) {
-            /**
-             * @var RaceResultItem $result
-             */
             foreach ($race->getResults() as $result) {
-                $pid = $result->getParticipation()->getId();
-                if (!isset($this->rows[$pid])) {
-                    $this->rows[$pid] = new ResultOverviewRow($result->getParticipation());
-                }
-                $this->rows[$pid]->addResult($result);
+                $results[$result->getId()] = $result;
             }
         }
-
-        ResultOverviewRow::sort($this->rows);
-
-        return $this->rows;
+        return $results;
     }
-
 
 
 }
