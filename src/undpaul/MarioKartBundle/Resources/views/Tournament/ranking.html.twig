@@ -1,6 +1,7 @@
 <table class="ranking">
   <thead>
   <tr>
+    <th>#</th>
     <th>Name</th>
     <th>Races</th>
     <th>&sum;</th>
@@ -8,6 +9,7 @@
   </thead>
   {% for row in ranking.rows %}
     <tr>
+      <td>{{ loop.index }}</td>
       <td class="bold">
         <a
             href="{{ path('upmk_participation_view', {'pid': row.participation.id}) }}">
