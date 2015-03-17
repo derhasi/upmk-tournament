@@ -23,5 +23,5 @@
   <h3>Ranking</h3>
   {% include "undpaulMarioKartBundle:Round:ranking.html.twig" %}
 
-  <a href="{{ path('upmk_round_remove', {'round_id': round.id}) }}">(x) Delete round</a>
+  <a  class="action action--remove" href="{{ path('upmk_round_remove', {'round_id': round.id}) }}">Delete round</a>
 {% endblock %}

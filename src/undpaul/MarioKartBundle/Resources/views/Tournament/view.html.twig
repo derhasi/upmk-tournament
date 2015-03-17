@@ -18,6 +18,7 @@
   {% else %}
     <div class="add-more">
       <a
+          class="action action--add"
           href="{{ path('upmk_tournament_add_player', {'tournament_id': tournament.id}) }}">
         Add players
       </a>
@@ -40,6 +41,7 @@
   {% endif %}
   <div class="add-more">
     <a
+        class="action action--add"
         href="{{ path('upmk_round_generate',
         {'tournament_id': tournament.id}) }}">
       Generate new round
@@ -50,6 +52,6 @@
   {% include "undpaulMarioKartBundle:Tournament:ranking.html.twig" %}
 
 
-  <a href="{{ path('upmk_tournament_remove', {'tid': tournament.id}) }}">(x) Delete tournament</a>
+  <a class="action action--remove" href="{{ path('upmk_tournament_remove', {'tid': tournament.id}) }}">Delete tournament</a>
 
 {% endblock %}

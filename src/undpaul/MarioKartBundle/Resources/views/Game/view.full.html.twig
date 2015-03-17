@@ -1,7 +1,7 @@
 <div class="game">
   <{{ titleTag }}>
     {{ game.getFullName() }}
-    <sup><a href="{{ path('upmk_game_edit', { 'game_id': game.id }) }}">Edit</a></sup>
+    <sup><a  class="action action--edit" href="{{ path('upmk_game_edit', { 'game_id': game.id }) }}">Edit</a></sup>
   </{{ titleTag }}>
 
   {% include "undpaulMarioKartBundle:Game:ranking.html.twig" %}
