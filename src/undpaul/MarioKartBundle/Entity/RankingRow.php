@@ -80,6 +80,16 @@ class RankingRow {
     }
 
     /**
+     * Get the number of scheduled and finished races.
+     *
+     * @return int
+     */
+    public function getRacesCount()
+    {
+        return count($this->pos_abs);
+    }
+
+    /**
      * Get sum of absolute points.
      *
      * @return number

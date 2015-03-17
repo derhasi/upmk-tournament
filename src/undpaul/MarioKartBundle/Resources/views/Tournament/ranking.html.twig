@@ -9,7 +9,7 @@
   {% for row in ranking.rows %}
     <tr>
       <td class="bold">{{ row.player.name }}</td>
-      <td>{{ row.getFinishedCount() }}</td>
+      <td>{{ row.getFinishedCount() }}/{{ row.getRacesCount() }}</td>
       <td class="bold">
         {{ row.getSumRelative() }}
         <sup>({{ row.getSumAbsolute() }})</sup>
