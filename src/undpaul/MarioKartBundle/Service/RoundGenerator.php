@@ -56,7 +56,12 @@ class RoundGenerator {
         $ranking = new RankingTournament($tournament);
         $collection = $ranking->getRows();
 
-        while (count($gamesCount)) {
+        // Counter to avoid unlimited loop.
+        $securityCounter = 0;
+
+        while (count($gamesCount) && $securityCounter <= 1000) {
+            $securityCounter++;
+
             $maxPlayers = max($gamesCount);
             $rows = $this->getNextRowsForParticipants($maxPlayers, $collection);
 
@@ -84,6 +89,12 @@ class RoundGenerator {
                 // this with increasing the duell limit.
                 $this->duellCountLimit++;
             }
+        }
+
+        // We try to avoid unlimited loops, but we need to throw an exception
+        // here as we need to know something is wrong.
+        if ($securityCounter > 1000) {
+            throw new \Exception('Bad looooop!');
         }
 
         return $round;
