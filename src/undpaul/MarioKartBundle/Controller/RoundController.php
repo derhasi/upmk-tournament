@@ -28,7 +28,7 @@ class RoundController extends Controller
         return $this->render('undpaulMarioKartBundle:Round:view.html.twig',
           array(
             'round' => $round,
-            'ranking' => $ranking->calculate(),
+            'ranking' => $ranking,
           ));
     }
 

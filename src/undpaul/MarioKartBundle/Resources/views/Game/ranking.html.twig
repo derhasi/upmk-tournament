@@ -8,7 +8,7 @@
     <th>&sum;</th>
   </tr>
   </thead>
-  {% for row in ranking %}
+  {% for row in ranking.rows %}
     <tr>
       <td class="bold">{{ row.player.name }}</td>
       <td>{{ row.pos_abs|join(',') }}</td>

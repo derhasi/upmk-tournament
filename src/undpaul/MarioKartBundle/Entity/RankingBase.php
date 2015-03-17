@@ -15,6 +15,16 @@ abstract class RankingBase {
     protected $rows;
 
     /**
+     * Getter for ranking rows.
+     *
+     * @return \undpaul\MarioKartBundle\Entity\RankingRowCollection
+     */
+    public function getRows()
+    {
+        return $this->calculate();
+    }
+
+    /**
      * Get the calculated result rows.
      *
      * @return RankingRowCollection

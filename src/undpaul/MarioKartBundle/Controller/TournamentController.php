@@ -65,7 +65,7 @@ class TournamentController extends Controller
         return $this->render('undpaulMarioKartBundle:Tournament:view.html.twig',
           array(
             'tournament' => $tournament,
-            'ranking' => $ranking->calculate(),
+            'ranking' => $ranking,
           ));
 
     }

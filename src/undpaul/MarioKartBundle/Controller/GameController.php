@@ -33,7 +33,7 @@ class GameController extends Controller
         return $this->render('undpaulMarioKartBundle:Game:view.full.html.twig', array(
           'game' => $game,
           'titleTag' => $titleTag,
-          'ranking' => $ranking->calculate(),
+          'ranking' => $ranking,
         ));
     }
 
