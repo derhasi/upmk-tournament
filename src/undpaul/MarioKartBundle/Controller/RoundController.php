@@ -76,7 +76,6 @@ class RoundController extends Controller
             ));
         }
 
-
         return $this->render('undpaulMarioKartBundle:Round:generate.html.twig', array(
           'tournament' => $tournament,
           'form' => $form->createView(),

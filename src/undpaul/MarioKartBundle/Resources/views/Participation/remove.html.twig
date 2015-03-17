@@ -1,0 +1,30 @@
+{% extends 'undpaulMarioKartBundle::layout.html.twig' %}
+
+{% block breadcrumbs %}
+  {{ parent() }}
+  <a href="{{ path('upmk_tournament_index') }}">
+    Tournaments
+  </a>
+  <a href="{{ path('upmk_tournament_view', { 'tournament_id': participation.tournament.id}) }}">
+    {{ participation.tournament.name }}
+  </a>
+  <a href="{{ path('upmk_participation_view', { 'pid': participation.id}) }}">
+    {{ participation }}
+  </a>
+{% endblock %}
+
+{% block page_title %}
+  Remove participation
+{% endblock %}
+
+{% block content %}
+  Are you sure you want to remove
+  <em>{{ participation }}</em>
+  from <em>{{ participation.tournament.name }}</em>?
+
+  {% if form %}
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
+  {% endif %}
+{% endblock %}

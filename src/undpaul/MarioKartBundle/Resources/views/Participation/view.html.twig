@@ -1,0 +1,20 @@
+{% extends 'undpaulMarioKartBundle::layout.html.twig' %}
+
+{% block breadcrumbs %}
+  {{ parent() }}
+  <a href="{{ path('upmk_tournament_index') }}">
+    Tournaments
+  </a>
+  <a href="{{ path('upmk_tournament_view', { 'tournament_id': participation.tournament.id}) }}">
+    {{ participation.tournament.name }}
+  </a>
+{% endblock %}
+
+{% block page_title %}
+  {{ participation.getPlayer().getName() }}
+{% endblock %}
+
+{% block content %}
+
+  <a href="{{ path('upmk_participation_remove', {'pid': participation.id}) }}">(x) Remove participation</a>
+{% endblock %}

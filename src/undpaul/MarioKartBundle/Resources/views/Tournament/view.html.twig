@@ -11,21 +11,10 @@
   {{ tournament.name }}
 {% endblock %}
 
-
-
 {% block content %}
 
-  <h2>Players</h2>
-  {% if tournament.participations | length > 0 %}
-    <ul>
-      {% for player in tournament.getPlayers() %}
-        <li>{{ player.name }}</li>
-      {% endfor %}
-    </ul>
-  {% endif %}
-
   {% if tournament.isStarted() %}
-    <div>You cannot add anymore players.</div>
+    <div>Tournament has started.</div>
   {% else %}
     <div class="add-more">
       <a
@@ -58,6 +47,10 @@
   </div>
 
   <h2>Ranking</h2>
+
+
+
+
   {% include "undpaulMarioKartBundle:Tournament:ranking.html.twig" %}
 
 {% endblock %}

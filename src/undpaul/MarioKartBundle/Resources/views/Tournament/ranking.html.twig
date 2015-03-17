@@ -8,7 +8,11 @@
   </thead>
   {% for row in ranking.rows %}
     <tr>
-      <td class="bold">{{ row.player.name }}</td>
+      <td class="bold">
+        <a
+            href="{{ path('upmk_participation_view', {'pid': row.participation.id}) }}">
+        {{ row.player.name }}</td>
+      </a>
       <td>{{ row.getFinishedCount() }}/{{ row.getRacesCount() }}</td>
       <td class="bold">
         {{ row.getSumRelative() }}

@@ -51,3 +51,11 @@ upmk_game_view:
 upmk_game_edit:
     path:     /game/{game_id}/edit
     defaults: { _controller: undpaulMarioKartBundle:Game:edit }
+
+upmk_participation_view:
+    path:     /participation/{pid}
+    defaults: { _controller: undpaulMarioKartBundle:Participation:view }
+
+upmk_participation_remove:
+    path:     /participation/{pid}/remove
+    defaults: { _controller: undpaulMarioKartBundle:Participation:remove }
