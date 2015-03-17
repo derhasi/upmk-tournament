@@ -4,6 +4,7 @@ namespace undpaul\MarioKartBundle\Service;
 
 use Doctrine\Bundle\DoctrineBundle\Registry;
 use undpaul\MarioKartBundle\Entity\Game;
+use undpaul\MarioKartBundle\Entity\RankingTournament;
 use undpaul\MarioKartBundle\Entity\Round;
 use undpaul\MarioKartBundle\Entity\Tournament;
 
@@ -44,6 +45,9 @@ class RoundGenerator {
         // for swiss style tournaments will follow later.
         $gamesCount = $this->calculateGamesCount(count($ps));
 
+        $ranking = new RankingTournament($tournament);
+        $rows = $ranking->calculate();
+
         $offset = 0;
         foreach ($gamesCount as $playerCount) {
             $gamePs = $ps->slice($offset, $playerCount);
@@ -54,6 +58,8 @@ class RoundGenerator {
 
         return $round;
     }
+
+
 
     /**
      * Calculate the games count with relevant number of players for each game.

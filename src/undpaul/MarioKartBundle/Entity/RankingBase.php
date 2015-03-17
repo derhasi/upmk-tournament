@@ -2,20 +2,22 @@
 
 namespace undpaul\MarioKartBundle\Entity;
 
+use undpaul\MarioKartBundle\Entity\RankingRowCollection;
+
 /**
  * Base class for building rankings for a given context.
  */
 abstract class RankingBase {
 
     /**
-     * @var RankingRow[]
+     * @var RankingRowCollection
      */
     protected $rows;
 
     /**
      * Get the calculated result rows.
      *
-     * @return RankingRow[]
+     * @return RankingRowCollection
      */
     public function calculate()
     {
@@ -29,23 +31,38 @@ abstract class RankingBase {
     /**
      * Recalculate the result rows for the given game.
      *
-     * @return array
+     * @return RankingRowCollection
      */
     public function recalculate()
     {
-        $this->rows = array();
+        $this->resetRows();
 
         foreach ($this->getRaceResultItems() as $result) {
             $pid = $result->getParticipation()->getId();
-            if (!isset($this->rows[$pid])) {
-                $this->rows[$pid] = new RankingRow($result->getParticipation());
+
+            $this->rows->containsKey($pid);
+
+            if (!$this->rows->containsKey($pid)) {
+                $row = new RankingRow($result->getParticipation());
+                $this->rows->set($pid, $row);
             }
-            $this->rows[$pid]->addResult($result);
+            else {
+                $row = $this->rows->get($pid);
+            }
+            $row->addResult($result);
         }
 
-        RankingRow::sort($this->rows);
+        // Replace rows with sorted collection.
+        $this->rows = $this->rows->sort();
 
         return $this->rows;
+    }
+
+    /**
+     * Helper to initalise and reset rows.
+     */
+    protected function resetRows() {
+        $this->rows = new RankingRowCollection();
     }
 
     /**
