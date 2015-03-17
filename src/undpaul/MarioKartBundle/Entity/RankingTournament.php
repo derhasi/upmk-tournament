@@ -18,7 +18,15 @@ class RankingTournament extends RankingBase {
     /**
      * {@inheritdoc}
      */
-    protected function getRaceResultItems()
+    protected function retrieveParticipations()
+    {
+        return $this->tournament->getParticipations()->toArray();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function retrieveRaceResultItems()
     {
         $results = array();
 

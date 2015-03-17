@@ -47,12 +47,16 @@ abstract class RankingBase {
     {
         $this->resetRows();
 
-        foreach ($this->getRaceResultItems() as $result) {
+        foreach ($this->retrieveParticipations() as $participation) {
+            $row = new RankingRow($participation);
+            $this->rows->set($participation->getId(), $row);
+        }
+
+        foreach ($this->retrieveRaceResultItems() as $result) {
             $pid = $result->getParticipation()->getId();
 
-            $this->rows->containsKey($pid);
-
             if (!$this->rows->containsKey($pid)) {
+                // Make sure a ranking row exists for this participattion.
                 $row = new RankingRow($result->getParticipation());
                 $this->rows->set($pid, $row);
             }
@@ -76,10 +80,18 @@ abstract class RankingBase {
     }
 
     /**
+     * Return participations to be added before retrieving rows from results.
+     */
+    protected function retrieveParticipations()
+    {
+        return array();
+    }
+
+    /**
      * Return result entries valid for the given ranking.
      *
      * @return RaceResultItem[]
      */
-    abstract protected function getRaceResultItems();
+    abstract protected function retrieveRaceResultItems();
 
 }

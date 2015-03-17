@@ -18,7 +18,7 @@ class RankingRound extends RankingBase {
     /**
      * {@inheritdoc}
      */
-    protected function getRaceResultItems()
+    protected function retrieveRaceResultItems()
     {
         $results = array();
         foreach ($this->round->getGames() as $game) {

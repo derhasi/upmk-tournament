@@ -24,7 +24,7 @@ class RankingGame extends RankingBase {
     /**
      * {@inheritdoc}
      */
-    protected function getRaceResultItems()
+    protected function retrieveRaceResultItems()
     {
         $results = array();
         foreach ($this->game->getRaces() as $race) {
