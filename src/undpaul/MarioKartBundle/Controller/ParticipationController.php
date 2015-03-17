@@ -15,8 +15,13 @@ class ParticipationController extends Controller
         $participation = $em->getRepository('undpaulMarioKartBundle:Participation')
           ->find($pid);
 
+        // Show duells
+        $duellranking = $participation->getDuellRankings();
+
+
         return $this->render('undpaulMarioKartBundle:Participation:view.html.twig', array(
-            'participation' => $participation,
+          'participation' => $participation,
+          'duellranking' => $duellranking,
         ));
     }
 

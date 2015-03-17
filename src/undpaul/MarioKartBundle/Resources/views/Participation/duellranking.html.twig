@@ -1,0 +1,22 @@
+<table class="ranking">
+  <thead>
+  <tr>
+    <th>Opponent</th>
+    <th>Races</th>
+    <th>Wins</th>
+    <th>Losses</th>
+  </tr>
+  </thead>
+  {% for row in duellranking %}
+    <tr>
+      <td class="bold">
+        <a
+            href="{{ path('upmk_participation_view', {'pid': row.opponent.id}) }}">
+        {{ row.opponent.player.name }}</td>
+      </a>
+      <td>{{ row.total }}</td>
+      <td>{{ row.wins }}</td>
+      <td>{{ row.losses }}</td>
+    </tr>
+  {% endfor %}
+</table>

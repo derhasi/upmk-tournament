@@ -162,4 +162,51 @@ class Participation
         }
         return $count;
     }
+
+    /**
+     * @return Duell[]
+     */
+    public function getDuells()
+    {
+        $return = array();
+        foreach ($this->tournament->getDuells() as $duell) {
+            if ($duell->hasParticipaton($this)) {
+                $return[] = $duell;
+            }
+        }
+        return $return;
+    }
+
+    /**
+     * @return DuellResult[]
+     */
+    protected function getDuellResults()
+    {
+        $return = array();
+        foreach ($this->getDuells() as $duell) {
+            $return[] = new DuellResult($duell, $this);
+        }
+        return $return;
+    }
+
+    /**
+     * @return DuellRankingRow[]
+     */
+    public function getDuellRankings()
+    {
+        $return = array();
+
+        foreach ($this->tournament->getParticipations() as $participation) {
+            if ($participation->getId() != $this->getId()) {
+                $id = $participation->getId();
+                $return[$id] = new DuellRankingRow($participation);
+            }
+        }
+
+        $results = $this->getDuellResults();
+        foreach ($results as $result) {
+            $return[$result->opponent->getId()]->addDuellResult($result);
+        }
+        return $return;
+    }
 }

@@ -17,4 +17,8 @@
 {% block content %}
 
   <a href="{{ path('upmk_participation_remove', {'pid': participation.id}) }}">(x) Remove participation</a>
+
+  <h2>Duells</h2>
+  {% include "undpaulMarioKartBundle:Participation:duellranking.html.twig" %}
+
 {% endblock %}
