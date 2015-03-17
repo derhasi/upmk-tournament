@@ -1,9 +1,11 @@
 {# Customized to show name of race as label #}
 {% block _undpaul_mariokartbundle_game_races_entry_row %}
   {% spaceless %}
+  <div class="form-item-race">
     <label class="label--race">{{- form.vars.value.getFullName() -}}</label>
     {{- form_errors(form) -}}
     {{- form_widget(form) -}}
+  </div>
   {% endspaceless %}
 {% endblock %}
 

@@ -50,9 +50,8 @@ a {
   color: #77B302;
   padding-right: 0.4em;
 }
-
 .ranking td {
-  padding: 0 0.5em;
+  padding: 0.3em 0.5em 0;
 }
 
 .race {
@@ -105,6 +104,22 @@ label {
 label:after {
   content: ':';
 }
+
+.form-item-race {
+  margin-bottom: 1em;
+}
+
+.form-item-race .label--race {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+label.label--result-item {
+  display: inline-block;
+  width: 20%;
+  text-align: right;
+}
+
 
 .flash-notice {
   padding: 1em;
