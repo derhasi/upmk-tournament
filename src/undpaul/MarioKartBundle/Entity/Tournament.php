@@ -177,4 +177,18 @@ class Tournament
         }
         return $players;
     }
+
+    /**
+     * Retrieve duells for the tournament.
+     *
+     * @return \Doctrine\Common\Collections\Collection|\undpaul\MarioKartBundle\Entity\Duell[]
+     */
+    public function getDuells()
+    {
+        $return = array();
+        foreach ($this->rounds as $round) {
+            $return = array_merge($return, $round->getDuells());
+        }
+        return $return;
+    }
 }

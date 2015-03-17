@@ -199,6 +199,20 @@ class Game
     }
 
     /**
+     * Retrieve duells for the game.
+     *
+     * @return \Doctrine\Common\Collections\Collection|\undpaul\MarioKartBundle\Entity\Duell[]
+     */
+    public function getDuells()
+    {
+        $return = array();
+        foreach ($this->races as $race) {
+            $return = array_merge($return, $race->getDuells());
+        }
+        return $return;
+    }
+
+    /**
      * Generate game for a given round.
      *
      * @param \undpaul\MarioKartBundle\Entity\Round $round

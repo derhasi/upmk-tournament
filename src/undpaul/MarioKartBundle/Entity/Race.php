@@ -25,6 +25,11 @@ class Race
     private $results;
 
     /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $duells;
+
+    /**
      * @var \undpaul\MarioKartBundle\Entity\Game
      */
     private $game;
@@ -79,6 +84,7 @@ class Race
     public function addResult(\undpaul\MarioKartBundle\Entity\RaceResultItem $results)
     {
         $this->results[] = $results;
+        $this->resetDuells();
 
         return $this;
     }
@@ -91,6 +97,7 @@ class Race
     public function removeResult(\undpaul\MarioKartBundle\Entity\RaceResultItem $results)
     {
         $this->results->removeElement($results);
+        $this->resetDuells();
     }
 
     /**
@@ -187,5 +194,27 @@ class Race
         $race->generateResultItems($participations);
 
         return $race;
+    }
+
+    /**
+     * Retrieve duells for the race.
+     *
+     * @return \Doctrine\Common\Collections\Collection|\undpaul\MarioKartBundle\Entity\Duell[]
+     */
+    public function getDuells()
+    {
+        if (!isset($this->duells)) {
+            $this->duells = Duell::generateDuells($this->results->toArray());
+        }
+
+        return $this->duells;
+    }
+
+    /**
+     * Reset duells to be recalculated on the next retrieval.
+     */
+    public function resetDuells()
+    {
+        $this->duells = NULL;
     }
 }

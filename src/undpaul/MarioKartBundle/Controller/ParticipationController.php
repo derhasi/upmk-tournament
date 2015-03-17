@@ -55,7 +55,6 @@ class ParticipationController extends Controller
             }
         }
 
-
         return $this->render('undpaulMarioKartBundle:Participation:remove.html.twig', array(
           'participation' => $participation,
           'form' => $form->createView(),

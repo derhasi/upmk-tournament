@@ -154,4 +154,18 @@ class Round
         }
         return $next_delta;
     }
+
+    /**
+     * Retrieve duells for the round.
+     *
+     * @return \Doctrine\Common\Collections\Collection|\undpaul\MarioKartBundle\Entity\Duell[]
+     */
+    public function getDuells()
+    {
+        $return = array();
+        foreach ($this->games as $game) {
+            $return = array_merge($return, $game->getDuells());
+        }
+        return $return;
+    }
 }
