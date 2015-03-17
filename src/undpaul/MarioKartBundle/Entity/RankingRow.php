@@ -146,8 +146,12 @@ class RankingRow {
         if ($diff != 0) {
             return -1 * $diff;
         }
+        $diff = $a->getFinishedCount() - $b->getFinishedCount();
+        if ($diff != 0) {
+            return -1 * $diff;
+        }
 
-        // Finally sort by name.
-        return 2 * ($a->getPlayer()->getName() > $b->getPlayer()->getName()) -1;
+        // Finally sort randomly.
+        return rand(-1, 1);
     }
 }
