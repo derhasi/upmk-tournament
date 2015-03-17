@@ -47,10 +47,9 @@
   </div>
 
   <h2>Ranking</h2>
-
-
-
-
   {% include "undpaulMarioKartBundle:Tournament:ranking.html.twig" %}
+
+
+  <a href="{{ path('upmk_tournament_remove', {'tid': tournament.id}) }}">(x) Delete tournament</a>
 
 {% endblock %}

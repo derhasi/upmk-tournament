@@ -19,6 +19,11 @@ upmk_tournament_view:
     defaults: { _controller: undpaulMarioKartBundle:Tournament:view }
     requirements: { tournament_id:  \d+ }
 
+upmk_tournament_remove:
+    path:     /tournament/{tid}/remove
+    defaults: { _controller: undpaulMarioKartBundle:Tournament:remove }
+    requirements: { tid:  \d+ }
+
 upmk_tournament_add_player:
     path:     /tournament/{tournament_id}/player/add
     defaults: { _controller: undpaulMarioKartBundle:Tournament:addPlayer }

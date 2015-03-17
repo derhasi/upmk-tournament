@@ -178,4 +178,42 @@ class TournamentController extends Controller
             'form' => $form->createView(),
           ));
     }
+
+    public function removeAction($tid, Request $request)
+    {
+
+        $em = $this->getDoctrine()->getManager();
+        $tournament = $em->getRepository('undpaulMarioKartBundle:Tournament')
+          ->find($tid);
+
+        if (!$tournament) {
+            return $this->createNotFoundException();
+        }
+
+        $form = $this->createFormBuilder()
+          ->add('remove', 'submit')
+          ->getForm();
+
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+
+            if ($form->get('remove')->isClicked()) {
+                $em->remove($tournament);
+                $em->flush();
+
+                $this->addFlash('notice', sprintf('Tournament %s removed.',
+                  $tournament->getName()
+                ));
+
+                return $this->redirectToRoute('upmk_tournament_index');
+            }
+        }
+
+        return $this->render('undpaulMarioKartBundle:Tournament:remove.html.twig',
+          array(
+            'tournament' => $tournament,
+            'form' => $form->createView(),
+          ));
+    }
 }
