@@ -52,4 +52,49 @@ class Player
     {
         return $this->name;
     }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $participations;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->participations = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add participations
+     *
+     * @param \undpaul\MarioKartBundle\Entity\Participation $participations
+     * @return Player
+     */
+    public function addParticipation(\undpaul\MarioKartBundle\Entity\Participation $participations)
+    {
+        $this->participations[] = $participations;
+
+        return $this;
+    }
+
+    /**
+     * Remove participations
+     *
+     * @param \undpaul\MarioKartBundle\Entity\Participation $participations
+     */
+    public function removeParticipation(\undpaul\MarioKartBundle\Entity\Participation $participations)
+    {
+        $this->participations->removeElement($participations);
+    }
+
+    /**
+     * Get participations
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getParticipations()
+    {
+        return $this->participations;
+    }
 }

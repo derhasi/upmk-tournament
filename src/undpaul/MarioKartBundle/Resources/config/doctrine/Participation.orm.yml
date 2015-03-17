@@ -14,6 +14,7 @@ undpaul\MarioKartBundle\Entity\Participation:
           inversedBy: participations
         player:
           targetEntity: undpaul\MarioKartBundle\Entity\Player
+          inversedBy: participations
     oneToMany:
         results:
           targetEntity: undpaul\MarioKartBundle\Entity\RaceResultItem

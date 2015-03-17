@@ -13,4 +13,11 @@ undpaul\MarioKartBundle\Entity\Player:
             type: string
             length: '64'
             column: Name
+
+    oneToMany:
+        participations:
+          targetEntity: undpaul\MarioKartBundle\Entity\Participation
+          mappedBy: player
+          cascade: ['all']
+
     lifecycleCallbacks: {  }
