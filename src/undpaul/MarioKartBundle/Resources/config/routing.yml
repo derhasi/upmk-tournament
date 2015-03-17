@@ -37,6 +37,10 @@ upmk_player_new:
     path:     /player/new
     defaults: { _controller: undpaulMarioKartBundle:Player:new }
 
+upmk_player_edit:
+    path:     /player/{pid}/edit
+    defaults: { _controller: undpaulMarioKartBundle:Player:edit }
+
 upmk_round_view:
     path:     /round/{round_id}
     defaults: { _controller: undpaulMarioKartBundle:Round:view }

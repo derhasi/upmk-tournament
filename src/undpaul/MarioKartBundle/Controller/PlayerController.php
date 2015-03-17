@@ -47,4 +47,34 @@ class PlayerController extends Controller
         ));
     }
 
+    public function editAction($pid, Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $player = $em->getRepository('undpaulMarioKartBundle:Player')
+          ->find($pid);
+
+
+        $form = $this->createForm(new PlayerType(), $player);
+        $form->add('update_player', 'submit');
+
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+
+            // Save the tournament to the database.
+            $em->flush();
+
+            // Provide a message.
+            $this->addFlash('notice',
+              sprintf('Player "%s" updated!', $player->getName()));
+
+            return $this->redirectToRoute('upmk_player_index');
+        }
+
+        return $this->render('undpaulMarioKartBundle:Player:edit.html.twig', array(
+          'player' => $player,
+          'form' => $form->createView(),
+        ));
+    }
+
 }

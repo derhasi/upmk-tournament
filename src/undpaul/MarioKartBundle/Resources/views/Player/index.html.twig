@@ -15,6 +15,7 @@
       {% for player in players %}
         <li>
           {{ player.name }}
+          <sup><a href="{{ path('upmk_player_edit', {'pid': player.id}) }}">edit</a></sup>
         </li>
       {% endfor %}
     </ul>
