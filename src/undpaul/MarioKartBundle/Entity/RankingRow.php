@@ -42,6 +42,16 @@ class RankingRow {
     }
 
     /**
+     * Getter for associated participation.
+     *
+     * @return \undpaul\MarioKartBundle\Entity\Participation
+     */
+    public function getParticipation()
+    {
+        return $this->participation;
+    }
+
+    /**
      * Add the data of a result item to the overview row.
      *
      * @param \undpaul\MarioKartBundle\Entity\RaceResultItem $result

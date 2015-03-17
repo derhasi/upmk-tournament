@@ -141,6 +141,24 @@ class Race
     }
 
     /**
+     * Check if player participated/participates in this race.
+     *
+     * @param \undpaul\MarioKartBundle\Entity\Participation $participation
+     *
+     * @return bool
+     */
+    public function hasParticipation(Participation $participation)
+    {
+        /** @var RaceResultItem $result */
+        foreach ($this->getResults() as $result) {
+            if ($result->getParticipation()->getId() == $participation->getId()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
      * Generate result items for the given race.
      *
      * @param array $participations
