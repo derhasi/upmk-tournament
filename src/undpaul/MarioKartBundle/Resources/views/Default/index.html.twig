@@ -1,0 +1,12 @@
+{% extends 'undpaulMarioKartBundle::layout.html.twig' %}
+
+{% block page_title %}
+  undpaul MarioKart
+{% endblock %}
+
+{% block content %}
+  <ul>
+    <li><a href="{{ path('upmk_player_index') }}">Players</a></li>
+    <li><a href="{{ path('upmk_tournament_index') }}">Tournaments</a></li>
+  </ul>
+{% endblock %}

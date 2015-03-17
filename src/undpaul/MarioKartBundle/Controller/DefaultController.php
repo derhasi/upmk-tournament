@@ -8,6 +8,6 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
-        return $this->redirect($this->generateUrl('upmk_legacy'));
+        return $this->render('undpaulMarioKartBundle:Default:index.html.twig');
     }
 }
