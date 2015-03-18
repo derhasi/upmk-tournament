@@ -26,20 +26,11 @@
         "symfony/monolog-bundle": "~2.4",
         "sensio/distribution-bundle": "~3.0,>=3.0.12",
         "sensio/framework-extra-bundle": "~3.0,>=3.0.2",
-        "incenteev/composer-parameter-handler": "~2.0",
-        "pear/math_combinatorics": "dev-trunk",
-        "twig/twig": "~1.0",
-        "symfony/yaml": "~2.6"
+        "incenteev/composer-parameter-handler": "~2.0"
     },
     "require-dev": {
       "sensio/generator-bundle": "~2.3"
     },
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/pear/Math_Combinatorics.git"
-        }
-    ],
     "scripts": {
       "post-root-package-install": [
         "SymfonyStandard\\Composer::hookRootPackageInstall"
